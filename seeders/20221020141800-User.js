@@ -10,6 +10,7 @@ module.exports = {
     const standard = await bcrypt.hash(auth.standard, salt)
      await queryInterface.bulkInsert('Users', [
       {
+       email: 'Admin@test.com',
        userName: 'Admin',
        password: admin,
        roleId: 1,
@@ -17,6 +18,7 @@ module.exports = {
        updatedAt: new Date,
       },
       {
+       email: 'Standard@test.com',
        userName: 'Standard',
        password: standard,
        roleId: 2,

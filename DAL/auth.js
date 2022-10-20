@@ -7,13 +7,13 @@ const registerUser = async (email, userName, hash, roleId) => {
         }
     })
     if (user) throw new Error('Usuario ya existe')
-    await User.create({
+    const data = await User.create({
         email,
         userName,
         password: hash,
         roleId,
     })
-    .then(e => e)
+    return data
 }
 
 module.exports = {
