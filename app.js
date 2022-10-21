@@ -4,10 +4,32 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const csrf = require('csurf')
+const session = require('express-session')
+const passport = require('passport')
+require('dotenv').config()
+const {User} = require('./models')
 
 const indexRouter = require('./routes');
 
 const app = express();
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+  name: process.env.NAME,
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+    
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+    User.findByPk(id).then(function(user) { done(null, user); });
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -10,7 +10,7 @@ const loginUser = async (userName, password) => {
     })
     if (!user) throw new AppError('Usuario no existe', 404);
     if (!bcrypt.compareSync(password, user.password)) throw new AppError('Contraseña no valida', 404);
-    
+    return user
 }
 
 const registerUser = async (email, userName, hash, roleId) => {
