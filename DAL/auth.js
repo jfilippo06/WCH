@@ -12,7 +12,7 @@ const registerUser = async (email, userName, hash, roleId) => {
         email,
         userName,
         password: hash,
-        roleId
+        RoleId: roleId
     })
     return data
 }
