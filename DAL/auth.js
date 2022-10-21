@@ -1,4 +1,4 @@
-const AppError = require('../errors/not-found')
+const AppError = require('../errors/appErrors')
 const {User} = require('../models')
 
 const registerUser = async (email, userName, hash, roleId) => {
@@ -7,12 +7,12 @@ const registerUser = async (email, userName, hash, roleId) => {
             email: email
         }
     })
-    if (user) throw new AppError('Authentication failed! Email / password does not correct.', 201);
+    if (user) throw new AppError('Usuario ya registrado', 200);
     const data = await User.create({
         email,
         userName,
         password: hash,
-        roleId,
+        roleId
     })
     return data
 }
