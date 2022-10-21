@@ -1,5 +1,16 @@
 const AppError = require('../errors/appErrors')
+const bcrypt = require('bcrypt')
 const {User} = require('../models')
+
+const loginUser = async (userName, password) => {
+    const user = await User.findOne({
+        where: {
+            userName: userName
+        }
+    })
+    if (!user) throw new AppError('Usuario no existe', 404);
+    if (!bcrypt.compareSync(password, user.password)) throw new AppError('Contraseña no valida', 404);
+}
 
 const registerUser = async (email, userName, hash, roleId) => {
     const user = await User.findOne({
@@ -18,5 +29,6 @@ const registerUser = async (email, userName, hash, roleId) => {
 }
 
 module.exports = {
+    loginUser,
     registerUser,
 }
