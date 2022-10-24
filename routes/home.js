@@ -4,7 +4,7 @@ const asyncHandler = require('../middlewares/async-handler');
 const loginUser = require('../middlewares/loginUser');
 const router = express.Router();
 
-router.get('/', loginUser, asyncHandler(homeLogin));
+router.get('/', asyncHandler(homeLogin));
 router.get('/home', loginUser, asyncHandler(homeIndex))
 router.get('/logout', loginUser, asyncHandler(logout))
 

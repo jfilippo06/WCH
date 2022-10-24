@@ -4,9 +4,9 @@ const AppError = require('../errors/appErrors')
 const loginRegister = async (req,res) => {
     try {
         const {userName, password} = req.body
-        const data = await loginService(userName, password)
-        req.login(data, (err) => {
-            if (err) throw new AppError('Error al crear la sesion')
+        const user = await loginService(userName, password)
+        req.login(user, (err,) => {
+            if (err) throw new AppError('Error al crear la sesion', 403)
             return res.redirect('/home')
         })
     } catch (error) {
