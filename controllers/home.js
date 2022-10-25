@@ -3,7 +3,8 @@ const homeLogin = async (req,res) => {
 }
 
 const homeIndex = async (req,res) => {
-    res.render('home');
+    user = req.user
+    res.render('home', {user});
 }
 
 const logout = async (req, res) => {
