@@ -1,7 +1,7 @@
 const { registerService, loginService } = require('../services/auth')
 const AppError = require('../errors/appErrors')
 
-const loginRegister = async (req,res) => {
+const loginController = async (req,res) => {
     try {
         const {userName, password} = req.body
         const user = await loginService(userName, password)
@@ -24,7 +24,13 @@ const registerController = async (req, res) => {
     }
 }
 
+const logoutController = async (req, res) => {
+    req.logout(()=>{})
+    res.redirect('/')
+}
+
 module.exports = {
-    loginRegister,
+    loginController,
     registerController,
+    logoutController,
 }
