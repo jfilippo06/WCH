@@ -8,6 +8,7 @@ const session = require('express-session')
 const passport = require('passport')
 require('dotenv').config()
 const {User} = require('./models')
+const flash = require('connect-flash')
 
 const indexRouter = require('./routes');
 
@@ -19,6 +20,8 @@ app.use(session({
   saveUninitialized: false,
   name: process.env.NAME,
 }))
+
+app.use(flash())
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -43,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(csrf({cookie: true}))
 app.use((req,res,next) => {
     res.locals.csrfToken = req.csrfToken()
+    res.locals.messages = req.flash('messages')
     next()
 })
 
