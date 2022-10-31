@@ -11,7 +11,6 @@ const loginController = async (req,res) => {
         })
     } catch (error) {
         req.flash('messages', {msg:error.message})
-        // res.status(error.code).json(error.message)
         res.redirect('/')
     }
 }
