@@ -1,10 +1,10 @@
 const homeLogin = async (req,res) => {
-    res.render('index');
+    res.render('pages/index');
 }
 
 const homeIndex = async (req,res) => {
     user = req.user
-    res.render('home', {user});
+    res.render('pages/home', {user});
 }
 
 module.exports = {
