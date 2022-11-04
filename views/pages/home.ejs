@@ -2,148 +2,26 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>WCH</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="images/favicon.png" rel="icon">
-
-  <!-- Vendor CSS Files -->
-  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="css/style.css" rel="stylesheet">
-
+  <%- include('../partials/head') %>
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
+    <%- include('../partials/header') %>
+  </header>
 
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="/home" class="logo d-flex align-items-center">
-        <img src="images/logo.png" alt="">
-        <span class="d-none d-lg-block">WCH CREATIONS</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0">
-            <span class="d-none d-md-block  ps-2">
-              <%= user.userName %>
-            </span>
-          </a><!-- End Profile Image Icon -->
-
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link " href="/home">
-          <i class="bi bi-box-seam"></i>
-          <span>Inventario</span>
-        </a>
-      </li><!-- EndInventario -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-person"></i>
-          <span>Venta</span>
-        </a>
-      </li><!-- End Venta -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-clipboard-data-fill"></i>
-          <span>Reportes</span>
-        </a>
-      </li><!-- End Reportes-->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-clipboard-x-fill"></i>
-          <span>Registros</span>
-        </a>
-      </li><!-- End Registros -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-wrench"></i><span>Configuración</span><i
-            class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Gestionar usuarios</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Configuración -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-server"></i><span>Mantenimiento</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Compactar base de datos</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Respaldar base de datos</span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class="bi bi-circle"></i><span>Restaurar base de datos</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Mantenimiento -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" id="salir">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Salir</span>
-        </a>
-      </li><!-- End Salir -->
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
-
+    <%- include('../partials/aside') %>
+  </aside>
+  
   <main id="main" class="main">
     
   </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
+  
   <footer id="footer" class="footer">
-    <div class="copyright">
-    </div>
-    <div class="credits">
-    </div>
-  </footer><!-- End Footer -->
+    <%- include('../partials/footer') %>
+  </footer>
 
   <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="javascripts/main.js"></script>
