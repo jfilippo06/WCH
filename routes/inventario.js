@@ -4,6 +4,6 @@ const asyncHandler = require('../middlewares/async-handler');
 const loginUser = require('../middlewares/loginUser');
 const router = express.Router();
 
-router.get('/inventario', loginUser, asyncHandler(inventario))
+router.get('/', loginUser, asyncHandler(inventario))
 
 module.exports = router;
