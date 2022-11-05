@@ -50,10 +50,14 @@
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Contraseña</label>
                       <input type="password" name="password" class="form-control" id="password" required>
-                      <% alert.forEach(function(message){ %>
-                        <p><%- message.msg %></p>
-                      <% }); %>
                     </div>
+                    
+                    <% alert.forEach(function(message){ %>
+                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <%- message.msg %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                    <% }); %>
 
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Iniciar sesión</button>
@@ -70,6 +74,8 @@
 
     </div>
   </main><!-- End #main -->
+
+  <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
