@@ -1,8 +1,8 @@
-const inventario = async (req,res) => {
+const inventarioController = async (req,res) => {
     user = req.user
     res.render('pages/inventario', {user});
 }
 
 module.exports = {
-    inventario,
+    inventarioController,
 }
