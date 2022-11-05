@@ -11,7 +11,7 @@ salir.addEventListener('click', () => {
                 </div>
                 <div class="modal-footer flex-column border-top-0">
                     <a class="btn btn-lg btn-primary w-100 mx-0" href="/auth/logout">Si</a>
-                    <a class="btn btn-lg btn-danger w-100 mx-0" href="/home">No</a>
+                    <a class="btn btn-lg btn-danger w-100 mx-0" href="/inventario">No</a>
                 </div>
             </div>
         </div>
