@@ -18,8 +18,9 @@ const loginController = async (req,res) => {
 const registerController = async (req, res) => {
     try {
         const {email, userName, password, roleId} = req.body
-        const data = await registerService(email, userName, password, roleId)
-        res.status(201).json(data)
+        await registerService(email, userName, password, roleId)
+        req.flash('success', {msg:'usuario registrado'})
+        res.redirect('/usuario')
     } catch (error) {
         req.flash('alert', {msg:error.message})
         res.redirect('/usuario')

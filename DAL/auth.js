@@ -19,7 +19,7 @@ const registerUser = async (email, userName, hash, roleId) => {
             email: email
         }
     })
-    if (user) throw new AppError('Usuario ya registrado', 200);
+    if (user) throw new AppError('Usuario ya existe', 200);
     const data = await User.create({
         email,
         userName,
