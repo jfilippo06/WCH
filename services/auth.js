@@ -10,8 +10,7 @@ const loginService = async (userName, password) => {
 const registerService = async (email, userName, password, roleId) => {
     const salt = await bcrypt.genSalt(Number.parseInt(auth.rounds))
     const hash = await bcrypt.hash(password, salt)
-    const data = await registerUser(email, userName, hash, roleId)
-    return data
+    await registerUser(email, userName, hash, roleId)
 }
 
 module.exports = {

@@ -19,7 +19,7 @@ const registerController = async (req, res) => {
     try {
         const {email, userName, password, roleId} = req.body
         await registerService(email, userName, password, roleId)
-        req.flash('success', {msg:'usuario registrado'})
+        req.flash('success', {msg:'Usuario registrado'})
         res.redirect('/usuario')
     } catch (error) {
         req.flash('alert', {msg:error.message})
