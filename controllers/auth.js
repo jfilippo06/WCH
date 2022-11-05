@@ -10,7 +10,7 @@ const loginController = async (req,res) => {
             return res.redirect('/inventario')
         })
     } catch (error) {
-        req.flash('messages', {msg:error.message})
+        req.flash('alert', {msg:error.message})
         res.redirect('/')
     }
 }
@@ -21,7 +21,8 @@ const registerController = async (req, res) => {
         const data = await registerService(email, userName, password, roleId)
         res.status(201).json(data)
     } catch (error) {
-        res.status(error.code).json(error.message)
+        req.flash('alert', {msg:error.message})
+        res.redirect('/usuario')
     }
 }
 
