@@ -27,7 +27,7 @@
                   <img src="images/logo.png" alt="">
                   <span class="d-none d-lg-block">WCH CREATIONS</span>
                 </a>
-              </div><!-- End Logo -->
+              </div>
 
               <div class="card mb-3">
 
@@ -52,12 +52,7 @@
                       <input type="password" name="password" class="form-control" id="password" required>
                     </div>
                     
-                    <% alert.forEach(function(message){ %>
-                      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <%- message.msg %>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div>
-                    <% }); %>
+                    <%- include('../partials/alert') %>
 
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Iniciar sesión</button>
