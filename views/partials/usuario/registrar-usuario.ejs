@@ -3,8 +3,8 @@
         <div class="card-body">
             <h5 class="card-title">Registrar usuario</h5>
 
-            <%- include('./alert') %>
-            <%- include('./success') %>
+            <%- include('../message/alert') %>
+            <%- include('../message/success') %>
 
             <form action="/auth/register" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
