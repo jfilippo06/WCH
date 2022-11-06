@@ -8,8 +8,8 @@ const usuarioService = async (page,size) => {
     const { count: totalItems, rows: users } = data
     const currentPage = page ? +page: 0
     const totalPages = Math.ceil(totalItems / limit)
-    const next = nextPage('usuario', currentPage, totalPages, size)
-    const prev = prevPage('usuario', currentPage, totalPages, size)
+    const next = nextPage('usuario', currentPage, totalPages, limit)
+    const prev = prevPage('usuario', currentPage, totalPages, limit)
     return { users, prev, next }
 }
 

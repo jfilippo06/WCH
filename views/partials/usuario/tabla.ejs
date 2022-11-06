@@ -15,23 +15,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Brandon Jacob</td>
-                        <td>Designer</td>
-                        <td>28</td>
-                        <td>
-                            <button type="button" class="btn btn-warning"><i class="bi bi-brush"></i></button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
-                        </td>
-                    </tr>
+                    <% for(let i=0; i < users.length; i++) { %>
+                        <tr>
+                            <th scope="row"><%= users[i].id %></th>
+                            <td><%= users[i].email %></td>
+                            <td><%= users[i].userName %></td>
+                            <td><%= users[i].RoleId %></td>
+                            <td>
+                                <button type="button" class="btn btn-warning"><i class="bi bi-brush"></i></button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger"><i class="bi bi-x-lg"></i></button>
+                            </td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
             <div class="text-center">
-                <button type="button" class="btn btn-primary bi-arrow-left"></button>
-                <button type="button" class="btn btn-secondary bi-arrow-right"></button>
+                <% if (prev) { %>
+                    <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+                <% } %>
+                <% if (next) { %>
+                    <a class="btn btn-secondary bi-arrow-right" href="<%= next %>"></a>
+                <% } %>
             </div>
         </div>
     </div>
