@@ -10,7 +10,7 @@ const loginController = async (req,res) => {
             return res.redirect('/inventario')
         })
     } catch (error) {
-        req.flash('alert', {msg:error.message})
+        req.flash('index-alert', {msg:error.message})
         res.redirect('/')
     }
 }
