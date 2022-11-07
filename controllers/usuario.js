@@ -1,4 +1,4 @@
-const { usuarioService } = require("../services/usuario");
+const { usuarioService, deshabilitarUsuarioService } = require("../services/usuario");
 
 const usuarioController = async (req,res) => {
     try {
@@ -16,7 +16,9 @@ const usuarioController = async (req,res) => {
 const deshabilitarUsuarioController = async (req,res) => {
     try {
         const {id} = req.params
-        res.json({id})
+        await deshabilitarUsuarioService(id)
+        req.flash('success', {msg:'Usuario eliminado'})
+        res.redirect('/usuario')
     } catch (error) {
         req.flash('alert', {msg:error.message})
         res.redirect('/usuario')

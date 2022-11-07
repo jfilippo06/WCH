@@ -11,6 +11,15 @@ const findAndCountAllUsers = async (limit,offset) => {
     return data
 }
 
+const deshabilitarUsuario = async (id) => {
+    await User.destroy({
+        where: {
+            id: id
+        }
+    })
+}
+
 module.exports = {
     findAndCountAllUsers,
+    deshabilitarUsuario,
 }

@@ -1,4 +1,4 @@
-const { findAndCountAllUsers } = require("../DAL/usuario")
+const { findAndCountAllUsers, deshabilitarUsuario } = require("../DAL/usuario")
 const { nextPage, prevPage } = require("../helpers/paginationTools")
 
 const usuarioService = async (page,size) => {
@@ -13,6 +13,11 @@ const usuarioService = async (page,size) => {
     return { users, prev, next }
 }
 
+const deshabilitarUsuarioService = async (id) => {
+    await deshabilitarUsuario(id)
+}
+
 module.exports = {
     usuarioService,
+    deshabilitarUsuarioService,
 }
