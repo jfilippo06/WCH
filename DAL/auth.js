@@ -6,7 +6,8 @@ const loginUser = async (userName, password) => {
     const user = await User.findOne({
         where: {
             userName: userName
-        }
+        },
+        paranoid: false
     })
     if (!user) throw new AppError('Usuario no existe', 404);
     if (!bcrypt.compareSync(password, user.password)) throw new AppError('Contraseña no valida', 404);

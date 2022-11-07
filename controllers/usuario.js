@@ -17,7 +17,7 @@ const deshabilitarUsuarioController = async (req,res) => {
     try {
         const {id} = req.params
         await deshabilitarUsuarioService(id)
-        req.flash('success', {msg:'Usuario eliminado'})
+        req.flash('success', {msg:'Usuario deshabilitado'})
         res.redirect('/usuario')
     } catch (error) {
         req.flash('alert', {msg:error.message})
