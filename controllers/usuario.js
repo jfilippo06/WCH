@@ -13,6 +13,17 @@ const usuarioController = async (req,res) => {
     }
 }
 
+const deshabilitarUsuarioController = async (req,res) => {
+    try {
+        const {id} = req.params
+        res.json({id})
+    } catch (error) {
+        req.flash('alert', {msg:error.message})
+        res.redirect('/usuario')
+    }
+}
+
 module.exports = {
     usuarioController,
+    deshabilitarUsuarioController,
 }
