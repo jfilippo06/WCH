@@ -8,7 +8,6 @@
             <table class="table table-bordered border-primary">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Correo electrónico</th>
                         <th scope="col">Nombre de usuario</th>
                         <th scope="col">Rol</th>
@@ -19,7 +18,6 @@
                 <tbody>
                     <% for(let i=0; i < users.length; i++) { %>
                         <tr>
-                            <th scope="row"><%= users[i].id %></th>
                             <td><%= users[i].email %></td>
                             <td><%= users[i].userName %></td>
                             <td><%= users[i].RoleId %></td>
