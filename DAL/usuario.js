@@ -19,7 +19,20 @@ const deshabilitarUsuario = async (id) => {
     })
 }
 
+const getUser = async (id) => {
+    const data = await User.findOne({
+        where: {
+            id: id
+        },
+        attributes: {
+            exclude: [ 'password', 'createdAt', 'updatedAt', 'deletedAt' ]
+        },
+    })
+    return data
+}
+
 module.exports = {
     findAndCountAllUsers,
     deshabilitarUsuario,
+    getUser,
 }

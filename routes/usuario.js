@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', loginUser, asyncHandler(usuarioController));
 router.get('/deshabilitar/:id', loginUser, asyncHandler(deshabilitarUsuarioController))
-router.get('/editar/:id', asyncHandler(editarGetController))
+router.get('/editar/:id', loginUser, asyncHandler(editarGetController))
 router.post('/editar/:id', asyncHandler())
 
 module.exports = router;
