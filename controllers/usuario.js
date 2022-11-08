@@ -33,7 +33,7 @@ const editarGetController = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await editarGetService(id);
-    res.render('', { data:data})
+    res.render('pages/editar', { data })
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/usuario");
