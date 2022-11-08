@@ -1,6 +1,5 @@
 const inventarioController = async (req,res) => {
-    user = req.user
-    res.render('pages/inventario', {user});
+    res.render('pages/inventario');
 }
 
 module.exports = {

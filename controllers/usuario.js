@@ -9,8 +9,7 @@ const usuarioController = async (req, res) => {
     const { page, size } = req.query;
     const data = await usuarioService(page, size);
     const { users, prev, next } = data;
-    user = req.user;
-    res.render("pages/usuario", { user, users, prev, next });
+    res.render("pages/usuario", { users, prev, next });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/usuario");

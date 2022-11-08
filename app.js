@@ -46,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(csrf({cookie: true}))
 app.use((req,res,next) => {
     res.locals.csrfToken = req.csrfToken()
+    res.locals.user = req.user;
     res.locals.alert = req.flash('alert')
     res.locals.alert_2 = req.flash('alert-2')
     res.locals.success = req.flash('success')
