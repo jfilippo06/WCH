@@ -25,7 +25,10 @@ const deshabilitarUsuarioController = async (req,res) => {
     }
 }
 
+const editarGetController = async (req,res) => {}
+
 module.exports = {
     usuarioController,
     deshabilitarUsuarioController,
+    editarGetController,
 }
