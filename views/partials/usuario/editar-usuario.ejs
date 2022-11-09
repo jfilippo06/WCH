@@ -6,18 +6,18 @@
             <%- include('../message/alert') %>
             <%- include('../message/success') %>
 
-            <form action="/auth/register" method="post">
+            <form action="/usuario/editar/<%= data.id %>" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Correo electrónico:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" value="<%= data.email %>" required>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre de usuario:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="userName" name="userName" required>
+                        <input type="text" class="form-control" id="userName" name="userName" value="<%= data.userName %>" required>
                     </div>
                 </div>
                 <div class="row mb-3">

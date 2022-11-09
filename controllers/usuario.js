@@ -32,15 +32,22 @@ const editarGetController = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await editarGetService(id);
-    res.render('pages/editar', { data })
+    res.render("pages/editar", { data });
   } catch (error) {
     req.flash("alert", { msg: error.message });
-    res.redirect("/usuario");
+    res.redirect("/usuario/editar");
   }
+};
+
+const editarPostController = async (req, res) => {
+  const {email, userName, password, roleId} = req.body
+  const { id } = req.params;
+  res.json({id, email, userName, password, roleId})
 };
 
 module.exports = {
   usuarioController,
   deshabilitarUsuarioController,
   editarGetController,
+  editarPostController,
 };
