@@ -8,7 +8,7 @@ const { registerController, loginController, logoutController } = require('../co
 const router = express.Router()
 
 router.post('/login', bodyLogin, validationResultAuthLogin, asyncHandler(loginController));
-router.post('/register', bodyRegister, validationResultAuthRegister, asyncHandler(registerController));
+router.post('/register', loginUser, bodyRegister, validationResultAuthRegister, asyncHandler(registerController));
 router.get('/logout', loginUser, asyncHandler(logoutController))
 
 module.exports = router

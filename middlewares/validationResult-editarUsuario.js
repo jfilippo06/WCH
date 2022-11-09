@@ -1,0 +1,11 @@
+const { validationResult } = require("express-validator");
+
+module.exports = (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        const {msg} = errors.array()[0]
+        req.flash('alert-2', {msg:msg})
+        return res.redirect('/usuario')
+    }
+    next()
+}

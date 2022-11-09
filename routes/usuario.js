@@ -5,6 +5,8 @@ const {
   editarGetController,
   editarPostController,
 } = require("../controllers/usuario");
+const { bodyRegister } = require("../middlewares/validationBody");
+const validationResultEditarUsuario = require("../middlewares/validationResult-editarUsuario");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
 const router = express.Router();
@@ -16,6 +18,12 @@ router.get(
   asyncHandler(deshabilitarUsuarioController)
 );
 router.get("/editar/:id", loginUser, asyncHandler(editarGetController));
-router.post("/editar/:id", loginUser, asyncHandler(editarPostController));
+router.post(
+  "/editar/:id",
+  loginUser,
+  bodyRegister,
+  validationResultEditarUsuario,
+  asyncHandler(editarPostController)
+);
 
 module.exports = router;
