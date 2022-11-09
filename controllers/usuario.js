@@ -2,6 +2,7 @@ const {
   usuarioService,
   deshabilitarUsuarioService,
   editarGetService,
+  editarPostService,
 } = require("../services/usuario");
 
 const usuarioController = async (req, res) => {
@@ -40,9 +41,16 @@ const editarGetController = async (req, res) => {
 };
 
 const editarPostController = async (req, res) => {
-  const {email, userName, password, roleId} = req.body
-  const { id } = req.params;
-  res.json({id, email, userName, password, roleId})
+  try {
+    const {email, userName, password, roleId} = req.body
+    const { id } = req.params;
+    await editarPostService(id, email, userName, password, roleId)
+    req.flash("success-2", { msg: "Usuario actualizado" });
+    res.redirect("/usuario");
+  } catch (error) {
+    req.flash("alert-2", { msg: error.message });
+    res.redirect("/usuario");
+  }
 };
 
 module.exports = {

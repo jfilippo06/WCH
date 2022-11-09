@@ -31,8 +31,25 @@ const getUser = async (id) => {
     return data
 }
 
+const editarUser = async (id, email, userName, hash, roleId) => {
+    await User.update(
+        {
+            email: email,
+            userName: userName,
+            password: hash,
+            RoleId: roleId,
+        },
+        {
+            where: {
+                id: id
+            },
+        }
+    )
+}
+
 module.exports = {
     findAndCountAllUsers,
     deshabilitarUsuario,
     getUser,
+    editarUser,
 }

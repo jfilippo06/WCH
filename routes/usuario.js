@@ -16,6 +16,6 @@ router.get(
   asyncHandler(deshabilitarUsuarioController)
 );
 router.get("/editar/:id", loginUser, asyncHandler(editarGetController));
-router.post("/editar/:id", asyncHandler(editarPostController));
+router.post("/editar/:id", loginUser, asyncHandler(editarPostController));
 
 module.exports = router;
