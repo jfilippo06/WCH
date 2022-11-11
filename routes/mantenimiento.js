@@ -5,6 +5,6 @@ const loginUser = require('../middlewares/loginUser');
 const router = express.Router();
 
 router.get('/respaldar', loginUser, asyncHandler(respaldarGet))
-router.get('/copy', loginUser, asyncHandler(copy))
+router.post('/copy', loginUser, asyncHandler(copy))
 
 module.exports = router;
