@@ -1,6 +1,4 @@
-const { copyFile, constants } = require('node:fs/promises')
-const path = require('path');
-const file = path.join(__dirname, '../database.sqlite')
+const { copyController } = require('../services/mantenimiento');
 
 const respaldarGet = async (req, res) => {
     res.render('pages/respaldar');
@@ -8,13 +6,13 @@ const respaldarGet = async (req, res) => {
 
 const copy = async (req, res) => {
     try {
-        const {nombre} = req.body
-        const dest = path.join(__dirname, `../backup/${nombre}.sqlite`)
-        await copyFile(file, dest)
-        req.flash("success", { msg: "Base de datos" });
+        const {link} = req.body
+        await copyController(link)
+        req.flash("success", { msg: "Base de datos respaldada" });
         res.redirect('/mantenimiento/respaldar')
     } catch (error) {
-        res.json(error.message)
+        req.flash("alert", { msg: error.message });
+        res.redirect("/mantenimiento/respaldar");
     }
 }
 
