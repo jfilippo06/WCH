@@ -11,14 +11,14 @@ const respaldarGet = async (req, res) => {
     res.render("pages/respaldar", { link, prev, next });
   } catch (error) {
     req.flash("alert-2", { msg: error.message });
-    res.redirect("/usuario");
+    res.redirect("/mantenimiento/respaldar");
   }
 };
 
 const copy = async (req, res) => {
   try {
-    const { link } = req.body;
-    await copyController(link);
+    const { nombre } = req.body;
+    await copyController(nombre);
     req.flash("success", { msg: "Base de datos respaldada" });
     res.redirect("/mantenimiento/respaldar");
   } catch (error) {
