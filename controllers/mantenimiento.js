@@ -1,7 +1,7 @@
 const { copyFile, constants } = require('node:fs/promises')
 const path = require('path');
 const file = path.join(__dirname, '../database.sqlite')
-const dest = path.join(__dirname, '../backup/database2.sqlite')
+const dest = path.join(__dirname, `../backup/database.sqlite`)
 
 const respaldarGet = async (req, res) => {
     res.render('pages/respaldar');
