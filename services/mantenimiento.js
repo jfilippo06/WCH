@@ -32,7 +32,30 @@ const respaldarController = async (page, size) => {
   return { link, prev, next };
 };
 
+const restaurarController = async (page, size) => {
+  const limit = size ? +size : 5;
+  const offset = page ? page * limit : 0;
+  const data = await findAndCountAllLink(limit, offset);
+  const { count: totalItems, rows: link } = data;
+  const currentPage = page ? +page : 0;
+  const totalPages = Math.ceil(totalItems / limit);
+  const next = nextPage(
+    "mantenimiento/restaurar",
+    currentPage,
+    totalPages,
+    limit
+  );
+  const prev = prevPage(
+    "mantenimiento/restaurar",
+    currentPage,
+    totalPages,
+    limit
+  );
+  return { link, prev, next };
+}
+
 module.exports = {
   copyController,
   respaldarController,
+  restaurarController,
 };

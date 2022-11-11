@@ -1,6 +1,7 @@
 const {
   copyController,
   respaldarController,
+  restaurarController,
 } = require("../services/mantenimiento");
 
 const respaldarGet = async (req, res) => {
@@ -27,7 +28,21 @@ const copy = async (req, res) => {
   }
 };
 
+const restaurarGet = async (req, res) => {
+  try {
+    const { page, size } = req.query;
+    const data = await restaurarController(page, size);
+    const { link, prev, next } = data;
+    res.render("pages/restaurar", { link, prev, next });
+    res.json(data)
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/mantenimiento/restaurar");
+  }
+};
+
 module.exports = {
   respaldarGet,
   copy,
+  restaurarGet,
 };
