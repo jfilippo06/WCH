@@ -25,7 +25,20 @@ const findAndCountAllLink = async (limit, offset) => {
   return data;
 };
 
+const getLink = async (id) => {
+  const data = await Backup.findOne({
+    where: {
+      id: id,
+    },
+    attributes: {
+      exclude: ["id", "name", "createdAt", "updatedAt"],
+    },
+  });
+  return data;
+};
+
 module.exports = {
   registerLink,
   findAndCountAllLink,
+  getLink,
 };

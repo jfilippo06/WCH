@@ -3,8 +3,8 @@
 
         <div class="card-body">
             <h5 class="card-title">lista de respaldos</h5>
-            <%- include('../message/alert-2') %>
-            <%- include('../message/success-2') %>
+            <%- include('../message/alert') %>
+            <%- include('../message/success') %>
             <table class="table table-bordered border-primary">
                 <thead>
                     <tr>
@@ -21,7 +21,7 @@
                             <td><%= link[i].name %></td>
                             <td><%= link[i].createdAt %></td>
                             <td>
-                                <a href="/mantenimiento/restaurar/<%= link[i].link %>" class="btn btn-warning bi bi-cloud-arrow-up-fill"></a>
+                                <a href="/mantenimiento/paste/<%= link[i].id %>" class="btn btn-warning bi bi-cloud-arrow-up-fill"></a>
                             </td>
                         </tr>
                     <% } %>

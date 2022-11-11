@@ -2,6 +2,7 @@ const {
   copyController,
   respaldarController,
   restaurarController,
+  pasteController,
 } = require("../services/mantenimiento");
 
 const respaldarGet = async (req, res) => {
@@ -41,8 +42,22 @@ const restaurarGet = async (req, res) => {
   }
 };
 
+const paste = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await pasteController(id)
+    req.flash("success", { msg: "Base de datos restaurada" });
+    res.redirect("/mantenimiento/restaurar");
+    // res.json(data)
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/mantenimiento/restaurar");
+  }
+}
+
 module.exports = {
   respaldarGet,
   copy,
   restaurarGet,
+  paste,
 };
