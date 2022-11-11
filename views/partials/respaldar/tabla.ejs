@@ -2,7 +2,7 @@
     <div class="card">
 
         <div class="card-body">
-            <h5 class="card-title">Lista de respaldo</h5>
+            <h5 class="card-title">Lista de usuarios</h5>
             <%- include('../message/alert-2') %>
             <%- include('../message/success-2') %>
             <table class="table table-bordered border-primary">
@@ -10,17 +10,26 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Fecha</th>
+                        <th scope="col">fecha</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Database</td>
-                        <td>2022</td>
-                    </tr>
+                    <% for(let i=0; i < link.length; i++) { %>
+                        <tr>
+                            <td><%= link[i].id %></td>
+                            <td><%= link[i].link %></td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
+            <div class="text-center">
+                <% if (prev) { %>
+                    <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+                <% } %>
+                <% if (next) { %>
+                    <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
+                <% } %>
+            </div>
         </div>
     </div>
 </div>

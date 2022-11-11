@@ -13,6 +13,18 @@ const registerLink = async (dest) => {
     })
 }
 
+const findAndCountAllLink = async (limit,offset) => {
+    const data = await Backup.findAndCountAll({
+        attributes: {
+            exclude: [ 'updatedAt' ]
+        },
+        limit: limit,
+        offset: offset,
+    })
+    return data
+}
+
 module.exports = {
     registerLink,
+    findAndCountAllLink,
 }
