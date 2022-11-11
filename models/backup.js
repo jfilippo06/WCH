@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Backup.init({
+    name: DataTypes.STRING,
     link: DataTypes.STRING
   }, {
     sequelize,
