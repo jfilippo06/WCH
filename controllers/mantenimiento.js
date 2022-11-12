@@ -3,6 +3,7 @@ const {
   respaldarController,
   restaurarController,
   pasteController,
+  compactarController,
 } = require("../services/mantenimiento");
 
 const respaldarGet = async (req, res) => {
@@ -56,7 +57,18 @@ const paste = async (req, res) => {
 };
 
 const compactar = async (req, res) => {
-  res.render('pages/compactar');
+  res.render("pages/compactar");
+};
+
+const compactarGet = async (req, res) => {
+  try {
+    await compactarController();
+    req.flash("success", { msg: "Base de datos compactada" });
+    res.redirect("/mantenimiento/compactar");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/mantenimiento/compactar");
+  }
 };
 
 module.exports = {
@@ -65,4 +77,5 @@ module.exports = {
   restaurarGet,
   paste,
   compactar,
+  compactarGet,
 };

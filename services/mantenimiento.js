@@ -1,6 +1,11 @@
 const path = require("path");
 const { copyFile } = require("node:fs/promises");
-const { registerLink, findAndCountAllLink, getLink } = require("../DAL/mantenimiento");
+const {
+  registerLink,
+  findAndCountAllLink,
+  getLink,
+  compactarDAL,
+} = require("../DAL/mantenimiento");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
 const copyController = async (nombre) => {
@@ -55,11 +60,14 @@ const restaurarController = async (page, size) => {
 };
 
 const pasteController = async (id) => {
-  const data = await getLink(id)
-  const {link} = data
+  const data = await getLink(id);
+  const { link } = data;
   const dest = path.join(__dirname, "../database.sqlite");
   await copyFile(link, dest);
-  
+};
+
+const compactarController = async () => {
+  await compactarDAL();
 };
 
 module.exports = {
@@ -67,4 +75,5 @@ module.exports = {
   respaldarController,
   restaurarController,
   pasteController,
+  compactarController,
 };

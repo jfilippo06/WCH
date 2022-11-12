@@ -37,8 +37,13 @@ const getLink = async (id) => {
   return data;
 };
 
+const compactarDAL = async () => {
+  
+};
+
 module.exports = {
   registerLink,
   findAndCountAllLink,
   getLink,
+  compactarDAL,
 };
