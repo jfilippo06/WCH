@@ -20,7 +20,12 @@
                         <tr>
                             <td><%= users[i].email %></td>
                             <td><%= users[i].userName %></td>
-                            <td><%= users[i].RoleId %></td>
+                            <% if (users[i].RoleId == 1) { %>
+                                <td>Admin</td>
+                            <% } %>
+                            <% if (users[i].RoleId == 2) { %>
+                                <td>Standard</td>
+                            <% } %>
                             <td>
                                 <a href="/usuario/editar/<%= users[i].id %>" class="btn btn-warning bi bi-brush"></a>
                             </td>
