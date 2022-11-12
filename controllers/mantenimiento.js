@@ -35,7 +35,7 @@ const restaurarGet = async (req, res) => {
     const data = await restaurarController(page, size);
     const { link, prev, next } = data;
     res.render("pages/restaurar", { link, prev, next });
-    res.json(data)
+    res.json(data);
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/mantenimiento/restaurar");
@@ -45,7 +45,7 @@ const restaurarGet = async (req, res) => {
 const paste = async (req, res) => {
   try {
     const { id } = req.params;
-    await pasteController(id)
+    await pasteController(id);
     req.flash("success", { msg: "Base de datos restaurada" });
     res.redirect("/mantenimiento/restaurar");
     // res.json(data)
@@ -53,11 +53,16 @@ const paste = async (req, res) => {
     req.flash("alert", { msg: error.message });
     res.redirect("/mantenimiento/restaurar");
   }
-}
+};
+
+const compactar = async (req, res) => {
+  res.render('pages/compactar');
+};
 
 module.exports = {
   respaldarGet,
   copy,
   restaurarGet,
   paste,
+  compactar,
 };
