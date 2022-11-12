@@ -1,5 +1,7 @@
 const AppError = require("../errors/appErrors");
 const { Backup } = require("../models");
+const sqlite3 = require("sqlite3").verbose();
+const db = new sqlite3.Database("database.sqlite");
 
 const registerLink = async (nombre, dest) => {
   const data = await Backup.findOne({
@@ -38,7 +40,9 @@ const getLink = async (id) => {
 };
 
 const compactarDAL = async () => {
-  
+  db.serialize(() => {
+    db.run("VACUUM");
+  });
 };
 
 module.exports = {
