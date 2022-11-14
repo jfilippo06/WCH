@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Producto.hasOne(models.Factura_producto)
+      Producto.hasOne(models.Factura)
     }
   }
   Producto.init({

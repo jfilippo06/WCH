@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Factura_productos', {
+    await queryInterface.createTable('Facturas', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -23,6 +23,19 @@ module.exports = {
           key: 'id'
         },
       },
+      cantidad_producto: {
+        type: Sequelize.INTEGER
+      },
+      Id_franela: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Franelas',
+          key: 'id'
+        },
+      },
+      cantidad_franela: {
+        type: Sequelize.INTEGER
+      },
       orden: {
         type: Sequelize.STRING
       },
@@ -37,6 +50,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Factura_productos');
+    await queryInterface.dropTable('Facturas');
   }
 };
