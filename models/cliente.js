@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Cliente.hasOne(models.Factura)
+      Cliente.hasOne(models.Salida)
     }
   }
   Cliente.init({
