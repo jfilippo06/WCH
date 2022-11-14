@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Factura_producto.belongsTo(models.Cliente)
+      Factura_producto.belongsTo(models.Producto)
     }
   }
   Factura_producto.init({

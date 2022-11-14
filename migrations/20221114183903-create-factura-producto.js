@@ -16,6 +16,13 @@ module.exports = {
           key: 'id'
         },
       },
+      Id_producto: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Productos',
+          key: 'id'
+        },
+      },
       orden: {
         type: Sequelize.STRING
       },
