@@ -12,7 +12,7 @@ module.exports = {
       producto: {
         type: Sequelize.STRING
       },
-      atributo: {
+      tipo: {
         type: Sequelize.STRING
       },
       color: {
