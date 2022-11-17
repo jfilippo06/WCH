@@ -28,8 +28,8 @@ const franelaController = async (req, res) => {
       precio,
       observacion
     );
-    // res.render("pages/franela");
-    res.json(data);
+    const { totalItems, franelas, prev, next } = data;
+    res.render("pages/franela", { totalItems, franelas, prev, next });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/franela");
