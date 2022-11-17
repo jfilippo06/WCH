@@ -3,9 +3,51 @@
 
         <div class="card-body">
             <h5 class="card-title">Franelas</h5>
-            <%- include('../message/alert-2') %>
-            <%- include('../message/success-2') %>
-            <table class="table table-bordered border-primary">
+
+            <form action="/inventario/franela" method="get" class="row g-3">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Tamaño" name="size">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Pagina" name="page">
+                </div>
+                <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
+            </form>
+
+            <form action="/inventario/franela" method="get" class="row g-3">
+                <div class="col-md-3">
+                    <select class="form-select" aria-label="Default select example" name="opcion">
+                      <option selected="">Seleciona un campo</option>
+                      <option value="tela">Tela</option>
+                      <option value="talla">Talla</option>
+                      <option value="color">Color</option>
+                      <option value="cuello">Cuello</option>
+                      <option value="manga">Manga</option>
+                      <option value="marca">Marca</option>
+                      <option value="stock">Stock</option>
+                      <option value="precio">Precio</option>
+                      <option value="observacion">Observacion</option>
+                    </select>
+                  </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Dato" name="valor">
+                </div>
+                <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
+            </form>
+            
+            <%- include('../message/alert') %>
+            <%- include('../message/success') %>
+
+            <!-- <div class="text-center">
+                <% if (prev) { %>
+                    <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+                <% } %>
+                <% if (next) { %>
+                    <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
+                <% } %>
+            </div> -->
+
+            <table class="table table-sm table-bordered border-primary">
                 <thead>
                     <tr>
                         <th scope="col">Tela</th>
@@ -18,7 +60,7 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Observacion</th>
                         <th scope="col">Editar</th>
-                        <th scope="col">Deshabilitar</th>
+                        <th scope="col-1">Deshabilitar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,14 +85,6 @@
                     <% } %>
                 </tbody>
             </table>
-            <div class="text-center">
-                <% if (prev) { %>
-                    <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
-                <% } %>
-                <% if (next) { %>
-                    <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
-                <% } %>
-            </div>
         </div>
     </div>
 </div>
