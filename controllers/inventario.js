@@ -1,5 +1,11 @@
 const franelaController = async (req,res) => {
-    res.render('pages/franela');
+    try {
+        const { page, size } = req.query;
+        res.render('pages/franela');
+    } catch (error) {
+        req.flash("alert", { msg: error.message });
+        res.redirect("/inventario/franela");
+    }
 }
 
 module.exports = {
