@@ -1,7 +1,7 @@
-const inventarioController = async (req,res) => {
-    res.render('pages/inventario');
+const franelaController = async (req,res) => {
+    res.render('pages/franela');
 }
 
 module.exports = {
-    inventarioController,
+    franelaController,
 }
