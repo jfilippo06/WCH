@@ -1,10 +1,21 @@
 <ul class="sidebar-nav" id="sidebar-nav">
 
   <li class="nav-item">
-    <a class="nav-link " href="/inventario">
-      <i class="bi bi-box-seam"></i>
-      <span>Inventario</span>
+    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#"
+      aria-expanded="false">
+      <i class="bi bi-box-seam"></i><span>Inventario</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
+    <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="#">
+          <i class="bi bi-circle"></i><span>Productos</span>
+        </a>
+      <li>
+        <a href="/inventario">
+          <i class="bi bi-circle"></i><span>Franelas</span>
+        </a>
+      </li>
+    </ul>
   </li>
 
   <li class="nav-item">
@@ -21,58 +32,58 @@
     </a>
   </li>
 
-  <% if (user.RoleId == 1) { %>  
+  <% if (user.RoleId==1) { %>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#">
+        <i class="bi bi-clipboard-x-fill"></i>
+        <span>Registros</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-wrench"></i><span>Configuración</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="/usuario">
+            <i class="bi bi-circle"></i><span>Gestionar usuarios</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-server"></i><span>Mantenimiento</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="/mantenimiento/compactar">
+            <i class="bi bi-circle"></i><span>Compactar base de datos</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mantenimiento/respaldar">
+            <i class="bi bi-circle"></i><span>Respaldar base de datos</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mantenimiento/restaurar">
+            <i class="bi bi-circle"></i><span>Restaurar base de datos</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <% } %>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#">
-          <i class="bi bi-clipboard-x-fill"></i>
-          <span>Registros</span>
+        <a class="nav-link collapsed" id="salir" href="/salir">
+          <i class="bi bi-box-arrow-in-right"></i>
+          <span>Salir</span>
         </a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-wrench"></i><span>Configuración</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/usuario">
-              <i class="bi bi-circle"></i><span>Gestionar usuarios</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-server"></i><span>Mantenimiento</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="/mantenimiento/compactar">
-              <i class="bi bi-circle"></i><span>Compactar base de datos</span>
-            </a>
-          </li>
-          <li>
-            <a href="/mantenimiento/respaldar">
-              <i class="bi bi-circle"></i><span>Respaldar base de datos</span>
-            </a>
-          </li>
-          <li>
-            <a href="/mantenimiento/restaurar">
-              <i class="bi bi-circle"></i><span>Restaurar base de datos</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-
-  <% } %>
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" id="salir" href="/salir">
-      <i class="bi bi-box-arrow-in-right"></i>
-      <span>Salir</span>
-    </a>
-  </li>
 
 </ul>
