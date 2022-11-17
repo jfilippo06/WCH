@@ -1,16 +1,40 @@
 const { findAndCountAllfranelas } = require("../DAL/inventario");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
-const franelaService = async (page, size) => {
+const franelaService = async (
+  page,
+  size,
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio,
+  observacion
+) => {
   const limit = size ? +size : 20;
   const offset = page ? page * limit : 0;
-  const data = await findAndCountAllfranelas(limit, offset);
+  const data = await findAndCountAllfranelas(
+    limit,
+    offset,
+    tela,
+    talla,
+    color,
+    cuello,
+    manga,
+    marca,
+    stock,
+    precio,
+    observacion
+  );
   const { count: totalItems, rows: franelas } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / limit);
   const next = nextPage("inventario/franela", currentPage, totalPages, limit);
   const prev = prevPage("inventario/franela", currentPage, totalPages, limit);
-  return { franelas, prev, next };
+  return { totalItems, franelas, prev, next };
 };
 
 module.exports = {
