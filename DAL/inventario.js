@@ -53,6 +53,71 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
     });
     return data;
   }
+  if (opcion == 'manga') {
+    const data = await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        manga: valor
+      },
+      limit: limit,
+      offset: offset,
+    });
+    return data;
+  }
+  if (opcion == 'marca') {
+    const data = await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        marca: valor
+      },
+      limit: limit,
+      offset: offset,
+    });
+    return data;
+  }
+  if (opcion == 'stock') {
+    const data = await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        stock: valor
+      },
+      limit: limit,
+      offset: offset,
+    });
+    return data;
+  }
+  if (opcion == 'precio') {
+    const data = await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        precio: valor
+      },
+      limit: limit,
+      offset: offset,
+    });
+    return data;
+  }
+  if (opcion == 'observacion') {
+    const data = await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        observacion: valor
+      },
+      limit: limit,
+      offset: offset,
+    });
+    return data;
+  }
   else {
     const data = await Franela.findAndCountAll({
       attributes: {
