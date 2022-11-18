@@ -105,19 +105,6 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
     });
     return data;
   }
-  if (opcion == 'observacion') {
-    const data = await Franela.findAndCountAll({
-      attributes: {
-        exclude: ["createdAt", "updatedAt", "deletedAt"],
-      },
-      where: {
-        observacion: valor
-      },
-      limit: limit,
-      offset: offset,
-    });
-    return data;
-  }
   else {
     const data = await Franela.findAndCountAll({
       attributes: {

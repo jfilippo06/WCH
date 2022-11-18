@@ -1,4 +1,4 @@
-<div class="col-lg-12">
+<div class="col-lg-12 ">
     <div class="card">
 
         <div class="card-body">
@@ -22,7 +22,6 @@
                       <option value="marca">Marca</option>
                       <option value="stock">Stock</option>
                       <option value="precio">Precio</option>
-                      <option value="observacion">Observacion</option>
                     </select>
                   </div>
                 <div class="col-md-2">
@@ -54,7 +53,6 @@
                         <th scope="col">Marca</th>
                         <th scope="col">Stock</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Observacion</th>
                         <th scope="col">Editar</th>
                         <th scope="col-1">Deshabilitar</th>
                     </tr>
@@ -70,9 +68,8 @@
                             <td><%= franelas[i].marca %></td>
                             <td><%= franelas[i].stock %></td>
                             <td><%= franelas[i].precio %></td>
-                            <td><%= franelas[i].observacion %></td>
                             <td>
-                                <a href="/inventario/franela/<%= franelas[i].id %>" class="btn btn-warning bi bi-brush"></a>
+                                <a href="/inventario/franela/editar/<%= franelas[i].id %>" class="btn btn-warning bi bi-brush"></a>
                             </td>
                             <td>
                                 <a href="/inventario/franela/deshabilitar/<%= franelas[i].id %>" class="btn btn-danger bi bi-x-lg"></a>

@@ -33,9 +33,6 @@ module.exports = {
       precio: {
         type: Sequelize.DOUBLE
       },
-      observacion: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
