@@ -5,7 +5,7 @@ const franelaService = async (page, size, opcion, valor) => {
   const limit = size ? +size : 20;
   const offset = page ? page * limit : 0;
   const data = await findAndCountAllfranelas(limit, offset, opcion, valor);
-  const stock = await sumStock()
+  const stock = await sumStock(opcion, valor)
   const { count: totalItems, rows: franelas } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / limit);

@@ -150,9 +150,9 @@ const sumStock = async (opcion, valor) => {
       },
     });
   }
-  if (opcion == "tela") {
+  if (opcion == "stock") {
     return await Franela.sum("stock", {
-      stock: {
+      where: {
         stock: valor,
       },
     });
