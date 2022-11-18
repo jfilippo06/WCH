@@ -1,0 +1,90 @@
+<div class="col-lg-12 ">
+    <div class="card">
+
+        <div class="card-body">
+            <h5 class="card-title">Franelas</h5>
+            <div class="row g-3">
+                <div class="col-md-2 mb-3">
+                    <p>Total Items: <%= totalItems %></p>
+                </div>
+                <div class="col-md-2">
+                    <p>Total Stock: <%= stock %></p>
+                </div>
+                <div class="col-md-2">
+                    <% if (prev) { %>
+                        <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+                    <% } %>
+                    <% if (next) { %>
+                        <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
+                    <% } %>
+                </div>
+            </div>
+            <form action="/inventario/franela" method="get" class="row g-3 mb-3">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Tamaño" name="size">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Pagina" name="page">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" aria-label="Default select example" name="opcion">
+                      <option>Seleciona un campo</option>
+                      <option value="tela">Tela</option>
+                      <option value="talla">Talla</option>
+                      <option value="color">Color</option>
+                      <option value="cuello">Cuello</option>
+                      <option value="manga">Manga</option>
+                      <option value="marca">Marca</option>
+                      <option value="stock">Stock</option>
+                      <option value="precio">Precio</option>
+                    </select>
+                  </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Dato" name="valor">
+                </div>
+                <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
+            </form>
+            
+            <%- include('../message/alert') %>
+            <%- include('../message/success') %>
+
+
+            <table class="table table-sm table-bordered border-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">Tela</th>
+                        <th scope="col">Talla</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Cuello</th>
+                        <th scope="col">Manga</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col-1">Deshabilitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i=0; i < franelas.length; i++) { %>
+                        <tr>
+                            <td><%= franelas[i].tela %></td>
+                            <td><%= franelas[i].talla %></td>
+                            <td><%= franelas[i].color %></td>
+                            <td><%= franelas[i].cuello %></td>
+                            <td><%= franelas[i].manga %></td>
+                            <td><%= franelas[i].marca %></td>
+                            <td><%= franelas[i].stock %></td>
+                            <td><%= franelas[i].precio %></td>
+                            <td>
+                                <a href="/inventario/franela/editar/<%= franelas[i].id %>" class="btn btn-warning bi bi-brush"></a>
+                            </td>
+                            <td>
+                                <a href="/inventario/franela/deshabilitar/<%= franelas[i].id %>" class="btn btn-danger bi bi-x-lg"></a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
