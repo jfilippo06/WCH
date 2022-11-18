@@ -3,8 +3,8 @@
 
         <div class="card-body">
             <h5 class="card-title">Franelas</h5>
-
-            <form action="/inventario/franela" method="get" class="row g-3">
+            <p>Total Items: <%= totalItems %></p>
+            <form action="/inventario/franela" method="get" class="row g-3 mb-3">
                 <div class="col-md-2">
                     <input type="text" class="form-control" placeholder="Tamaño" name="size">
                 </div>
@@ -33,7 +33,7 @@
             <%- include('../message/alert') %>
             <%- include('../message/success') %>
 
-            <div class="text-center">
+            <div class="text-center mb-3">
                 <% if (prev) { %>
                     <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
                 <% } %>
