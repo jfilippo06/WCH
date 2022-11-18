@@ -7,7 +7,7 @@ const loginController = async (req,res) => {
         const user = await loginService(userName, password)
         req.login(user, (err,) => {
             if (err) throw new AppError('Error al crear la sesion', 403)
-            return res.redirect('/inventario')
+            return res.redirect('/inventario/franela')
         })
     } catch (error) {
         req.flash('alert', {msg:error.message})

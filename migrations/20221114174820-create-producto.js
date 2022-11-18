@@ -9,7 +9,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre: {
+      producto: {
+        type: Sequelize.STRING
+      },
+      tipo: {
+        type: Sequelize.STRING
+      },
+      color: {
         type: Sequelize.STRING
       },
       cantidad: {
