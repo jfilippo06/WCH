@@ -3,8 +3,22 @@
 
         <div class="card-body">
             <h5 class="card-title">Franelas</h5>
-            <p>Total Items: <%= totalItems %></p>
-            <p>Total Stock: <%= stock %></p>
+            <div class="row g-3">
+                <div class="col-md-2 mb-3">
+                    <p>Total Items: <%= totalItems %></p>
+                </div>
+                <div class="col-md-2">
+                    <p>Total Stock: <%= stock %></p>
+                </div>
+                <div class="col-md-2">
+                    <% if (prev) { %>
+                        <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+                    <% } %>
+                    <% if (next) { %>
+                        <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
+                    <% } %>
+                </div>
+            </div>
             <form action="/inventario/franela" method="get" class="row g-3 mb-3">
                 <div class="col-md-2">
                     <input type="text" class="form-control" placeholder="Tamaño" name="size">
@@ -34,14 +48,6 @@
             <%- include('../message/alert') %>
             <%- include('../message/success') %>
 
-            <div class="text-center mb-3">
-                <% if (prev) { %>
-                    <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
-                <% } %>
-                <% if (next) { %>
-                    <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
-                <% } %>
-            </div>
 
             <table class="table table-sm table-bordered border-primary">
                 <thead>
