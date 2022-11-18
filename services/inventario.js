@@ -28,6 +28,9 @@ const franelaService = async (page, size, opcion, valor) => {
   return { totalItems, franelas, prev, next, stock };
 };
 
+const productoService = async () => {}
+
 module.exports = {
   franelaService,
+  productoService,
 };
