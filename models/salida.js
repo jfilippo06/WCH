@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Salida.belongsTo(models.Cliente)
       Salida.belongsTo(models.Producto)
       Salida.belongsTo(models.Franela)
+      Salida.belongsTo(models.Factura)
     }
   }
   Salida.init({

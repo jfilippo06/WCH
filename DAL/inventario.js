@@ -1,4 +1,4 @@
-const { Franela } = require("../models");
+const { Franela, Producto } = require("../models");
 
 const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
   if (opcion == "tela") {
@@ -163,13 +163,125 @@ const sumStock = async (opcion, valor) => {
         precio: valor,
       },
     });
-  }
-  else {
+  } else {
     return await Franela.sum("stock");
+  }
+};
+
+const findAndCountAllProductos = async (limit, offset, opcion, valor) => {
+  if (opcion == "producto") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        producto: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  }
+  if (opcion == "tipo") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        tipo: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  }
+  if (opcion == "color") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        color: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  }
+  if (opcion == "cantidad") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        cantidad: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  }
+  if (opcion == "precio") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        precio: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      limit: limit,
+      offset: offset,
+    });
+  }
+};
+
+const sumCantidad = async (opcion, valor) => {
+  if (opcion == "producto") {
+    return await Producto.sum("cantidad", {
+      where: {
+        producto: valor,
+      },
+    });
+  }
+  if (opcion == "tipo") {
+    return await Producto.sum("cantidad", {
+      where: {
+        tipo: valor,
+      },
+    });
+  }
+  if (opcion == "color") {
+    return await Producto.sum("cantidad", {
+      where: {
+        color: valor,
+      },
+    });
+  }
+  if (opcion == "cantidad") {
+    return await Producto.sum("cantidad", {
+      where: {
+        cantidad: valor,
+      },
+    });
+  }
+  if (opcion == "precio") {
+    return await Producto.sum("cantidad", {
+      where: {
+        precio: valor,
+      },
+    });
+  } else {
+    return await Producto.sum("cantidad");
   }
 };
 
 module.exports = {
   findAndCountAllfranelas,
   sumStock,
+  findAndCountAllProductos,
+  sumCantidad,
 };

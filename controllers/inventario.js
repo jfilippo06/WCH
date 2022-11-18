@@ -1,4 +1,4 @@
-const { franelaService } = require("../services/inventario");
+const { franelaService, productoService } = require("../services/inventario");
 
 const franelaController = async (req, res) => {
   try {
@@ -15,9 +15,15 @@ const franelaController = async (req, res) => {
 const productoController = async (req, res) => {
   try {
     const { page, size, opcion, valor } = req.query;
-    const data = await productoController(page, size, opcion, valor);
-    const { totalItems, franelas, prev, next, stock } = data;
-    res.render("pages/producto", { totalItems, franelas, prev, next, stock });
+    const data = await productoService(page, size, opcion, valor);
+    const { totalItems, productos, prev, next, cantidad } = data;
+    res.render("pages/producto", {
+      totalItems,
+      productos,
+      prev,
+      next,
+      cantidad,
+    });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/producto");
