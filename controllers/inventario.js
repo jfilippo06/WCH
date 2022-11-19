@@ -60,9 +60,14 @@ const deshabilitarProductoController = async (req, res) => {
   }
 };
 
+const registroController = async (req, res) => {
+  res.render('pages/registrar-inventario')
+}
+
 module.exports = {
   franelaController,
   productoController,
   deshabilitarFranelaController,
   deshabilitarProductoController,
+  registroController,
 };
