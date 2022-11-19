@@ -287,10 +287,19 @@ const destroyfranela = async (id) => {
   });
 };
 
+const destroyProducto = async (id) => {
+  await Producto.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
 module.exports = {
   findAndCountAllfranelas,
   sumStock,
   findAndCountAllProductos,
   sumCantidad,
   destroyfranela,
+  destroyProducto,
 };

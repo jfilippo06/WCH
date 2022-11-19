@@ -4,6 +4,7 @@ const {
   findAndCountAllProductos,
   sumCantidad,
   destroyfranela,
+  destroyProducto,
 } = require("../DAL/inventario");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -62,11 +63,16 @@ const productoService = async (page, size, opcion, valor) => {
 };
 
 const deshabilitarFranelaService = async (id) => {
-  await destroyfranela(id)
-}
+  await destroyfranela(id);
+};
+
+const deshabilitarProductoService = async (id) => {
+  await destroyProducto(id);
+};
 
 module.exports = {
   franelaService,
   productoService,
   deshabilitarFranelaService,
+  deshabilitarProductoService,
 };

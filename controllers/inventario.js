@@ -1,4 +1,9 @@
-const { franelaService, productoService, deshabilitarFranelaService } = require("../services/inventario");
+const {
+  franelaService,
+  productoService,
+  deshabilitarFranelaService,
+  deshabilitarProductoService,
+} = require("../services/inventario");
 
 const franelaController = async (req, res) => {
   try {
@@ -33,13 +38,25 @@ const productoController = async (req, res) => {
 const deshabilitarFranelaController = async (req, res) => {
   try {
     const { id } = req.params;
-    await deshabilitarFranelaService(id)
+    await deshabilitarFranelaService(id);
     req.flash("success", { msg: "Franela deshabilitada" });
     res.redirect("/inventario/franela");
-    res.json(id)
+    res.json(id);
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/franela");
+  }
+};
+
+const deshabilitarProductoController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deshabilitarProductoService(id)
+    req.flash("success", { msg: "Producto deshabilitado" });
+    res.redirect("/inventario/producto");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/producto");
   }
 };
 
@@ -47,4 +64,5 @@ module.exports = {
   franelaController,
   productoController,
   deshabilitarFranelaController,
+  deshabilitarProductoController,
 };
