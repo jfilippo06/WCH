@@ -3,6 +3,7 @@ const {
   sumStock,
   findAndCountAllProductos,
   sumCantidad,
+  destroyfranela,
 } = require("../DAL/inventario");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -60,7 +61,12 @@ const productoService = async (page, size, opcion, valor) => {
   return { totalItems, productos, prev, next, cantidad };
 };
 
+const deshabilitarFranelaService = async (id) => {
+  await destroyfranela(id)
+}
+
 module.exports = {
   franelaService,
   productoService,
+  deshabilitarFranelaService,
 };

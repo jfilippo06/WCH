@@ -279,9 +279,18 @@ const sumCantidad = async (opcion, valor) => {
   }
 };
 
+const destroyfranela = async (id) => {
+  await Franela.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
 module.exports = {
   findAndCountAllfranelas,
   sumStock,
   findAndCountAllProductos,
   sumCantidad,
+  destroyfranela,
 };
