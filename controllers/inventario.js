@@ -3,6 +3,7 @@ const {
   productoService,
   deshabilitarFranelaService,
   deshabilitarProductoService,
+  registrarFranelaService,
 } = require("../services/inventario");
 
 const franelaController = async (req, res) => {
@@ -51,7 +52,7 @@ const deshabilitarFranelaController = async (req, res) => {
 const deshabilitarProductoController = async (req, res) => {
   try {
     const { id } = req.params;
-    await deshabilitarProductoService(id)
+    await deshabilitarProductoService(id);
     req.flash("success", { msg: "Producto deshabilitado" });
     res.redirect("/inventario/producto");
   } catch (error) {
@@ -61,18 +62,30 @@ const deshabilitarProductoController = async (req, res) => {
 };
 
 const registroController = async (req, res) => {
-  res.render('pages/registrar-inventario')
-}
+  res.render("pages/registrar-inventario");
+};
 
 const registroFranelaController = async (req, res) => {
   try {
-    const {tela, talla, color, cuello, manga, marca, stock, precio} = req.body
-    res.json({tela, talla, color, cuello, manga, marca, stock, precio})
+    const { tela, talla, color, cuello, manga, marca, stock, precio } =
+      req.body;
+    await registrarFranelaService(
+      tela,
+      talla,
+      color,
+      cuello,
+      manga,
+      marca,
+      stock,
+      precio
+    );
+    req.flash("success", { msg: "Franela registrada" });
+    res.redirect("/inventario/registro");
   } catch (error) {
     req.flash("alert", { msg: error.message });
-    res.redirect("/inventario/registro"); 
+    res.redirect("/inventario/registro");
   }
-}
+};
 
 module.exports = {
   franelaController,

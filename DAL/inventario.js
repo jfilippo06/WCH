@@ -1,4 +1,5 @@
 const { Franela, Producto } = require("../models");
+const AppError = require('../errors/appErrors')
 
 const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
   if (opcion == "tela") {
@@ -295,6 +296,39 @@ const destroyProducto = async (id) => {
   });
 };
 
+const createFranela = async (
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
+  const franela = await Franela.findOne({
+    where: {
+      tela: tela,
+      talla: talla,
+      color: color,
+      cuello: cuello,
+      manga: manga,
+      marca: marca,
+    },
+  });
+  if (franela) throw new AppError('Registro ya existe', 200)
+  await Franela.create({
+    tela: tela,
+    talla: talla,
+    color: color,
+    cuello: cuello || "",
+    manga: manga || "",
+    marca: marca || "",
+    stock: stock  || 0,
+    precio: precio || 0,
+  })
+};
+
 module.exports = {
   findAndCountAllfranelas,
   sumStock,
@@ -302,4 +336,5 @@ module.exports = {
   sumCantidad,
   destroyfranela,
   destroyProducto,
+  createFranela,
 };
