@@ -64,10 +64,21 @@ const registroController = async (req, res) => {
   res.render('pages/registrar-inventario')
 }
 
+const registroFranelaController = async (req, res) => {
+  try {
+    const {tela, talla, color, cuello, manga, marca, stock, precio} = req.body
+    res.json({tela, talla, color, cuello, manga, marca, stock, precio})
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/registro"); 
+  }
+}
+
 module.exports = {
   franelaController,
   productoController,
   deshabilitarFranelaController,
   deshabilitarProductoController,
   registroController,
+  registroFranelaController,
 };

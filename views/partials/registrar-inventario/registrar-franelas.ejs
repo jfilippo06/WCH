@@ -6,38 +6,39 @@
             <%- include('../message/alert') %>
             <%- include('../message/success') %>
 
-            <form class="row g-3">
+            <form class="row g-3" action="/inventario/registro/franela" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="col-md-3">
-                    <label for="inputtext5" class="form-label">text</label>
-                    <input type="text" class="form-control" id="inputtext5">
+                    <label class="form-label">Tela</label>
+                    <input type="text" class="form-control" id="tela" name="tela" required>
                 </div>
                 <div class="col-md-3">
-                    <label for="inputtext5" class="form-label">text</label>
-                    <input type="text" class="form-control" id="inputtext5">
+                    <label class="form-label">Talla</label>
+                    <input type="text" class="form-control" id="talla" name="talla" required>
                 </div>
                 <div class="col-md-3">
-                    <label for="inputtext5" class="form-label">text</label>
-                    <input type="text" class="form-control" id="inputtext5">
+                    <label class="form-label">Color</label>
+                    <input type="text" class="form-control" id="color" name="color" required>
                 </div>
                 <div class="col-md-3">
-                    <label for="inputtext5" class="form-label">text</label>
-                    <input type="text" class="form-control" id="inputtext5">
+                    <label class="form-label">Cuello</label>
+                    <input type="text" class="form-control" id="cuello" name="cuello">
                 </div>
                 <div class="col-md-3">
-                    <label for="inputtext5" class="form-label">text</label>
-                    <input type="text" class="form-control" id="inputtext5">
+                    <label class="form-label">Manga</label>
+                    <input type="text" class="form-control" id="manga" name="Manga">
                 </div>
                 <div class="col-md-3">
-                    <label for="inputtext5" class="form-label">text</label>
-                    <input type="text" class="form-control" id="inputtext5">
+                    <label class="form-label">Marca</label>
+                    <input type="text" class="form-control" id="marca" name="marca">
                 </div>
                 <div class="col-md-3">
-                    <label for="inputtext5" class="form-label">text</label>
-                    <input type="text" class="form-control" id="inputtext5">
+                    <label class="form-label">Stock</label>
+                    <input type="number" class="form-control" id="stock" name="stock">
                 </div>
                 <div class="col-md-3">
-                    <label for="inputtext5" class="form-label">text</label>
-                    <input type="text" class="form-control" id="inputtext5">
+                    <label class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="precio" name="precio">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Submit</button>
