@@ -3,8 +3,8 @@
         <div class="card-body">
             <h5 class="card-title">Registrar franelas</h5>
 
-            <%- include('../message/alert') %>
-            <%- include('../message/success') %>
+            <%- include('../../message/alert') %>
+            <%- include('../../message/success') %>
 
             <form class="row g-3" action="/inventario/registro/franela" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">

@@ -3,8 +3,8 @@
         <div class="card-body">
             <h5 class="card-title">Editar usuario</h5>
 
-            <%- include('../message/alert') %>
-            <%- include('../message/success') %>
+            <%- include('../../message/alert') %>
+            <%- include('../../message/success') %>
 
             <form action="/usuario/editar/<%= data.id %>" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
