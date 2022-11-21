@@ -12,7 +12,13 @@ const franelaController = async (req, res) => {
     const { page, size, opcion, valor } = req.query;
     const data = await franelaService(page, size, opcion, valor);
     const { totalItems, franelas, prev, next, stock } = data;
-    res.render("pages/inventario/franela", { totalItems, franelas, prev, next, stock });
+    res.render("pages/inventario/franela", {
+      totalItems,
+      franelas,
+      prev,
+      next,
+      stock,
+    });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/franela");
@@ -102,7 +108,7 @@ const registroProductoController = async (req, res) => {
 
 const franelaEditarGetController = async (req, res) => {
   try {
-    
+    res.render("pages/inventario/editar-franela");
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/registro");
