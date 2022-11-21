@@ -5,6 +5,7 @@ const {
   deshabilitarProductoService,
   registrarFranelaService,
   registrarProductoService,
+  idFranela,
 } = require("../services/inventario");
 
 const franelaController = async (req, res) => {
@@ -108,7 +109,9 @@ const registroProductoController = async (req, res) => {
 
 const franelaEditarGetController = async (req, res) => {
   try {
-    res.render("pages/inventario/editar-franela");
+    const { id } = req.params;
+    const data = await idFranela(id)
+    res.render("pages/inventario/editar-franela", {data});
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/registro");

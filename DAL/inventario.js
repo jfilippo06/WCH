@@ -347,6 +347,17 @@ const createProducto = async (producto, tipo, color, cantidad, precio) => {
   })
 };
 
+const getFranela = async (id) => {
+  return await Franela.findOne({
+    where: {
+      id: id,
+    },
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "deletedAt"],
+    },
+  });
+}
+
 module.exports = {
   findAndCountAllfranelas,
   sumStock,
@@ -356,4 +367,5 @@ module.exports = {
   destroyProducto,
   createFranela,
   createProducto,
+  getFranela,
 };
