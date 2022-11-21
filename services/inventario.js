@@ -6,6 +6,7 @@ const {
   destroyfranela,
   destroyProducto,
   createFranela,
+  createProducto,
 } = require("../DAL/inventario");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -84,10 +85,21 @@ const registrarFranelaService = async (
   await createFranela(tela, talla, color, cuello, manga, marca, stock, precio);
 };
 
+const registrarProductoService = async (
+  producto,
+  tipo,
+  color,
+  cantidad,
+  precio
+) => {
+  await createProducto(producto, tipo, color, cantidad, precio);
+};
+
 module.exports = {
   franelaService,
   productoService,
   deshabilitarFranelaService,
   deshabilitarProductoService,
   registrarFranelaService,
+  registrarProductoService,
 };

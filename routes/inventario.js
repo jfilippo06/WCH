@@ -6,6 +6,7 @@ const {
   deshabilitarProductoController,
   registroController,
   registroFranelaController,
+  registroProductoController,
 } = require("../controllers/inventario");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
@@ -28,6 +29,11 @@ router.post(
   "/registro/franela",
   loginUser,
   asyncHandler(registroFranelaController)
+);
+router.post(
+  "/registro/producto",
+  loginUser,
+  asyncHandler(registroProductoController)
 );
 
 module.exports = router;
