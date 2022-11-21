@@ -10,7 +10,7 @@ const usuarioController = async (req, res) => {
     const { page, size } = req.query;
     const data = await usuarioService(page, size);
     const { users, prev, next } = data;
-    res.render("pages/usuario", { users, prev, next });
+    res.render("pages/configuracion/usuario", { users, prev, next });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/usuario");
@@ -33,7 +33,7 @@ const editarGetController = async (req, res) => {
   try {
     const { id } = req.params;
     const data = await editarGetService(id);
-    res.render("pages/editar", { data });
+    res.render("pages/configuracion/editar", { data });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/usuario/editar");

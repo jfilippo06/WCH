@@ -11,7 +11,7 @@ const respaldarGet = async (req, res) => {
     const { page, size } = req.query;
     const data = await respaldarController(page, size);
     const { link, prev, next } = data;
-    res.render("pages/respaldar", { link, prev, next });
+    res.render("pages/mantenimiento/respaldar", { link, prev, next });
   } catch (error) {
     req.flash("alert-2", { msg: error.message });
     res.redirect("/mantenimiento/respaldar");
@@ -35,7 +35,7 @@ const restaurarGet = async (req, res) => {
     const { page, size } = req.query;
     const data = await restaurarController(page, size);
     const { link, prev, next } = data;
-    res.render("pages/restaurar", { link, prev, next });
+    res.render("pages/mantenimiento/restaurar", { link, prev, next });
     res.json(data);
   } catch (error) {
     req.flash("alert", { msg: error.message });
@@ -57,7 +57,7 @@ const paste = async (req, res) => {
 };
 
 const compactar = async (req, res) => {
-  res.render("pages/compactar");
+  res.render("pages/mantenimiento/compactar");
 };
 
 const compactarGet = async (req, res) => {
