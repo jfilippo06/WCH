@@ -130,6 +130,17 @@ const productoEditarGetController = async (req, res) => {
   }
 };
 
+const franelaEditarPostController = async (req, res) => {
+  try {
+    const { tela, talla, color, cuello, manga, marca, stock, precio } =
+      req.body;
+      res.json(tela)
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/registro");
+  }
+};
+
 module.exports = {
   franelaController,
   productoController,
@@ -140,4 +151,5 @@ module.exports = {
   registroProductoController,
   franelaEditarGetController,
   productoEditarGetController,
+  franelaEditarPostController,
 };
