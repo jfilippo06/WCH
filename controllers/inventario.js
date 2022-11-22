@@ -7,6 +7,7 @@ const {
   registrarProductoService,
   idFranela,
   idProducto,
+  editFranela,
 } = require("../services/inventario");
 
 const franelaController = async (req, res) => {
@@ -134,7 +135,20 @@ const franelaEditarPostController = async (req, res) => {
   try {
     const { tela, talla, color, cuello, manga, marca, stock, precio } =
       req.body;
-      res.json(tela)
+    const { id } = req.params;
+    await editFranela(
+      id,
+      tela,
+      talla,
+      color,
+      cuello,
+      manga,
+      marca,
+      stock,
+      precio
+    );
+    req.flash("success", { msg: "Registro actualizado" });
+    res.redirect("/inventario/franela");
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/registro");

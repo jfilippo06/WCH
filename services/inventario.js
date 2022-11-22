@@ -9,6 +9,7 @@ const {
   createProducto,
   getFranela,
   getProducto,
+  editarFranela,
 } = require("../DAL/inventario");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -98,12 +99,36 @@ const registrarProductoService = async (
 };
 
 const idFranela = async (id) => {
-  return await getFranela(id)
-}
+  return await getFranela(id);
+};
 
 const idProducto = async (id) => {
-  return await getProducto(id)
-}
+  return await getProducto(id);
+};
+
+const editFranela = async (
+  id,
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
+  await editarFranela(
+    id,
+    tela,
+    talla,
+    color,
+    cuello,
+    manga,
+    marca,
+    stock,
+    precio
+  );
+};
 
 module.exports = {
   franelaService,
@@ -114,4 +139,5 @@ module.exports = {
   registrarProductoService,
   idFranela,
   idProducto,
+  editFranela,
 };

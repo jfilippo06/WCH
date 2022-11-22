@@ -27,7 +27,7 @@ router.get(
   asyncHandler(franelaEditarGetController)
 );
 router.post(
-  "/franela/edit",
+  "/franela/edit/:id",
   loginUser,
   asyncHandler(franelaEditarPostController)
 );

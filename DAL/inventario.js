@@ -337,14 +337,14 @@ const createProducto = async (producto, tipo, color, cantidad, precio) => {
       color: color,
     },
   });
-  if (data) throw new AppError('Registro ya existe', 200)
+  if (data) throw new AppError("Registro ya existe", 200);
   await Producto.create({
     producto: producto,
     tipo: tipo,
     color: color,
     cantidad: cantidad,
-    precio: precio,  
-  })
+    precio: precio,
+  });
 };
 
 const getFranela = async (id) => {
@@ -356,7 +356,7 @@ const getFranela = async (id) => {
       exclude: ["createdAt", "updatedAt", "deletedAt"],
     },
   });
-}
+};
 
 const getProducto = async (id) => {
   return await Producto.findOne({
@@ -367,7 +367,37 @@ const getProducto = async (id) => {
       exclude: ["createdAt", "updatedAt", "deletedAt"],
     },
   });
-}
+};
+
+const editarFranela = async (
+  id,
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
+  await Franela.update(
+    {
+      tela: tela,
+      talla: talla,
+      color: color,
+      cuello: cuello,
+      manga: manga, 
+      marca: marca,
+      stock: stock,
+      precio: precio,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+};
 
 module.exports = {
   findAndCountAllfranelas,
@@ -380,4 +410,5 @@ module.exports = {
   createProducto,
   getFranela,
   getProducto,
+  editarFranela,
 };
