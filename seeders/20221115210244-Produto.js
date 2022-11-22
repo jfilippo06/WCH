@@ -540,7 +540,7 @@ module.exports = {
         {
           producto: "LLAVERO",
           tipo: "TABLA SURF",
-          color: "COLOR",
+          color: "BLANCO",
           cantidad: 32,
           precio: 0,
           createdAt: new Date(),
