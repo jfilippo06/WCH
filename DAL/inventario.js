@@ -358,6 +358,17 @@ const getFranela = async (id) => {
   });
 }
 
+const getProducto = async (id) => {
+  return await Producto.findOne({
+    where: {
+      id: id,
+    },
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "deletedAt"],
+    },
+  });
+}
+
 module.exports = {
   findAndCountAllfranelas,
   sumStock,
@@ -368,4 +379,5 @@ module.exports = {
   createFranela,
   createProducto,
   getFranela,
+  getProducto,
 };

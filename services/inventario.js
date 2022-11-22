@@ -8,6 +8,7 @@ const {
   createFranela,
   createProducto,
   getFranela,
+  getProducto,
 } = require("../DAL/inventario");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -100,6 +101,10 @@ const idFranela = async (id) => {
   return await getFranela(id)
 }
 
+const idProducto = async (id) => {
+  return await getProducto(id)
+}
+
 module.exports = {
   franelaService,
   productoService,
@@ -108,4 +113,5 @@ module.exports = {
   registrarFranelaService,
   registrarProductoService,
   idFranela,
+  idProducto,
 };
