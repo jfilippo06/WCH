@@ -3,7 +3,7 @@ const index = async (req,res) => {
 }
 
 const exit = async (req,res) => {
-    res.render('pages/exit');
+    res.render('pages/salir/exit');
 }
 
 module.exports = {

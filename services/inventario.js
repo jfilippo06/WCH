@@ -3,6 +3,13 @@ const {
   sumStock,
   findAndCountAllProductos,
   sumCantidad,
+  destroyfranela,
+  destroyProducto,
+  createFranela,
+  createProducto,
+  getFranela,
+  getProducto,
+  editarFranela,
 } = require("../DAL/inventario");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -60,7 +67,77 @@ const productoService = async (page, size, opcion, valor) => {
   return { totalItems, productos, prev, next, cantidad };
 };
 
+const deshabilitarFranelaService = async (id) => {
+  await destroyfranela(id);
+};
+
+const deshabilitarProductoService = async (id) => {
+  await destroyProducto(id);
+};
+
+const registrarFranelaService = async (
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
+  await createFranela(tela, talla, color, cuello, manga, marca, stock, precio);
+};
+
+const registrarProductoService = async (
+  producto,
+  tipo,
+  color,
+  cantidad,
+  precio
+) => {
+  await createProducto(producto, tipo, color, cantidad, precio);
+};
+
+const idFranela = async (id) => {
+  return await getFranela(id);
+};
+
+const idProducto = async (id) => {
+  return await getProducto(id);
+};
+
+const editFranela = async (
+  id,
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
+  await editarFranela(
+    id,
+    tela,
+    talla,
+    color,
+    cuello,
+    manga,
+    marca,
+    stock,
+    precio
+  );
+};
+
 module.exports = {
   franelaService,
   productoService,
+  deshabilitarFranelaService,
+  deshabilitarProductoService,
+  registrarFranelaService,
+  registrarProductoService,
+  idFranela,
+  idProducto,
+  editFranela,
 };

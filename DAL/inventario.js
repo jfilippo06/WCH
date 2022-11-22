@@ -1,4 +1,5 @@
 const { Franela, Producto } = require("../models");
+const AppError = require("../errors/appErrors");
 
 const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
   if (opcion == "tela") {
@@ -279,9 +280,135 @@ const sumCantidad = async (opcion, valor) => {
   }
 };
 
+const destroyfranela = async (id) => {
+  await Franela.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
+const destroyProducto = async (id) => {
+  await Producto.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
+const createFranela = async (
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
+  const franela = await Franela.findOne({
+    where: {
+      tela: tela,
+      talla: talla,
+      color: color,
+      cuello: cuello,
+      manga: manga,
+      marca: marca,
+    },
+  });
+  if (franela) throw new AppError("Registro ya existe", 200);
+  await Franela.create({
+    tela: tela,
+    talla: talla,
+    color: color,
+    cuello: cuello || "",
+    manga: manga || "",
+    marca: marca || "",
+    stock: stock || 0,
+    precio: precio || 0,
+  });
+};
+
+const createProducto = async (producto, tipo, color, cantidad, precio) => {
+  const data = await Producto.findOne({
+    where: {
+      producto: producto,
+      tipo: tipo,
+      color: color,
+    },
+  });
+  if (data) throw new AppError("Registro ya existe", 200);
+  await Producto.create({
+    producto: producto,
+    tipo: tipo,
+    color: color,
+    cantidad: cantidad,
+    precio: precio,
+  });
+};
+
+const getFranela = async (id) => {
+  return await Franela.findOne({
+    where: {
+      id: id,
+    },
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "deletedAt"],
+    },
+  });
+};
+
+const getProducto = async (id) => {
+  return await Producto.findOne({
+    where: {
+      id: id,
+    },
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "deletedAt"],
+    },
+  });
+};
+
+const editarFranela = async (
+  id,
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
+  await Franela.update(
+    {
+      tela: tela,
+      talla: talla,
+      color: color,
+      cuello: cuello,
+      manga: manga, 
+      marca: marca,
+      stock: stock,
+      precio: precio,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+};
+
 module.exports = {
   findAndCountAllfranelas,
   sumStock,
   findAndCountAllProductos,
   sumCantidad,
+  destroyfranela,
+  destroyProducto,
+  createFranela,
+  createProducto,
+  getFranela,
+  getProducto,
+  editarFranela,
 };

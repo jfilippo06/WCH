@@ -1,11 +1,27 @@
-const { franelaService, productoService } = require("../services/inventario");
+const {
+  franelaService,
+  productoService,
+  deshabilitarFranelaService,
+  deshabilitarProductoService,
+  registrarFranelaService,
+  registrarProductoService,
+  idFranela,
+  idProducto,
+  editFranela,
+} = require("../services/inventario");
 
 const franelaController = async (req, res) => {
   try {
     const { page, size, opcion, valor } = req.query;
     const data = await franelaService(page, size, opcion, valor);
     const { totalItems, franelas, prev, next, stock } = data;
-    res.render("pages/franela", { totalItems, franelas, prev, next, stock });
+    res.render("pages/inventario/franela", {
+      totalItems,
+      franelas,
+      prev,
+      next,
+      stock,
+    });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/franela");
@@ -17,7 +33,7 @@ const productoController = async (req, res) => {
     const { page, size, opcion, valor } = req.query;
     const data = await productoService(page, size, opcion, valor);
     const { totalItems, productos, prev, next, cantidad } = data;
-    res.render("pages/producto", {
+    res.render("pages/inventario/producto", {
       totalItems,
       productos,
       prev,
@@ -30,7 +46,124 @@ const productoController = async (req, res) => {
   }
 };
 
+const deshabilitarFranelaController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deshabilitarFranelaService(id);
+    req.flash("success", { msg: "Franela deshabilitada" });
+    res.redirect("/inventario/franela");
+    res.json(id);
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/franela");
+  }
+};
+
+const deshabilitarProductoController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deshabilitarProductoService(id);
+    req.flash("success", { msg: "Producto deshabilitado" });
+    res.redirect("/inventario/producto");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/producto");
+  }
+};
+
+const registroController = async (req, res) => {
+  res.render("pages/inventario/registrar-inventario");
+};
+
+const registroFranelaController = async (req, res) => {
+  try {
+    const { tela, talla, color, cuello, manga, marca, stock, precio } =
+      req.body;
+    await registrarFranelaService(
+      tela,
+      talla,
+      color,
+      cuello,
+      manga,
+      marca,
+      stock,
+      precio
+    );
+    req.flash("success", { msg: "Franela registrada" });
+    res.redirect("/inventario/registro");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/registro");
+  }
+};
+
+const registroProductoController = async (req, res) => {
+  try {
+    const { producto, tipo, color, cantidad, precio } = req.body;
+    await registrarProductoService(producto, tipo, color, cantidad, precio);
+    req.flash("success-2", { msg: "Producto registrado" });
+    res.redirect("/inventario/registro");
+  } catch (error) {
+    req.flash("alert-2", { msg: error.message });
+    res.redirect("/inventario/registro");
+  }
+};
+
+const franelaEditarGetController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await idFranela(id);
+    res.render("pages/inventario/editar-franela", { data });
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/registro");
+  }
+};
+
+const productoEditarGetController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = await idProducto(id);
+    res.render("pages/inventario/editar-producto", { data });
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/registro");
+  }
+};
+
+const franelaEditarPostController = async (req, res) => {
+  try {
+    const { tela, talla, color, cuello, manga, marca, stock, precio } =
+      req.body;
+    const { id } = req.params;
+    await editFranela(
+      id,
+      tela,
+      talla,
+      color,
+      cuello,
+      manga,
+      marca,
+      stock,
+      precio
+    );
+    req.flash("success", { msg: "Registro actualizado" });
+    res.redirect("/inventario/franela");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/inventario/registro");
+  }
+};
+
 module.exports = {
   franelaController,
   productoController,
+  deshabilitarFranelaController,
+  deshabilitarProductoController,
+  registroController,
+  registroFranelaController,
+  registroProductoController,
+  franelaEditarGetController,
+  productoEditarGetController,
+  franelaEditarPostController,
 };
