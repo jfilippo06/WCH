@@ -8,6 +8,7 @@ const {
   idFranela,
   idProducto,
   editFranela,
+  editProducto,
 } = require("../services/inventario");
 
 const franelaController = async (req, res) => {
@@ -116,7 +117,7 @@ const franelaEditarGetController = async (req, res) => {
     res.render("pages/inventario/editar-franela", { data });
   } catch (error) {
     req.flash("alert", { msg: error.message });
-    res.redirect("/inventario/registro");
+    res.redirect("/inventario/franela");
   }
 };
 
@@ -127,7 +128,7 @@ const productoEditarGetController = async (req, res) => {
     res.render("pages/inventario/editar-producto", { data });
   } catch (error) {
     req.flash("alert", { msg: error.message });
-    res.redirect("/inventario/registro");
+    res.redirect("/inventario/producto");
   }
 };
 
@@ -150,8 +151,23 @@ const franelaEditarPostController = async (req, res) => {
     req.flash("success", { msg: "Registro actualizado" });
     res.redirect("/inventario/franela");
   } catch (error) {
+    const { id } = req.params;
     req.flash("alert", { msg: error.message });
-    res.redirect("/inventario/registro");
+    res.redirect(`/inventario/franela/editar/${id}`);
+  }
+};
+
+const productoEditarPostController = async (req, res) => {
+  try {
+    const { producto, tipo, color, cantidad, precio } = req.body;
+    const { id } = req.params;
+    await editProducto(id, producto, tipo, color, cantidad, precio);
+    req.flash("success", { msg: "Registro actualizado" });
+    res.redirect("/inventario/producto");
+  } catch (error) {
+    const { id } = req.params;
+    req.flash("alert", { msg: error.message });
+    res.redirect(`/inventario/producto/editar/${id}`);
   }
 };
 
@@ -166,4 +182,5 @@ module.exports = {
   franelaEditarGetController,
   productoEditarGetController,
   franelaEditarPostController,
+  productoEditarPostController,
 };

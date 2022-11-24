@@ -6,7 +6,7 @@
             <%- include('../../message/alert') %>
             <%- include('../../message/success') %>
 
-            <form class="row g-3" action="#" method="post">
+            <form class="row g-3" action="/inventario/producto/edit/<%= data.id %>" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="col-md-6">
                     <label for="inputtext5" class="form-label">Producto</label>
