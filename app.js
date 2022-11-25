@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-// const csrf = require('csurf')
+const csrf = require('csurf')
 const session = require('express-session')
 const passport = require('passport')
 require('dotenv').config()
@@ -42,9 +42,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(csrf({cookie: true}))
+app.use(csrf({cookie: true}))
 app.use((req,res,next) => {
-    // res.locals.csrfToken = req.csrfToken()
+    res.locals.csrfToken = req.csrfToken()
     res.locals.user = req.user;
     res.locals.alert = req.flash('alert')
     res.locals.alert_2 = req.flash('alert-2')

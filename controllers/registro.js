@@ -2,11 +2,13 @@ const { getFranelaService } = require("../services/registro");
 
 const getFranelaController = async (req, res) => {
   try {
-    const { page, size, opcion, valor } = req.query;
+    const { page, size } = req.query;
     const data = await getFranelaService(page, size);
-    res.json(data)
+    const { totalItems, franelas, prev, next } = data;
+    res.render("pages/registro/franela", { totalItems, franelas, prev, next });
   } catch (error) {
-    res.json(error.message);
+    req.flash("alert", { msg: error.message });
+    res.redirect("/registro/franela");
   }
 };
 

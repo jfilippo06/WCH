@@ -4,6 +4,6 @@ const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
 const router = express.Router();
 
-router.get("/franela", asyncHandler(getFranelaController));
+router.get("/franela", loginUser, asyncHandler(getFranelaController));
 
 module.exports = router;
