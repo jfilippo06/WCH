@@ -6,11 +6,13 @@
       <i class="bi bi-box-seam"></i><span>Inventario</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+      <% if (user.RoleId==1) { %>
       <li>
         <a href="/inventario/registro">
           <i class="bi bi-circle"></i><span>Ingresar mercancía</span>
         </a>
       </li>
+      <% } %>
       <li>
         <a href="/inventario/franela">
           <i class="bi bi-circle"></i><span>Franelas</span>

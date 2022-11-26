@@ -54,8 +54,10 @@
                         <th scope="col">Color</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
+                        <% if (user.RoleId==1) { %>
                         <th scope="col">Editar</th>
                         <th scope="col-1">Deshabilitar</th>
+                        <% } %>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,12 +68,14 @@
                             <td><%= productos[i].color %></td>
                             <td><%= productos[i].cantidad %></td>
                             <td><%= productos[i].precio %></td>
+                            <% if (user.RoleId==1) { %>
                             <td>
                                 <a href="/inventario/producto/editar/<%= productos[i].id %>" class="btn btn-warning bi bi-brush"></a>
                             </td>
                             <td>
                                 <a href="/inventario/producto/deshabilitar/<%= productos[i].id %>" class="btn btn-danger bi bi-x-lg"></a>
                             </td>
+                            <% } %>
                         </tr>
                     <% } %>
                 </tbody>
