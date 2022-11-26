@@ -41,8 +41,17 @@ const productoData = async (limit, offset) => {
   });
 };
 
+const productoRestore = async (id) => {
+  await Producto.restore({
+    where: {
+      id: id,
+    },
+  });
+};
+
 module.exports = {
   franelaData,
   franelaRestore,
   productoData,
+  productoRestore,
 };

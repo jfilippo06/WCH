@@ -2,6 +2,7 @@ const {
   franelaData,
   franelaRestore,
   productoData,
+  productoRestore,
 } = require("../DAL/registro");
 const { nextPage_2, prevPage_2 } = require("../helpers/paginationTools");
 
@@ -33,8 +34,13 @@ const getProductoService = async (page, size) => {
   return { totalItems, productos, prev, next };
 };
 
+const habilitarProductoService = async (id) => {
+  await productoRestore(id);
+};
+
 module.exports = {
   getFranelaService,
   habilitarFranelaService,
   getProductoService,
+  habilitarProductoService,
 };

@@ -3,6 +3,7 @@ const {
   getFranelaController,
   habilitarFranelaController,
   getProductoController,
+  habilitarProductoController,
 } = require("../controllers/registro");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
@@ -15,5 +16,10 @@ router.get(
   asyncHandler(habilitarFranelaController)
 );
 router.get("/producto", loginUser, asyncHandler(getProductoController));
+router.get(
+  "/producto/habilitar/:id",
+  loginUser,
+  asyncHandler(habilitarProductoController)
+);
 
 module.exports = router;

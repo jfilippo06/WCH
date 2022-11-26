@@ -2,6 +2,7 @@ const {
   getFranelaService,
   habilitarFranelaService,
   getProductoService,
+  habilitarProductoService,
 } = require("../services/registro");
 
 const getFranelaController = async (req, res) => {
@@ -20,7 +21,7 @@ const habilitarFranelaController = async (req, res) => {
   try {
     const { id } = req.params;
     await habilitarFranelaService(id);
-    req.flash("success", { msg: "Registro habilitada" });
+    req.flash("success", { msg: "Registro habilitado" });
     res.redirect("/registro/franela");
   } catch (error) {
     req.flash("alert", { msg: error.message });
@@ -45,8 +46,21 @@ const getProductoController = async (req, res) => {
   }
 };
 
+const habilitarProductoController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await habilitarProductoService(id)
+    req.flash("success", { msg: "Registro habilitado" });
+    res.redirect("/registro/producto");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/registro/producto");
+  }
+};
+
 module.exports = {
   getFranelaController,
   habilitarFranelaController,
   getProductoController,
+  habilitarProductoController,
 };
