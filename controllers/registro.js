@@ -1,4 +1,4 @@
-const { getFranelaService } = require("../services/registro");
+const { getFranelaService, habilitarFranelaService } = require("../services/registro");
 
 const getFranelaController = async (req, res) => {
   try {
@@ -12,6 +12,19 @@ const getFranelaController = async (req, res) => {
   }
 };
 
+const habilitarFranelaController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await habilitarFranelaService(id)
+    req.flash("success", { msg: "Registro habilitada" });
+    res.redirect("/registro/franela");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/registro/franela");
+  }
+};
+
 module.exports = {
   getFranelaController,
+  habilitarFranelaController,
 };

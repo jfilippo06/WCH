@@ -16,7 +16,7 @@
                     <% } %>
                 </div>
             </div>
-            <form action="/inventario/franela" method="get" class="row g-3 mb-3">
+            <form action="/registro/franela" method="get" class="row g-3 mb-3">
                 <div class="col-md-2">
                     <input type="text" class="form-control" placeholder="Tamaño" name="size">
                 </div>
@@ -56,7 +56,7 @@
                             <td><%= franelas[i].stock %></td>
                             <td><%= franelas[i].precio %></td>
                             <td>
-                                <a href="#" class="btn btn-warning bi bi-brush"></a>
+                                <a href="/registro/franela/habilitar/<%= franelas[i].id %>" class="btn btn-success bi bi-check-circle"></a>
                             </td>
                         </tr>
                     <% } %>

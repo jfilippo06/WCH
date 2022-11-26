@@ -1,4 +1,4 @@
-const { franelaData } = require("../DAL/registro");
+const { franelaData, franelaRestore } = require("../DAL/registro");
 const { nextPage_2, prevPage_2 } = require("../helpers/paginationTools");
 
 const getFranelaService = async (page, size) => {
@@ -13,6 +13,11 @@ const getFranelaService = async (page, size) => {
   return { totalItems, franelas, prev, next };
 };
 
+const habilitarFranelaService = async (id) => {
+  await franelaRestore(id)
+}
+
 module.exports = {
   getFranelaService,
+  habilitarFranelaService,
 };

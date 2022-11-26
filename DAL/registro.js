@@ -17,6 +17,15 @@ const franelaData = async (limit, offset) => {
   });
 };
 
+const franelaRestore = async (id) => {
+  await Franela.restore({
+    where: {
+      id: id,
+    },
+  });
+};
+
 module.exports = {
   franelaData,
+  franelaRestore,
 };
