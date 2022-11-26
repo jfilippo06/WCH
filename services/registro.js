@@ -4,6 +4,7 @@ const {
   productoData,
   productoRestore,
   usuarioData,
+  usuarioRestore,
 } = require("../DAL/registro");
 const { nextPage_2, prevPage_2 } = require("../helpers/paginationTools");
 
@@ -42,14 +43,18 @@ const habilitarProductoService = async (id) => {
 const getUsuarioService = async (page, size) => {
   const limit = size ? +size : 20;
   const offset = page ? page * limit : 0;
-  const data = await usuarioData(limit, offset)
+  const data = await usuarioData(limit, offset);
   const { count: totalItems, rows: usuarios } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / limit);
   const next = nextPage_2("registro/usuario", currentPage, totalPages, limit);
   const prev = prevPage_2("registro/usuario", currentPage, totalPages, limit);
   return { totalItems, usuarios, prev, next };
-}
+};
+
+const habilitarUsuarioService = async (id) => {
+  await usuarioRestore(id)
+};
 
 module.exports = {
   getFranelaService,
@@ -57,4 +62,5 @@ module.exports = {
   getProductoService,
   habilitarProductoService,
   getUsuarioService,
+  habilitarUsuarioService,
 };

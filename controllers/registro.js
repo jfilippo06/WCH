@@ -4,6 +4,7 @@ const {
   getProductoService,
   habilitarProductoService,
   getUsuarioService,
+  habilitarUsuarioService,
 } = require("../services/registro");
 
 const getFranelaController = async (req, res) => {
@@ -71,10 +72,23 @@ const getUsuarioController = async (req, res) => {
   }
 }
 
+const habilitarUsuarioController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await habilitarUsuarioService(id)
+    req.flash("success", { msg: "Registro habilitado" });
+    res.redirect("/registro/usuario");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/registro/usuario");
+  }
+}
+
 module.exports = {
   getFranelaController,
   habilitarFranelaController,
   getProductoController,
   habilitarProductoController,
   getUsuarioController,
+  habilitarUsuarioController,
 };

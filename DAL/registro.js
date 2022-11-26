@@ -65,10 +65,19 @@ const usuarioData = async (limit, offset) => {
   });
 };
 
+const usuarioRestore = async (id) => {
+  await User.restore({
+    where: {
+      id: id,
+    },
+  });
+};
+
 module.exports = {
   franelaData,
   franelaRestore,
   productoData,
   productoRestore,
   usuarioData,
+  usuarioRestore,
 };
