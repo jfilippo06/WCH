@@ -4,6 +4,7 @@ const {
   habilitarFranelaController,
   getProductoController,
   habilitarProductoController,
+  getUsuarioController,
 } = require("../controllers/registro");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
@@ -21,5 +22,6 @@ router.get(
   loginUser,
   asyncHandler(habilitarProductoController)
 );
+router.get("/usuario", loginUser, asyncHandler(getUsuarioController));
 
 module.exports = router;

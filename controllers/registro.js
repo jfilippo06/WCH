@@ -3,6 +3,7 @@ const {
   habilitarFranelaService,
   getProductoService,
   habilitarProductoService,
+  getUsuarioService,
 } = require("../services/registro");
 
 const getFranelaController = async (req, res) => {
@@ -58,9 +59,22 @@ const habilitarProductoController = async (req, res) => {
   }
 };
 
+const getUsuarioController = async (req, res) => {
+  try {
+    const { page, size } = req.query;
+    const data = await getUsuarioService(page, size)
+    const { totalItems, usuarios, prev, next } = data;
+    res.render("pages/registro/usuario", { totalItems, usuarios, prev, next });
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/registro/usuario");
+  }
+}
+
 module.exports = {
   getFranelaController,
   habilitarFranelaController,
   getProductoController,
   habilitarProductoController,
+  getUsuarioController,
 };

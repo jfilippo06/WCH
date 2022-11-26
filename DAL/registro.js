@@ -49,9 +49,26 @@ const productoRestore = async (id) => {
   });
 };
 
+const usuarioData = async (limit, offset) => {
+  return await User.findAndCountAll({
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "deletedAt"],
+    },
+    where: {
+      deletedAt: {
+        [Op.not]: null,
+      },
+    },
+    limit: limit,
+    offset: offset,
+    paranoid: false,
+  });
+};
+
 module.exports = {
   franelaData,
   franelaRestore,
   productoData,
   productoRestore,
+  usuarioData,
 };
