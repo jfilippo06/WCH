@@ -10,6 +10,7 @@ const {
   getFranela,
   getProducto,
   editarFranela,
+  editarProducto,
 } = require("../DAL/inventario");
 const { nextPage, prevPage } = require("../helpers/paginationTools");
 
@@ -130,6 +131,10 @@ const editFranela = async (
   );
 };
 
+const editProducto = async (id, producto, tipo, color, cantidad, precio) => {
+  await editarProducto(id, producto, tipo, color, cantidad, precio)
+}
+
 module.exports = {
   franelaService,
   productoService,
@@ -140,4 +145,5 @@ module.exports = {
   idFranela,
   idProducto,
   editFranela,
+  editProducto,
 };

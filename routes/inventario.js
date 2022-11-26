@@ -10,6 +10,7 @@ const {
   franelaEditarGetController,
   productoEditarGetController,
   franelaEditarPostController,
+  productoEditarPostController,
 } = require("../controllers/inventario");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
@@ -41,6 +42,11 @@ router.get(
   "/producto/editar/:id",
   loginUser,
   asyncHandler(productoEditarGetController)
+);
+router.post(
+  "/producto/edit/:id",
+  loginUser,
+  asyncHandler(productoEditarPostController)
 );
 router.get("/registro", loginUser, asyncHandler(registroController));
 router.post(

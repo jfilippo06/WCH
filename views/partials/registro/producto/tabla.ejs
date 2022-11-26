@@ -7,9 +7,6 @@
                 <div class="col-md-2 mb-3">
                     <p>Total Items: <%= totalItems %></p>
                 </div>
-                <div class="col-md-3">
-                    <p>Total Cantidad: <%= cantidad %></p>
-                </div>
                 <div class="col-md-2">
                     <% if (prev) { %>
                         <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
@@ -19,32 +16,18 @@
                     <% } %>
                 </div>
             </div>
-            <form action="/inventario/producto" method="get" class="row g-3 mb-3">
+            <form action="/registro/producto" method="get" class="row g-3 mb-3">
                 <div class="col-md-2">
                     <input type="text" class="form-control" placeholder="Tamaño" name="size">
                 </div>
                 <div class="col-md-2">
                     <input type="text" class="form-control" placeholder="Pagina" name="page">
                 </div>
-                <div class="col-md-3">
-                    <select class="form-select" aria-label="Default select example" name="opcion">
-                      <option>Seleciona un campo</option>
-                      <option value="producto">Producto</option>
-                      <option value="tipo">Tipo</option>
-                      <option value="color">Color</option>
-                      <option value="cantidad">Cantidad</option>
-                      <option value="precio">Precio</option>
-                    </select>
-                  </div>
-                <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="Dato" name="valor">
-                </div>
                 <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
             </form>
             
             <%- include('../../message/alert') %>
             <%- include('../../message/success') %>
-
 
             <table class="table table-sm table-bordered border-primary">
                 <thead>
@@ -54,10 +37,7 @@
                         <th scope="col">Color</th>
                         <th scope="col">Cantidad</th>
                         <th scope="col">Precio</th>
-                        <% if (user.RoleId==1) { %>
-                        <th scope="col">Editar</th>
-                        <th scope="col-1">Deshabilitar</th>
-                        <% } %>
+                        <th scope="col">Habilitar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -68,14 +48,9 @@
                             <td><%= productos[i].color %></td>
                             <td><%= productos[i].cantidad %></td>
                             <td><%= productos[i].precio %></td>
-                            <% if (user.RoleId==1) { %>
                             <td>
-                                <a href="/inventario/producto/editar/<%= productos[i].id %>" class="btn btn-warning bi bi-brush"></a>
+                                <a href="/registro/producto/habilitar/<%= productos[i].id %>" class="btn btn-success bi bi-check-circle"></a>
                             </td>
-                            <td>
-                                <a href="/inventario/producto/deshabilitar/<%= productos[i].id %>" class="btn btn-danger bi bi-x-lg"></a>
-                            </td>
-                            <% } %>
                         </tr>
                     <% } %>
                 </tbody>

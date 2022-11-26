@@ -1,0 +1,61 @@
+<div class="col-lg-12 ">
+    <div class="card">
+
+        <div class="card-body">
+            <h5 class="card-title">Usuarios</h5>
+            <div class="row g-3">
+                <div class="col-md-2 mb-3">
+                    <p>Total Items: <%= totalItems %></p>
+                </div>
+                <div class="col-md-2">
+                    <% if (prev) { %>
+                        <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+                    <% } %>
+                    <% if (next) { %>
+                        <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
+                    <% } %>
+                </div>
+            </div>
+            <form action="/registro/usuario" method="get" class="row g-3 mb-3">
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Tamaño" name="size">
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Pagina" name="page">
+                </div>
+                <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
+            </form>
+            
+            <%- include('../../message/alert') %>
+            <%- include('../../message/success') %>
+
+            <table class="table table-sm table-bordered border-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">Correo electrónico</th>
+                        <th scope="col">Nombre de usuario</th>
+                        <th scope="col">Rol</th>
+                        <th scope="col">Habilitar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i=0; i < usuarios.length; i++) { %>
+                        <tr>
+                            <td><%= usuarios[i].email %></td>
+                            <td><%= usuarios[i].userName %></td>
+                            <% if (usuarios[i].RoleId == 1) { %>
+                                <td>Admin</td>
+                            <% } %>
+                            <% if (usuarios[i].RoleId == 2) { %>
+                                <td>Standard</td>
+                            <% } %>
+                            <td>
+                                <a href="/registro/usuario/habilitar/<%= usuarios[i].id %>" class="btn btn-success bi bi-check-circle"></a>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
