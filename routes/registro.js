@@ -9,24 +9,28 @@ const {
 } = require("../controllers/registro");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
+const verifyAdmin = require("../middlewares/verifyAdmin");
 const router = express.Router();
 
-router.get("/franela", loginUser, asyncHandler(getFranelaController));
+router.get("/franela", loginUser, verifyAdmin, asyncHandler(getFranelaController));
 router.get(
   "/franela/habilitar/:id",
   loginUser,
+  verifyAdmin,
   asyncHandler(habilitarFranelaController)
 );
-router.get("/producto", loginUser, asyncHandler(getProductoController));
+router.get("/producto", loginUser, verifyAdmin, asyncHandler(getProductoController));
 router.get(
   "/producto/habilitar/:id",
   loginUser,
+  verifyAdmin,
   asyncHandler(habilitarProductoController)
 );
-router.get("/usuario", loginUser, asyncHandler(getUsuarioController));
+router.get("/usuario", loginUser, verifyAdmin, asyncHandler(getUsuarioController));
 router.get(
   "/usuario/habilitar/:id",
   loginUser,
+  verifyAdmin,
   asyncHandler(habilitarUsuarioController)
 );
 
