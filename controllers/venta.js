@@ -1,7 +1,16 @@
+const clienteRenderController = async (req, res) => {
+  res.render("pages/venta/buscar-cliente");
+};
+
 const buscarClienteController = async (req, res) => {
-    res.render("pages/venta/buscar-cliente")
+    try {
+        
+    } catch (error) {
+        
+    }
 };
 
 module.exports = {
-    buscarClienteController,
-}
+  clienteRenderController,
+  buscarClienteController,
+};
