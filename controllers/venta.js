@@ -1,4 +1,5 @@
 const { buscarClienteService } = require("../services/venta");
+
 const clienteRenderController = async (req, res) => {
   res.render("pages/venta/buscar-cliente");
 };
@@ -10,7 +11,8 @@ const buscarClienteController = async (req, res) => {
     if (data) {
       
     } else {
-      
+      req.flash("alert", { msg: "Cliente no existe" });
+      res.redirect("/venta/registrar");      
     }
   } catch (error) {
     req.flash("alert", { msg: error.message });
@@ -18,7 +20,12 @@ const buscarClienteController = async (req, res) => {
   }
 };
 
+const registrarRenderController = async (req, res) => {
+  res.render("pages/venta/buscar-registrar")
+};
+
 module.exports = {
   clienteRenderController,
   buscarClienteController,
+  registrarRenderController,
 };

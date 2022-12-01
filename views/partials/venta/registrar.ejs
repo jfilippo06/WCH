@@ -1,0 +1,31 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Registrar cliente</h5>
+
+            <%- include('../message/alert') %>
+            <%- include('../message/success') %>
+
+            <form class="row g-3" action="#" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="nombre" name="nombre" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Cedula:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="cedula" name="cedula" required>
+                    </div>
+                </div>
+                <div class="col-mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
