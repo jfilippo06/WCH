@@ -11,9 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cliente.hasOne(models.Factura)
-      Cliente.hasOne(models.Salida)
       Cliente.hasOne(models.Documento)
+      Cliente.hasOne(models.Factura_franela)
+      Cliente.hasOne(models.Factura_producto)
     }
   }
   Cliente.init({
