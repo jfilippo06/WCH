@@ -9,6 +9,7 @@ const buscarClienteController = async (req, res) => {
     const { cedula } = req.body;
     const data = await buscarClienteService(cedula);
     if (data) {
+      req.session.data = data
       res.redirect("/venta/facturar");      
     } else {
       req.flash("alert", { msg: "Cliente no existe" });
@@ -25,7 +26,8 @@ const registrarRenderController = async (req, res) => {
 };
 
 const facturarRenderController = async (req, res) => {
-  res.render("pages/venta/facturar")
+  const {id, nombre} = req.session.data
+  res.render("pages/venta/facturar", {nombre})
 };
 
 module.exports = {
