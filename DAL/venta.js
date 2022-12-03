@@ -1,4 +1,5 @@
 const { Cliente, sequelize, Order } = require("../models");
+const AppError = require("../errors/appErrors");
 
 const cliente = async (cedula) => {
   return await Cliente.findOne({
@@ -21,7 +22,21 @@ const obtenerOrder = async () => {
   ));
 };
 
+const registrarCliente = async (nombre, cedula) => {
+  const cliente = await Cliente.findOne({
+    where: {
+      cedula: cedula,
+    },
+  });
+  if (cliente) throw new AppError("Cliente ya existe", 404);
+  await Cliente.create({
+    nombre: nombre,
+    cedula: cedula,
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
+  registrarCliente,
 };

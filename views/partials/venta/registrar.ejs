@@ -6,18 +6,18 @@
             <%- include('../message/alert') %>
             <%- include('../message/success') %>
 
-            <form class="row g-3" action="#" method="post">
+            <form class="row g-3" action="/venta/registrar/cliente" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Nombre:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="nombre" name="nombre" required>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Cedula:</label>
                     <div class="col-sm-10">
-                        <input type="email" class="form-control" id="cedula" name="cedula" required>
+                        <input type="number" class="form-control" id="cedula" name="cedula" required>
                     </div>
                 </div>
                 <div class="col-mb-3">

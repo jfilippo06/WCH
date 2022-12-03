@@ -11,26 +11,6 @@ module.exports = {
           createdAt: new Date(),
           updatedAt: new Date(),
         },
-        {
-          numero: 1,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          numero: 2,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          numero: 3,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          numero: 4,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
       ],
       {}
     );

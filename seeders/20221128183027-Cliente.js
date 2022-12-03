@@ -7,12 +7,6 @@ module.exports = {
       "Clientes",
       [
         {
-          nombre: "Jose",
-          cedula: 27307757,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
           nombre: "John Doe",
           cedula: 1,
           createdAt: new Date(),
