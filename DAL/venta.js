@@ -1,4 +1,4 @@
-const { Cliente, sequelize, Order } = require("../models");
+const { Cliente, sequelize, Order, Franela, Producto } = require("../models");
 const AppError = require("../errors/appErrors");
 
 const cliente = async (cedula) => {
@@ -35,8 +35,38 @@ const registrarCliente = async (nombre, cedula) => {
   });
 };
 
+const findFranelas = async (limit, offset, opcion, tipo, valor) => {
+  if (opcion == "franelas") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else {
+    return "";
+  }
+};
+
+const findProductos = async (limit, offset, opcion, tipo, valor) => {
+  if (opcion == "productos") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else {
+    return "";
+  }
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
   registrarCliente,
+  findFranelas,
+  findProductos,
 };

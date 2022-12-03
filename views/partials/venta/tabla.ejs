@@ -4,18 +4,31 @@
         <div class="card-body">
             <h5 class="card-title">Inventario</h5>
             <div class="row g-3">
+                <% if (totalItemsFranelas) { %>
                 <div class="col-md-2 mb-3">
-                    <p>Total Items: <%= totalItems %></p>
+                    <p>Total Items: <%= totalItemsFranelas %></p>
                 </div>
+                <% } %>
+                <% if (totalItemsProductos) { %>
+                <div class="col-md-2 mb-3">
+                    <p>Total Items: <%= totalItemsProductos %></p>
+                </div>
+                <% } %>
                 <div class="col-md-2">
                     <p>Total Stock: <%= stock %></p>
                 </div>
                 <div class="col-md-2">
-                    <% if (prev) { %>
-                        <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+                    <% if (prevFranelas) { %>
+                        <a class="btn btn-primary bi-arrow-left" href="<%= prevFranelas %>"></a>
                     <% } %>
-                    <% if (next) { %>
-                        <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
+                    <% if (nextFranelas) { %>
+                        <a class="btn btn-primary bi-arrow-right" href="<%= nextFranelas %>"></a>
+                    <% } %>
+                    <% if (prevProductos) { %>
+                        <a class="btn btn-primary bi-arrow-left" href="<%= prevProductos %>"></a>
+                    <% } %>
+                    <% if (nextProductos) { %>
+                        <a class="btn btn-primary bi-arrow-right" href="<%= nextProductos %>"></a>
                     <% } %>
                 </div>
             </div>

@@ -2,6 +2,8 @@ const {
   buscarClienteService,
   buscarOrderService,
   registrarClienteService,
+  facturaFranelasService,
+  facturaProductosService,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -48,8 +50,35 @@ const registrarClienteController = async (req, res) => {
 
 const facturarRenderController = async (req, res) => {
   try {
-    const { page, size, opcion, valor } = req.query;
-    res.render("pages/venta/facturar");
+    const { page, size, opcion, tipo, valor } = req.query;
+    const dataFranela = await facturaFranelasService(
+      page,
+      size,
+      opcion,
+      tipo,
+      valor
+    );
+    const dataProducto = await facturaProductosService(
+      page,
+      size,
+      opcion,
+      tipo,
+      valor
+    );
+    const { totalItemsFranelas, franelas, prevFranelas, nextFranelas } =
+      dataFranela;
+    const { totalItemsProductos, productos, prevProductos, nextProductos } =
+      dataProducto;
+    res.render("pages/venta/facturar", {
+      totalItemsFranelas,
+      franelas,
+      prevFranelas,
+      nextFranelas,
+      totalItemsProductos,
+      productos,
+      prevProductos,
+      nextProductos,
+    });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");
