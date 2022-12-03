@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      order: {
+      numero: {
         type: Sequelize.INTEGER
       },
       createdAt: {
