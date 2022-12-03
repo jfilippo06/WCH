@@ -47,9 +47,13 @@ const registrarClienteController = async (req, res) => {
 };
 
 const facturarRenderController = async (req, res) => {
-  const { id, nombre } = req.session.data;
-  const order = req.session.order;
-  res.render("pages/venta/facturar");
+  try {
+    const { page, size, opcion, valor } = req.query;
+    res.render("pages/venta/facturar");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/venta/facturar");
+  }
 };
 
 module.exports = {

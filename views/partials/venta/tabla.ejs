@@ -20,15 +20,23 @@
                 </div>
             </div>
             <form action="/venta/facturar" method="get" class="row g-3 mb-3">
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <input type="text" class="form-control" placeholder="Tamaño" name="size">
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <input type="text" class="form-control" placeholder="Pagina" name="page">
                 </div>
                 <div class="col-md-3">
                     <select class="form-select" aria-label="Default select example" name="opcion">
                       <option>Seleciona un campo</option>
+                      <option value="franelas">Franelas</option>
+                      <option value="productos">Productos</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" aria-label="Default select example" name="tipo">
+                      <option>Seleciona un campo</option>
+                      <option class="alert alert-success">FRANELAS:</option>
                       <option value="tela">Tela</option>
                       <option value="talla">Talla</option>
                       <option value="color">Color</option>
@@ -37,8 +45,14 @@
                       <option value="marca">Marca</option>
                       <option value="stock">Stock</option>
                       <option value="precio">Precio</option>
+                      <option class="alert alert-success">PRODUCTOS:</option>
+                      <option value="producto">Producto</option>
+                      <option value="tipo">Tipo</option>
+                      <option value="color">Color</option>
+                      <option value="cantidad">Cantidad</option>
+                      <option value="precio">Precio</option>
                     </select>
-                  </div>
+                </div>
                 <div class="col-md-2">
                     <input type="text" class="form-control" placeholder="Dato" name="valor">
                 </div>
