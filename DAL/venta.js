@@ -36,7 +36,95 @@ const registrarCliente = async (nombre, cedula) => {
 };
 
 const findFranelas = async (limit, offset, opcion, tipo, valor) => {
-  if (opcion == "franelas") {
+  if (opcion == "franelas" && tipo == "tela") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        tela: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas" && tipo == "talla") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        talla: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas" && tipo == "color") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        color: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas" && tipo == "cuello") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        cuello: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas" && tipo == "manga") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        manga: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas" && tipo == "marca") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        marca: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas" && tipo == "stock") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        stock: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas" && tipo == "precio") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        precio: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas") {
     return await Franela.findAndCountAll({
       attributes: {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
@@ -49,8 +137,119 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
   }
 };
 
+const stockFranelas = async (opcion, tipo, valor) => {
+  if (opcion == "franelas" && tipo == "tela") {
+    return await Franela.sum("stock", {
+      where: {
+        tela: valor,
+      },
+    });
+  } else if (opcion == "franelas" && tipo == "talla") {
+    return await Franela.sum("stock", {
+      where: {
+        talla: valor,
+      },
+    });
+  } else if (opcion == "franelas" && tipo == "color") {
+    return await Franela.sum("stock", {
+      where: {
+        color: valor,
+      },
+    });
+  } else if (opcion == "franelas" && tipo == "cuello") {
+    return await Franela.sum("stock", {
+      where: {
+        cuello: valor,
+      },
+    });
+  } else if (opcion == "franelas" && tipo == "manga") {
+    return await Franela.sum("stock", {
+      where: {
+        manga: valor,
+      },
+    });
+  } else if (opcion == "franelas" && tipo == "marca") {
+    return await Franela.sum("stock", {
+      where: {
+        marca: valor,
+      },
+    });
+  } else if (opcion == "franelas" && tipo == "stock") {
+    return await Franela.sum("stock", {
+      where: {
+        stock: valor,
+      },
+    });
+  } else if (opcion == "franelas" && tipo == "precio") {
+    return await Franela.sum("stock", {
+      where: {
+        precio: valor,
+      },
+    });
+  } else if (opcion == "franelas") {
+    return await Franela.sum("stock");
+  } else {
+    return "";
+  }
+};
+
 const findProductos = async (limit, offset, opcion, tipo, valor) => {
-  if (opcion == "productos") {
+  if (opcion == "productos" && tipo == "producto") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        producto: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "productos" && tipo == "tipo") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        tipo: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "productos" && tipo == "color") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        color: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "productos" && tipo == "cantidad") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        cantidad: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "productos" && tipo == "precio") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        precio: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "productos") {
     return await Producto.findAndCountAll({
       attributes: {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
@@ -63,10 +262,50 @@ const findProductos = async (limit, offset, opcion, tipo, valor) => {
   }
 };
 
+const stockProductos = async (opcion, tipo, valor) => {
+  if (opcion == "productos" && tipo == "producto") {
+    return await Producto.sum("cantidad", {
+      where: {
+        producto: valor,
+      },
+    });
+  } else if (opcion == "productos" && tipo == "tipo") {
+    return await Producto.sum("cantidad", {
+      where: {
+        tipo: valor,
+      },
+    });
+  } else if (opcion == "productos" && tipo == "color") {
+    return await Producto.sum("cantidad", {
+      where: {
+        color: valor,
+      },
+    });
+  } else if (opcion == "cantidad") {
+    return await Producto.sum("cantidad", {
+      where: {
+        cantidad: valor,
+      },
+    });
+  } else if (opcion == "productos" && tipo == "precio") {
+    return await Producto.sum("cantidad", {
+      where: {
+        precio: valor,
+      },
+    });
+  } else if (opcion == "productos") {
+    return await Producto.sum("cantidad");
+  } else {
+    return "";
+  }
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
   registrarCliente,
   findFranelas,
   findProductos,
+  stockFranelas,
+  stockProductos,
 };

@@ -14,9 +14,16 @@
                     <p>Total Items: <%= totalItemsProductos %></p>
                 </div>
                 <% } %>
+                <% if (franelaStock) { %>
                 <div class="col-md-2">
-                    <p>Total Stock: <%= stock %></p>
+                    <p>Total Stock: <%= franelaStock %></p>
                 </div>
+                <% } %>
+                <% if (productoStock) { %>
+                <div class="col-md-2">
+                    <p>Total Stock: <%= productoStock %></p>
+                </div>
+                <% } %>
                 <div class="col-md-2">
                     <% if (prevFranelas) { %>
                         <a class="btn btn-primary bi-arrow-left" href="<%= prevFranelas %>"></a>

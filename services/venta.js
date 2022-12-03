@@ -4,6 +4,8 @@ const {
   registrarCliente,
   findFranelas,
   findProductos,
+  stockFranelas,
+  stockProductos,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -24,6 +26,7 @@ const facturaFranelasService = async (page, size, opcion, tipo, valor) => {
   const limit = size ? +size : 5;
   const offset = page ? page * limit : 0;
   const data = await findFranelas(limit, offset, opcion, tipo, valor);
+  const franelaStock = await stockFranelas(opcion, tipo, valor)
   const { count: totalItemsFranelas, rows: franelas } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItemsFranelas / limit);
@@ -45,13 +48,14 @@ const facturaFranelasService = async (page, size, opcion, tipo, valor) => {
     tipo,
     valor
   );
-  return { totalItemsFranelas, franelas, prevFranelas, nextFranelas };
+  return { totalItemsFranelas, franelas, prevFranelas, nextFranelas, franelaStock };
 };
 
 const facturaProductosService = async (page, size, opcion, tipo, valor) => {
   const limit = size ? +size : 5;
   const offset = page ? page * limit : 0;
   const data = await findProductos(limit, offset, opcion, tipo, valor);
+  const productoStock = await stockProductos(opcion, tipo, valor)
   const { count: totalItemsProductos, rows: productos } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItemsProductos / limit);
@@ -73,7 +77,7 @@ const facturaProductosService = async (page, size, opcion, tipo, valor) => {
     tipo,
     valor
   );
-  return { totalItemsProductos, productos, prevProductos, nextProductos };
+  return { totalItemsProductos, productos, prevProductos, nextProductos, productoStock };
 };
 
 module.exports = {

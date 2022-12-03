@@ -65,19 +65,31 @@ const facturarRenderController = async (req, res) => {
       tipo,
       valor
     );
-    const { totalItemsFranelas, franelas, prevFranelas, nextFranelas } =
-      dataFranela;
-    const { totalItemsProductos, productos, prevProductos, nextProductos } =
-      dataProducto;
+    const {
+      totalItemsFranelas,
+      franelas,
+      prevFranelas,
+      nextFranelas,
+      franelaStock,
+    } = dataFranela;
+    const {
+      totalItemsProductos,
+      productos,
+      prevProductos,
+      nextProductos,
+      productoStock,
+    } = dataProducto;
     res.render("pages/venta/facturar", {
       totalItemsFranelas,
       franelas,
       prevFranelas,
       nextFranelas,
+      franelaStock,
       totalItemsProductos,
       productos,
       prevProductos,
       nextProductos,
+      productoStock,
     });
   } catch (error) {
     req.flash("alert", { msg: error.message });
