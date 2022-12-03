@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Franela.hasOne(models.Factura_franela)
+      Franela.hasOne(models.Salida_franela)
     }
   }
   Franela.init({

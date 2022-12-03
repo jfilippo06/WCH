@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       Cliente.hasOne(models.Documento)
       Cliente.hasOne(models.Factura_franela)
       Cliente.hasOne(models.Factura_producto)
+      Cliente.hasOne(models.Salida_franela)
+      Cliente.hasOne(models.Salida_producto)
     }
   }
   Cliente.init({

@@ -17,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Factura_producto.init({
-    cantidad: DataTypes.INTEGER
+    producto: DataTypes.STRING,
+    cantidad: DataTypes.INTEGER,
+    total: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Factura_producto',

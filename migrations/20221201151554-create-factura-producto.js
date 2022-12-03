@@ -23,7 +23,13 @@ module.exports = {
           key: 'id'
         },
       },
+      producto: {
+        type: Sequelize.STRING
+      },
       cantidad: {
+        type: Sequelize.INTEGER
+      },
+      total: {
         type: Sequelize.INTEGER
       },
       Id_order: {

@@ -14,6 +14,8 @@ module.exports = (sequelize, DataTypes) => {
       Order.hasOne(models.Documento)
       Order.hasOne(models.Factura_franela)
       Order.hasOne(models.Factura_producto)
+      Order.hasOne(models.Salida_franela)
+      Order.hasOne(models.Salida_producto)
     }
   }
   Order.init({
