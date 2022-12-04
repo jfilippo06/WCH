@@ -4,6 +4,8 @@ const {
   registrarClienteService,
   facturaFranelasService,
   facturaProductosService,
+  obtenerFranela,
+  obtenerFacturaFranela,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -97,10 +99,26 @@ const facturarRenderController = async (req, res) => {
   }
 };
 
-const facturaController  = async (req, res) => {
+const facturaFranelaController = async (req, res) => {
   try {
-    const { id } = req.params;
-    res.json(id)
+    const { idFranela } = req.params;
+    const { vendidos } = req.body;
+    const { id } = req.session.data;
+    const order = req.session.order;
+    const stockFranela = await obtenerFranela(idFranela);
+    const cantidadFranela = await obtenerFacturaFranela(idFranela, id, order);
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/venta/facturar");
+  }
+};
+
+const facturaProductoController = async (req, res) => {
+  try {
+    const { idProducto } = req.params;
+    const { vendidos } = req.body;
+    const { id } = req.session.data;
+    const order = req.session.order;
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");
@@ -113,5 +131,6 @@ module.exports = {
   registrarRenderController,
   facturarRenderController,
   registrarClienteController,
-  facturaController,
+  facturaFranelaController,
+  facturaProductoController,
 };

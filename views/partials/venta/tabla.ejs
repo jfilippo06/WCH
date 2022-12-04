@@ -109,7 +109,7 @@
                                 <td><%= franelas[i].marca %></td>
                                 <td><%= franelas[i].stock %></td>
                                 <td><%= franelas[i].precio %></td>
-                                <form action="/venta/facturar/<%= franelas[i].id %>" method="post">
+                                <form action="/venta/facturar/franela/<%= franelas[i].id %>" method="post">
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                     <td><input type="number" name="vendidos" required></td>
                                     <td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>
@@ -140,7 +140,7 @@
                                 <td><%= productos[i].color %></td>
                                 <td><%= productos[i].cantidad %></td>
                                 <td><%= productos[i].precio %></td>
-                                <form action="/venta/facturar/<%= productos[i].id %>" method="post">
+                                <form action="/venta/facturar/producto/<%= productos[i].id %>" method="post">
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                     <td><input type="number" name="vendidos" required></td>
                                     <td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>

@@ -5,11 +5,11 @@ const {
   registrarRenderController,
   facturarRenderController,
   registrarClienteController,
-  facturaController,
+  facturaFranelaController,
+  facturaProductoController,
 } = require("../controllers/venta");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
-const verifyAdmin = require("../middlewares/verifyAdmin");
 const router = express.Router();
 
 router.get("/", loginUser, asyncHandler(clienteRenderController));
@@ -21,6 +21,15 @@ router.post(
   asyncHandler(registrarClienteController)
 );
 router.get("/facturar", loginUser, asyncHandler(facturarRenderController));
-router.post("/facturar/:id", loginUser, asyncHandler(facturaController));
+router.post(
+  "/facturar/franela/:idFranela",
+  loginUser,
+  asyncHandler(facturaFranelaController)
+);
+router.post(
+  "/facturar/producto/:idProducto",
+  loginUser,
+  asyncHandler(facturaProductoController)
+);
 
 module.exports = router;

@@ -6,6 +6,8 @@ const {
   findProductos,
   stockFranelas,
   stockProductos,
+  franelaId,
+  facturaFranelaId,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -15,7 +17,7 @@ const buscarClienteService = async (cedula) => {
 
 const buscarOrderService = async () => {
   const data = await obtenerOrder();
-  return data[0].numero;
+  return data[0].id;
 };
 
 const registrarClienteService = async (nombre, cedula) => {
@@ -26,7 +28,7 @@ const facturaFranelasService = async (page, size, opcion, tipo, valor) => {
   const limit = size ? +size : 5;
   const offset = page ? page * limit : 0;
   const data = await findFranelas(limit, offset, opcion, tipo, valor);
-  const franelaStock = await stockFranelas(opcion, tipo, valor)
+  const franelaStock = await stockFranelas(opcion, tipo, valor);
   const { count: totalItemsFranelas, rows: franelas } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItemsFranelas / limit);
@@ -48,14 +50,20 @@ const facturaFranelasService = async (page, size, opcion, tipo, valor) => {
     tipo,
     valor
   );
-  return { totalItemsFranelas, franelas, prevFranelas, nextFranelas, franelaStock };
+  return {
+    totalItemsFranelas,
+    franelas,
+    prevFranelas,
+    nextFranelas,
+    franelaStock,
+  };
 };
 
 const facturaProductosService = async (page, size, opcion, tipo, valor) => {
   const limit = size ? +size : 5;
   const offset = page ? page * limit : 0;
   const data = await findProductos(limit, offset, opcion, tipo, valor);
-  const productoStock = await stockProductos(opcion, tipo, valor)
+  const productoStock = await stockProductos(opcion, tipo, valor);
   const { count: totalItemsProductos, rows: productos } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItemsProductos / limit);
@@ -77,7 +85,27 @@ const facturaProductosService = async (page, size, opcion, tipo, valor) => {
     tipo,
     valor
   );
-  return { totalItemsProductos, productos, prevProductos, nextProductos, productoStock };
+  return {
+    totalItemsProductos,
+    productos,
+    prevProductos,
+    nextProductos,
+    productoStock,
+  };
+};
+
+const obtenerFranela = async (idFranela) => {
+  const data = await franelaId(idFranela);
+  return data.stock;
+};
+
+const obtenerFacturaFranela = async (idFranela, id, order) => {
+  const data = await facturaFranelaId(idFranela, id, order);
+  if (data) {
+    return data.cantidad;
+  } else {
+    return 0;
+  }
 };
 
 module.exports = {
@@ -86,4 +114,6 @@ module.exports = {
   registrarClienteService,
   facturaFranelasService,
   facturaProductosService,
+  obtenerFranela,
+  obtenerFacturaFranela,
 };

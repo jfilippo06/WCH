@@ -1,4 +1,12 @@
-const { Cliente, sequelize, Order, Franela, Producto } = require("../models");
+const {
+  Cliente,
+  sequelize,
+  Order,
+  Franela,
+  Producto,
+  Factura_franela,
+  Factura_producto,
+} = require("../models");
 const AppError = require("../errors/appErrors");
 
 const cliente = async (cedula) => {
@@ -14,7 +22,7 @@ const cliente = async (cedula) => {
 
 const obtenerOrder = async () => {
   return ([results] = await sequelize.query(
-    "SELECT Orders.numero FROM Orders ORDER by Orders.numero DESC LIMIT 1",
+    "SELECT Orders.id FROM Orders ORDER by Orders.id DESC LIMIT 1",
     {
       model: Order,
       mapToModel: true,
@@ -300,6 +308,52 @@ const stockProductos = async (opcion, tipo, valor) => {
   }
 };
 
+const franelaId = async (idFranela) => {
+  return await Franela.findOne({
+    attributes: {
+      exclude: [
+        "id",
+        "tela",
+        "talla",
+        "color",
+        "cuello",
+        "manga",
+        "marca",
+        "precio",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+      ],
+    },
+    where: {
+      id: idFranela,
+    },
+  });
+};
+
+const facturaFranelaId = async (idFranela, id, order) => {
+  return await Factura_franela.findOne({
+    attributes: {
+      exclude: [
+        "id",
+        "ClienteId",
+        "FranelaId",
+        "franela",
+        "total",
+        "OrderId",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+      ],
+    },
+    where: {
+      ClienteId: id,
+      FranelaId: idFranela,
+      OrderId: order,
+    },
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -308,4 +362,6 @@ module.exports = {
   findProductos,
   stockFranelas,
   stockProductos,
+  franelaId,
+  facturaFranelaId,
 };

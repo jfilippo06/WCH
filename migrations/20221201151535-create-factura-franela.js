@@ -9,14 +9,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Id_cliente: {
+      ClienteId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Clientes',
           key: 'id'
         },
       },
-      Id_franela: {
+      FranelaId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Franelas',
@@ -32,7 +32,7 @@ module.exports = {
       total: {
         type: Sequelize.INTEGER
       },
-      Id_order: {
+      OrderId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Orders',
