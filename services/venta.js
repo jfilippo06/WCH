@@ -8,6 +8,7 @@ const {
   stockProductos,
   franelaId,
   facturaFranelaId,
+  getFranela,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -99,13 +100,8 @@ const obtenerFranela = async (idFranela) => {
   return data.stock;
 };
 
-const obtenerFacturaFranela = async (idFranela, id, order) => {
-  const data = await facturaFranelaId(idFranela, id, order);
-  if (data) {
-    return data.cantidad;
-  } else {
-    return 0;
-  }
+const buscarFranelaService = async (id, idFranela, order) => {
+  await getFranela(id, idFranela, order);
 };
 
 module.exports = {
@@ -115,5 +111,5 @@ module.exports = {
   facturaFranelasService,
   facturaProductosService,
   obtenerFranela,
-  obtenerFacturaFranela,
+  buscarFranelaService,
 };

@@ -5,7 +5,7 @@ const {
   facturaFranelasService,
   facturaProductosService,
   obtenerFranela,
-  obtenerFacturaFranela,
+  buscarFranelaService,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -105,8 +105,14 @@ const facturaFranelaController = async (req, res) => {
     const { vendidos } = req.body;
     const { id } = req.session.data;
     const order = req.session.order;
+    await buscarFranelaService(id, idFranela, order);
     const stockFranela = await obtenerFranela(idFranela);
-    const cantidadFranela = await obtenerFacturaFranela(idFranela, id, order);
+    if (vendidos > stockFranela || vendidos == 0) {
+      req.flash("alert", { msg: "No disponible en el stock" });
+      res.redirect("/venta/facturar");
+    } else {
+      
+    }
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");

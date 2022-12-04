@@ -331,27 +331,15 @@ const franelaId = async (idFranela) => {
   });
 };
 
-const facturaFranelaId = async (idFranela, id, order) => {
-  return await Factura_franela.findOne({
-    attributes: {
-      exclude: [
-        "id",
-        "ClienteId",
-        "FranelaId",
-        "franela",
-        "total",
-        "OrderId",
-        "createdAt",
-        "updatedAt",
-        "deletedAt",
-      ],
-    },
+const getFranela = async (id, idFranela, order) => {
+  const franela = await Factura_franela.findOne({
     where: {
       ClienteId: id,
       FranelaId: idFranela,
       OrderId: order,
     },
   });
+  if (franela) throw new AppError("Registro ya existe", 200);
 };
 
 module.exports = {
@@ -363,5 +351,5 @@ module.exports = {
   stockFranelas,
   stockProductos,
   franelaId,
-  facturaFranelaId,
+  getFranela,
 };
