@@ -97,10 +97,21 @@ const facturarRenderController = async (req, res) => {
   }
 };
 
+const facturaController  = async (req, res) => {
+  try {
+    const { id } = req.params;
+    res.json(id)
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/venta/facturar");
+  }
+};
+
 module.exports = {
   clienteRenderController,
   buscarClienteController,
   registrarRenderController,
   facturarRenderController,
   registrarClienteController,
+  facturaController,
 };

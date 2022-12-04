@@ -5,6 +5,7 @@ const {
   registrarRenderController,
   facturarRenderController,
   registrarClienteController,
+  facturaController,
 } = require("../controllers/venta");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
@@ -20,5 +21,6 @@ router.post(
   asyncHandler(registrarClienteController)
 );
 router.get("/facturar", loginUser, asyncHandler(facturarRenderController));
+router.post("/facturar/:id", loginUser, asyncHandler(facturaController));
 
 module.exports = router;

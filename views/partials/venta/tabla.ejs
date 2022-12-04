@@ -94,6 +94,7 @@
                             <th scope="col">Marca</th>
                             <th scope="col">Stock</th>
                             <th scope="col">Precio</th>
+                            <th scope="col"></th>
                             <th scope="col">Añadir</th>
                         </tr>
                     </thead>
@@ -108,6 +109,11 @@
                                 <td><%= franelas[i].marca %></td>
                                 <td><%= franelas[i].stock %></td>
                                 <td><%= franelas[i].precio %></td>
+                                <form action="/venta/facturar/<%= franelas[i].id %>" method="post">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <td><input type="number" name="vendidos" required></td>
+                                    <td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>
+                                </form>
                             </tr>
                         <% } %>
                     </tbody>
@@ -122,6 +128,7 @@
                             <th scope="col">Color</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">Precio</th>
+                            <th scope="col"></th>
                             <th scope="col">Añadir</th>
                         </tr>
                     </thead>
@@ -133,6 +140,11 @@
                                 <td><%= productos[i].color %></td>
                                 <td><%= productos[i].cantidad %></td>
                                 <td><%= productos[i].precio %></td>
+                                <form action="/venta/facturar/<%= productos[i].id %>" method="post">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <td><input type="number" name="vendidos" required></td>
+                                    <td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>
+                                </form>
                             </tr>
                         <% } %>
                     </tbody>
