@@ -342,6 +342,58 @@ const getFranela = async (id, idFranela, order) => {
   if (franela) throw new AppError("Registro ya existe", 200);
 };
 
+const nombreFranela = async (idFranela) => {
+  return await Franela.findOne({
+    attributes: {
+      exclude: ["id", "stock", "precio", "createdAt", "updatedAt", "deletedAt"],
+    },
+    where: {
+      id: idFranela,
+    },
+  });
+};
+
+const obtenerTotal = async (idFranela) => {
+  return await Franela.findOne({
+    attributes: {
+      exclude: [
+        "id",
+        "tela",
+        "talla",
+        "color",
+        "cuello",
+        "manga",
+        "marca",
+        "stock",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+      ],
+    },
+    where: {
+      id: idFranela,
+    },
+  });
+};
+
+const registrarFacturaFranela = async (
+  id,
+  idFranela,
+  franela,
+  vendidos,
+  total,
+  order
+) => {
+  await Factura_franela.create({
+    ClienteId: id,
+    FranelaId: idFranela,
+    franela: franela,
+    cantidad: vendidos,
+    total: total,
+    OrderId: order,
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -352,4 +404,7 @@ module.exports = {
   stockProductos,
   franelaId,
   getFranela,
+  nombreFranela,
+  obtenerTotal,
+  registrarFacturaFranela,
 };

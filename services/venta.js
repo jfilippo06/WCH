@@ -9,6 +9,9 @@ const {
   franelaId,
   facturaFranelaId,
   getFranela,
+  nombreFranela,
+  obtenerTotal,
+  registrarFacturaFranela,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -104,6 +107,15 @@ const buscarFranelaService = async (id, idFranela, order) => {
   await getFranela(id, idFranela, order);
 };
 
+const registrarFranelaService = async (id, idFranela, order, vendidos) => {
+  const data = await nombreFranela(idFranela);
+  const { tela, talla, color, cuello, manga, marca } = data;
+  const franela = `FRANELA ${tela} ${color} TALLA:${talla} ${marca} ${cuello} ${manga}`;
+  const data2 = await obtenerTotal(idFranela);
+  const total = (data2.precio * vendidos).toFixed(2);
+  await registrarFacturaFranela(id, idFranela, franela, vendidos, total, order);
+};
+
 module.exports = {
   buscarClienteService,
   buscarOrderService,
@@ -112,4 +124,5 @@ module.exports = {
   facturaProductosService,
   obtenerFranela,
   buscarFranelaService,
+  registrarFranelaService,
 };
