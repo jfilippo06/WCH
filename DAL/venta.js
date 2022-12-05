@@ -394,6 +394,93 @@ const registrarFacturaFranela = async (
   });
 };
 
+const getProducto = async (id, idProducto, order) => {
+  const producto = await Factura_producto.findOne({
+    where: {
+      ClienteId: id,
+      ProductoId: idProducto,
+      OrderId: order,
+    },
+  });
+  if (producto) throw new AppError("Registro ya existe", 200);
+};
+
+const productoId = async (idProducto) => {
+  return await Producto.findOne({
+    attributes: {
+      exclude: [
+        "id",
+        "producto",
+        "tipo",
+        "color",
+        "precio",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+      ],
+    },
+    where: {
+      id: idProducto,
+    },
+  });
+};
+
+const nombreProducto = async (idProducto) => {
+  return await Producto.findOne({
+    attributes: {
+      exclude: [
+        "id",
+        "cantidad",
+        "precio",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+      ],
+    },
+    where: {
+      id: idProducto,
+    },
+  });
+};
+
+const obtenerTotal2 = async (idProducto) => {
+  return await Producto.findOne({
+    attributes: {
+      exclude: [
+        "id",
+        "producto",
+        "tipo",
+        "color",
+        "cantidad",
+        "createdAt",
+        "updatedAt",
+        "deletedAt",
+      ],
+    },
+    where: {
+      id: idProducto,
+    },
+  });
+};
+
+const registrarFacturaProducto = async (
+  id,
+  idProducto,
+  product,
+  vendidos,
+  total,
+  order
+) => {
+  await Factura_producto.create({
+    ClienteId: id,
+    ProductoId: idProducto,
+    producto: product,
+    cantidad: vendidos,
+    total: total,
+    OrderId: order,
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -407,4 +494,9 @@ module.exports = {
   nombreFranela,
   obtenerTotal,
   registrarFacturaFranela,
+  getProducto,
+  productoId,
+  nombreProducto,
+  obtenerTotal2,
+  registrarFacturaProducto,
 };

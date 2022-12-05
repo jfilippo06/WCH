@@ -4,9 +4,12 @@ const {
   registrarClienteService,
   facturaFranelasService,
   facturaProductosService,
-  obtenerFranela,
+  obtenerFranelaService,
   buscarFranelaService,
   registrarFranelaService,
+  buscarProductoService,
+  obtenerProductoService,
+  registrarProductoService,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -107,7 +110,7 @@ const facturaFranelaController = async (req, res) => {
     const { id } = req.session.data;
     const order = req.session.order;
     await buscarFranelaService(id, idFranela, order);
-    const stockFranela = await obtenerFranela(idFranela);
+    const stockFranela = await obtenerFranelaService(idFranela);
     if (vendidos > stockFranela || vendidos == 0) {
       req.flash("alert", { msg: "No disponible en el stock" });
       res.redirect("/venta/facturar");
@@ -128,6 +131,16 @@ const facturaProductoController = async (req, res) => {
     const { vendidos } = req.body;
     const { id } = req.session.data;
     const order = req.session.order;
+    await buscarProductoService(id, idProducto, order);
+    const cantidadProducto = await obtenerProductoService(idProducto);
+    if (vendidos > cantidadProducto || vendidos == 0) {
+      req.flash("alert", { msg: "No disponible en el stock" });
+      res.redirect("/venta/facturar");
+    } else {
+      await registrarProductoService(id, idProducto, order, vendidos);
+      req.flash("success", { msg: "Añadido a la lista de venta" });
+      res.redirect("/venta/facturar");
+    }
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");
