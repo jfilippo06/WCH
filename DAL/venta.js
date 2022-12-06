@@ -485,7 +485,6 @@ const facturaFranela = async (id, order) => {
   return await Factura_franela.findAll({
     attributes: {
       exclude: [
-        "id",
         "ClienteId",
         "FranelaId",
         "OrderId",
@@ -504,7 +503,6 @@ const facturaProducto = async (id, order) => {
   return await Factura_producto.findAll({
     attributes: {
       exclude: [
-        "id",
         "ClienteId",
         "ProductoId",
         "OrderId",

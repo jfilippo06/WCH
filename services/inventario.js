@@ -107,33 +107,13 @@ const idProducto = async (id) => {
   return await getProducto(id);
 };
 
-const editFranela = async (
-  id,
-  tela,
-  talla,
-  color,
-  cuello,
-  manga,
-  marca,
-  stock,
-  precio
-) => {
-  await editarFranela(
-    id,
-    tela,
-    talla,
-    color,
-    cuello,
-    manga,
-    marca,
-    stock,
-    precio
-  );
+const editFranela = async (id, stock, precio) => {
+  await editarFranela(id, stock, precio);
 };
 
-const editProducto = async (id, producto, tipo, color, cantidad, precio) => {
-  await editarProducto(id, producto, tipo, color, cantidad, precio)
-}
+const editProducto = async (id, cantidad, precio) => {
+  await editarProducto(id, cantidad, precio);
+};
 
 module.exports = {
   franelaService,

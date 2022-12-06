@@ -111,7 +111,7 @@
                                 <td><%= franelas[i].precio %></td>
                                 <form action="/venta/facturar/franela/<%= franelas[i].id %>" method="post">
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <td><input type="number" name="vendidos" required></td>
+                                    <td><input type="text" name="vendidos" required></td>
                                     <td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>
                                 </form>
                             </tr>
@@ -142,7 +142,7 @@
                                 <td><%= productos[i].precio %></td>
                                 <form action="/venta/facturar/producto/<%= productos[i].id %>" method="post">
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                    <td><input type="number" name="vendidos" required></td>
+                                    <td><input type="text" name="vendidos" required></td>
                                     <td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>
                                 </form>
                             </tr>
