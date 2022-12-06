@@ -12,12 +12,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Brandon Jacob</td>
-            <td>Designer</td>
-            <td>28</td>
-            <td>2016-05-25</td>
-          </tr>
+            <% for(let i=0; i < facturaFranela.length; i++) { %>
+                <tr>
+                    <td><%= facturaFranela[i].franela %></td>
+                    <td><%= facturaFranela[i].cantidad %></td>
+                    <td><%= facturaFranela[i].total %></td>
+                    <td></td>
+                </tr>
+            <% } %>
+            <% for(let i=0; i < facturaProducto.length; i++) { %>
+                <tr>
+                    <td><%= facturaProducto[i].producto %></td>
+                    <td><%= facturaProducto[i].cantidad %></td>
+                    <td><%= facturaProducto[i].total %></td>
+                    <td></td>
+                </tr>
+            <% } %>
       </table>
 
     </div>

@@ -481,6 +481,44 @@ const registrarFacturaProducto = async (
   });
 };
 
+const facturaFranela = async (id, order) => {
+  return await Factura_franela.findAll({
+    attributes: {
+      exclude: [
+        "id",
+        "ClienteId",
+        "FranelaId",
+        "OrderId",
+        "createdAt",
+        "updatedAt",
+      ],
+    },
+    where: {
+      ClienteId: id,
+      OrderId: order,
+    },
+  });
+};
+
+const facturaProducto = async (id, order) => {
+  return await Factura_producto.findAll({
+    attributes: {
+      exclude: [
+        "id",
+        "ClienteId",
+        "ProductoId",
+        "OrderId",
+        "createdAt",
+        "updatedAt",
+      ],
+    },
+    where: {
+      ClienteId: id,
+      OrderId: order,
+    },
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -499,4 +537,6 @@ module.exports = {
   nombreProducto,
   obtenerTotal2,
   registrarFacturaProducto,
+  facturaFranela,
+  facturaProducto,
 };

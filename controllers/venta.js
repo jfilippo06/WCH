@@ -10,6 +10,8 @@ const {
   buscarProductoService,
   obtenerProductoService,
   registrarProductoService,
+  obtenerFacturaFranela,
+  obtenerFacturaProducto,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -57,6 +59,8 @@ const registrarClienteController = async (req, res) => {
 const facturarRenderController = async (req, res) => {
   try {
     const { page, size, opcion, tipo, valor } = req.query;
+    const { id } = req.session.data;
+    const order = req.session.order;
     const dataFranela = await facturaFranelasService(
       page,
       size,
@@ -71,6 +75,8 @@ const facturarRenderController = async (req, res) => {
       tipo,
       valor
     );
+    const facturaFranela = await obtenerFacturaFranela(id, order);
+    const facturaProducto = await obtenerFacturaProducto(id, order);
     const {
       totalItemsFranelas,
       franelas,
@@ -96,6 +102,8 @@ const facturarRenderController = async (req, res) => {
       prevProductos,
       nextProductos,
       productoStock,
+      facturaFranela,
+      facturaProducto,
     });
   } catch (error) {
     req.flash("alert", { msg: error.message });
