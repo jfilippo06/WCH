@@ -484,13 +484,7 @@ const registrarFacturaProducto = async (
 const facturaFranela = async (id, order) => {
   return await Factura_franela.findAll({
     attributes: {
-      exclude: [
-        "ClienteId",
-        "FranelaId",
-        "OrderId",
-        "createdAt",
-        "updatedAt",
-      ],
+      exclude: ["ClienteId", "FranelaId", "OrderId", "createdAt", "updatedAt"],
     },
     where: {
       ClienteId: id,
@@ -502,14 +496,29 @@ const facturaFranela = async (id, order) => {
 const facturaProducto = async (id, order) => {
   return await Factura_producto.findAll({
     attributes: {
-      exclude: [
-        "ClienteId",
-        "ProductoId",
-        "OrderId",
-        "createdAt",
-        "updatedAt",
-      ],
+      exclude: ["ClienteId", "ProductoId", "OrderId", "createdAt", "updatedAt"],
     },
+    where: {
+      ClienteId: id,
+      OrderId: order,
+    },
+  });
+};
+
+const totalFranela = async (id, order) => {
+  return await Factura_franela.sum("total", {
+    dialectOptions: {
+      decimalNumbers: true,
+    },
+    where: {
+      ClienteId: id,
+      OrderId: order,
+    },
+  });
+};
+
+const totalProducto = async (id, order) => {
+  return await Factura_producto.sum("total", {
     where: {
       ClienteId: id,
       OrderId: order,
@@ -537,4 +546,6 @@ module.exports = {
   registrarFacturaProducto,
   facturaFranela,
   facturaProducto,
+  totalFranela,
+  totalProducto,
 };

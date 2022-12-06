@@ -18,6 +18,8 @@ const {
   registrarFacturaProducto,
   facturaFranela,
   facturaProducto,
+  totalFranela,
+  totalProducto,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -155,6 +157,12 @@ const obtenerFacturaProducto = async (id, order) => {
   return await facturaProducto(id, order);
 };
 
+const obtenerTotalService = async (id, order) => {
+  const franela = await totalFranela(id, order);
+  const producto = await totalProducto(id, order);
+  return franela
+};
+
 module.exports = {
   buscarClienteService,
   buscarOrderService,
@@ -169,4 +177,5 @@ module.exports = {
   registrarProductoService,
   obtenerFacturaFranela,
   obtenerFacturaProducto,
+  obtenerTotalService,
 };

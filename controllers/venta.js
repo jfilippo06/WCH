@@ -12,6 +12,7 @@ const {
   registrarProductoService,
   obtenerFacturaFranela,
   obtenerFacturaProducto,
+  obtenerTotalService,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -77,6 +78,7 @@ const facturarRenderController = async (req, res) => {
     );
     const facturaFranela = await obtenerFacturaFranela(id, order);
     const facturaProducto = await obtenerFacturaProducto(id, order);
+    const total = await obtenerTotalService(id, order);
     const {
       totalItemsFranelas,
       franelas,
@@ -104,6 +106,7 @@ const facturarRenderController = async (req, res) => {
       productoStock,
       facturaFranela,
       facturaProducto,
+      total,
     });
   } catch (error) {
     req.flash("alert", { msg: error.message });
