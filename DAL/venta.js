@@ -549,6 +549,24 @@ const deleteProducto = async (id) => {
   });
 };
 
+const cancelarFranela = async (id, order) => {
+  await Factura_franela.destroy({
+    where: {
+      ClienteId: id,
+      OrderId: order,
+    },
+  });
+};
+
+const cancelarProducto = async (id, order) => {
+  await Factura_producto.destroy({
+    where: {
+      ClienteId: id,
+      OrderId: order,
+    },
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -573,4 +591,6 @@ module.exports = {
   totalProducto,
   deleteFranela,
   deleteProducto,
+  cancelarFranela,
+  cancelarProducto,
 };

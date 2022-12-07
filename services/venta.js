@@ -22,6 +22,8 @@ const {
   totalProducto,
   deleteFranela,
   deleteProducto,
+  cancelarFranela,
+  cancelarProducto,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -177,6 +179,11 @@ const deleteProductoService = async (id) => {
   await deleteProducto(id);
 };
 
+const cancelarService = async (id, order) => {
+  await cancelarFranela(id, order);
+  await cancelarProducto(id, order);
+};
+
 module.exports = {
   buscarClienteService,
   buscarOrderService,
@@ -194,4 +201,5 @@ module.exports = {
   obtenerTotalService,
   deleteFranelaService,
   deleteProductoService,
+  cancelarService,
 };
