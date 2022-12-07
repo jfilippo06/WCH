@@ -20,7 +20,7 @@
                     <td><%= facturaFranela[i].cantidad %></td>
                     <td><%= facturaFranela[i].total %></td>
                     <td>
-                        <a href="/venta/facturar/#/<%= facturaFranela[i].id %>" class="btn btn-danger btn-sm bi bi-x-lg"></a>
+                        <a href="/venta/facturar/franela/delete/<%= facturaFranela[i].id %>" class="btn btn-danger btn-sm bi bi-x-lg"></a>
                     </td>
                 </tr>
             <% } %>
@@ -30,7 +30,7 @@
                     <td><%= facturaProducto[i].cantidad %></td>
                     <td><%= facturaProducto[i].total %></td>
                     <td>
-                        <a href="/venta/facturar/#/<%= facturaProducto[i].id %>" class="btn btn-danger btn-sm bi bi-x-lg"></a>
+                        <a href="/venta/facturar/producto/delete/<%= facturaProducto[i].id %>" class="btn btn-danger btn-sm bi bi-x-lg"></a>
                     </td>
                 </tr>
             <% } %>

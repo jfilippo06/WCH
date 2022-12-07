@@ -13,6 +13,8 @@ const {
   obtenerFacturaFranela,
   obtenerFacturaProducto,
   obtenerTotalService,
+  deleteFranelaService,
+  deleteProductoService,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -158,6 +160,28 @@ const facturaProductoController = async (req, res) => {
   }
 };
 
+const deleteFranelaController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deleteFranelaService(id);
+    res.redirect("/venta/facturar");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/venta/facturar");
+  }
+};
+
+const deleteProductoController = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await deleteProductoService(id);
+    res.redirect("/venta/facturar");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/venta/facturar");
+  }
+};
+
 module.exports = {
   clienteRenderController,
   buscarClienteController,
@@ -166,4 +190,6 @@ module.exports = {
   registrarClienteController,
   facturaFranelaController,
   facturaProductoController,
+  deleteFranelaController,
+  deleteProductoController,
 };

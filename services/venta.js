@@ -20,6 +20,8 @@ const {
   facturaProducto,
   totalFranela,
   totalProducto,
+  deleteFranela,
+  deleteProducto,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -167,6 +169,14 @@ const obtenerTotalService = async (id, order) => {
   return (total1.total + total2.total).toFixed(2);
 };
 
+const deleteFranelaService = async (id) => {
+  await deleteFranela(id);
+};
+
+const deleteProductoService = async (id) => {
+  await deleteProducto(id);
+};
+
 module.exports = {
   buscarClienteService,
   buscarOrderService,
@@ -182,4 +192,6 @@ module.exports = {
   obtenerFacturaFranela,
   obtenerFacturaProducto,
   obtenerTotalService,
+  deleteFranelaService,
+  deleteProductoService,
 };

@@ -7,6 +7,8 @@ const {
   registrarClienteController,
   facturaFranelaController,
   facturaProductoController,
+  deleteFranelaController,
+  deleteProductoController,
 } = require("../controllers/venta");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
@@ -30,6 +32,16 @@ router.post(
   "/facturar/producto/:idProducto",
   loginUser,
   asyncHandler(facturaProductoController)
+);
+router.get(
+  "/facturar/franela/delete/:id",
+  loginUser,
+  asyncHandler(deleteFranelaController)
+);
+router.get(
+  "/facturar/producto/delete/:id",
+  loginUser,
+  asyncHandler(deleteProductoController)
 );
 
 module.exports = router;
