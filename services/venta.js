@@ -158,9 +158,11 @@ const obtenerFacturaProducto = async (id, order) => {
 };
 
 const obtenerTotalService = async (id, order) => {
-  const franela = await totalFranela(id, order);
+  const data = await totalFranela(id, order);
   const producto = await totalProducto(id, order);
-  return franela
+  const franela = JSON.stringify(data[0])
+  const a = JSON.parse(franela.replace("sum(total)", "total"))
+  return a.total
 };
 
 module.exports = {

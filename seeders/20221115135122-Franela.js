@@ -14,7 +14,7 @@ module.exports = {
           manga: "NORMAL",
           marca: "",
           stock: 3,
-          precio: 0,
+          precio: 15.67,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

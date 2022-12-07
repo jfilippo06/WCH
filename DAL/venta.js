@@ -8,6 +8,7 @@ const {
   Factura_producto,
 } = require("../models");
 const AppError = require("../errors/appErrors");
+const { QueryTypes } = require("sequelize");
 
 const cliente = async (cedula) => {
   return await Cliente.findOne({
@@ -506,15 +507,12 @@ const facturaProducto = async (id, order) => {
 };
 
 const totalFranela = async (id, order) => {
-  return await Factura_franela.sum("total", {
-    dialectOptions: {
-      decimalNumbers: true,
-    },
-    where: {
-      ClienteId: id,
-      OrderId: order,
-    },
-  });
+  return ([results] = await sequelize.query(
+    "SELECT sum(total) FROM Factura_franelas",
+    {
+      model: Factura_franela,
+    }
+  ));
 };
 
 const totalProducto = async (id, order) => {
