@@ -508,20 +508,29 @@ const facturaProducto = async (id, order) => {
 
 const totalFranela = async (id, order) => {
   return ([results] = await sequelize.query(
-    "SELECT sum(total) FROM Factura_franelas",
+    "SELECT sum(total) FROM Factura_franelas WHERE Factura_franelas.ClienteId = :id and Factura_franelas.OrderId = :order",
     {
       model: Factura_franela,
+      replacements: {
+        id: id,
+        order: order,
+      },
+      type: QueryTypes.SELECT,
     }
   ));
 };
 
 const totalProducto = async (id, order) => {
-  return await Factura_producto.sum("total", {
-    where: {
-      ClienteId: id,
-      OrderId: order,
-    },
-  });
+  return ([results] = await sequelize.query(
+    "SELECT sum(total) FROM Factura_productos WHERE Factura_productos.ClienteId = :id and Factura_productos.OrderId = :order",
+    {
+      model: Factura_producto,
+      replacements: {
+        id: id,
+        order: order,
+      },
+    }
+  ));
 };
 
 module.exports = {

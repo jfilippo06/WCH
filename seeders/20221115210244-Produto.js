@@ -11,7 +11,7 @@ module.exports = {
           tipo: "VIDRIO NO SUBLIMABLE",
           color: "",
           cantidad: 9,
-          precio: 0,
+          precio: 4.47,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
