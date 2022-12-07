@@ -2,7 +2,17 @@
     <div class="card-body">
       <h5 class="card-title">Lista de venta</h5>
 
-      <h5>Total neto: <%= total %></h5>
+       <div class="row g-3">
+          <div class="col-md-2">
+              <p>Total Items: <%= total %></p>
+          </div>
+          <div class="col-md-1">
+            <a href="#" class="btn btn-primary btn-sm ">Realizar venta</a>
+          </div>
+          <div class="col-md-1">
+            <a href="#" class="btn btn-danger btn-sm ">Cancelar venta</a>
+          </div>
+      </div>
 
       <table class="table table-striped">
         <thead>
