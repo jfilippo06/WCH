@@ -28,6 +28,7 @@ const {
   registrarSalidaProducto,
   updateFranela,
   updateProducto,
+  registrarOrder,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -37,7 +38,7 @@ const buscarClienteService = async (cedula) => {
 
 const buscarOrderService = async () => {
   const data = await obtenerOrder();
-  return data[0].id;
+  return data[0].numero;
 };
 
 const registrarClienteService = async (nombre, cedula) => {
@@ -232,6 +233,12 @@ const updateProductoService = async (facturaProducto) => {
   }
 };
 
+const registrarOrderService = async () => {
+  const order = await buscarOrderService();
+  const numero = order + 1;
+  await registrarOrder(numero);
+};
+
 module.exports = {
   buscarClienteService,
   buscarOrderService,
@@ -254,4 +261,5 @@ module.exports = {
   pedidoProductoService,
   updateFranelaService,
   updateProductoService,
+  registrarOrderService,
 };

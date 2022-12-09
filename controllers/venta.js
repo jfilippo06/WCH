@@ -20,6 +20,7 @@ const {
   pedidoProductoService,
   updateFranelaService,
   updateProductoService,
+  registrarOrderService,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -209,7 +210,9 @@ const pedidoController = async (req, res) => {
     await pedidoProductoService(facturaProducto);
     await updateFranelaService(facturaFranela);
     await updateProductoService(facturaProducto);
-    res.redirect("/venta/facturar");
+    await cancelarService(id, order);
+    await registrarOrderService();
+    res.redirect("/venta");
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");

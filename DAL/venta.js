@@ -25,7 +25,7 @@ const cliente = async (cedula) => {
 
 const obtenerOrder = async () => {
   return ([results] = await sequelize.query(
-    "SELECT Orders.id FROM Orders ORDER by Orders.id DESC LIMIT 1",
+    "SELECT Orders.numero FROM Orders ORDER by Orders.numero DESC LIMIT 1",
     {
       model: Order,
       mapToModel: true,
@@ -531,6 +531,7 @@ const totalProducto = async (id, order) => {
         id: id,
         order: order,
       },
+      type: QueryTypes.SELECT,
     }
   ));
 };
@@ -631,6 +632,10 @@ const updateProducto = async (id, valor) => {
   );
 };
 
+const registrarOrder = async (numero) => {
+  await Order.create({ numero: numero });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -661,4 +666,5 @@ module.exports = {
   registrarSalidaProducto,
   updateFranela,
   updateProducto,
+  registrarOrder,
 };
