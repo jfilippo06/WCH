@@ -16,6 +16,8 @@ const {
   deleteFranelaService,
   deleteProductoService,
   cancelarService,
+  pedidoFranelaService,
+  pedidoProductoService,
 } = require("../services/venta");
 
 const clienteRenderController = async (req, res) => {
@@ -195,6 +197,21 @@ const cancelarController = async (req, res) => {
   }
 };
 
+const pedidoController = async (req, res) => {
+  try {
+    const { id } = req.session.data;
+    const order = req.session.order;
+    const facturaFranela = await obtenerFacturaFranela(id, order);
+    const facturaProducto = await obtenerFacturaProducto(id, order);
+    await pedidoFranelaService(facturaFranela);
+    await pedidoProductoService(facturaProducto);
+    res.redirect("/venta/facturar");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/venta/facturar");
+  }
+};
+
 module.exports = {
   clienteRenderController,
   buscarClienteController,
@@ -206,4 +223,5 @@ module.exports = {
   deleteFranelaController,
   deleteProductoController,
   cancelarController,
+  pedidoController,
 };

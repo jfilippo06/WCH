@@ -6,6 +6,8 @@ const {
   Producto,
   Factura_franela,
   Factura_producto,
+  Salida_franela,
+  Salida_producto,
 } = require("../models");
 const AppError = require("../errors/appErrors");
 const { QueryTypes } = require("sequelize");
@@ -485,7 +487,7 @@ const registrarFacturaProducto = async (
 const facturaFranela = async (id, order) => {
   return await Factura_franela.findAll({
     attributes: {
-      exclude: ["ClienteId", "FranelaId", "OrderId", "createdAt", "updatedAt"],
+      exclude: ["createdAt", "updatedAt"],
     },
     where: {
       ClienteId: id,
@@ -497,7 +499,7 @@ const facturaFranela = async (id, order) => {
 const facturaProducto = async (id, order) => {
   return await Factura_producto.findAll({
     attributes: {
-      exclude: ["ClienteId", "ProductoId", "OrderId", "createdAt", "updatedAt"],
+      exclude: ["createdAt", "updatedAt"],
     },
     where: {
       ClienteId: id,
@@ -567,6 +569,42 @@ const cancelarProducto = async (id, order) => {
   });
 };
 
+const registrarSalidaFranela = async (
+  id,
+  idFranela,
+  franela,
+  vendidos,
+  total,
+  order
+) => {
+  await Salida_franela.create({
+    ClienteId: id,
+    FranelaId: idFranela,
+    franela: franela,
+    cantidad: vendidos,
+    total: total,
+    OrderId: order,
+  });
+};
+
+const registrarSalidaProducto = async (
+  id,
+  idProducto,
+  product,
+  vendidos,
+  total,
+  order
+) => {
+  await Salida_producto.create({
+    ClienteId: id,
+    ProductoId: idProducto,
+    producto: product,
+    cantidad: vendidos,
+    total: total,
+    OrderId: order,
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -593,4 +631,6 @@ module.exports = {
   deleteProducto,
   cancelarFranela,
   cancelarProducto,
+  registrarSalidaFranela,
+  registrarSalidaProducto,
 };

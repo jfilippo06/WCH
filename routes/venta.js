@@ -10,6 +10,7 @@ const {
   deleteFranelaController,
   deleteProductoController,
   cancelarController,
+  pedidoController,
 } = require("../controllers/venta");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
@@ -44,10 +45,7 @@ router.get(
   loginUser,
   asyncHandler(deleteProductoController)
 );
-router.get(
-  "/facturar/cancelar",
-  loginUser,
-  asyncHandler(cancelarController)
-);
+router.get("/facturar/cancelar", loginUser, asyncHandler(cancelarController));
+router.get("/facturar/pedido", loginUser, asyncHandler(pedidoController));
 
 module.exports = router;
