@@ -26,6 +26,8 @@ const {
   cancelarProducto,
   registrarSalidaFranela,
   registrarSalidaProducto,
+  updateFranela,
+  updateProducto,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -212,6 +214,24 @@ const pedidoProductoService = async (facturaProducto) => {
   }
 };
 
+const updateFranelaService = async (facturaFranela) => {
+  for (let i = 0; i < facturaFranela.length; i++) {
+    const stock = await obtenerFranelaService(facturaFranela[i].FranelaId);
+    const total = stock - facturaFranela[i].cantidad;
+    await updateFranela(facturaFranela[i].FranelaId, total);
+  }
+};
+
+const updateProductoService = async (facturaProducto) => {
+  for (let i = 0; i < facturaProducto.length; i++) {
+    const cantidad = await obtenerProductoService(
+      facturaProducto[i].ProductoId
+    );
+    const total = cantidad - facturaProducto[i].cantidad;
+    await updateProducto(facturaProducto[i].ProductoId, total);
+  }
+};
+
 module.exports = {
   buscarClienteService,
   buscarOrderService,
@@ -232,4 +252,6 @@ module.exports = {
   cancelarService,
   pedidoFranelaService,
   pedidoProductoService,
+  updateFranelaService,
+  updateProductoService,
 };

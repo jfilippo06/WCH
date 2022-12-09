@@ -605,6 +605,32 @@ const registrarSalidaProducto = async (
   });
 };
 
+const updateFranela = async (id, valor) => {
+  await Franela.update(
+    {
+      stock: valor,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+};
+
+const updateProducto = async (id, valor) => {
+  await Producto.update(
+    {
+      cantidad: valor,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  );
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -633,4 +659,6 @@ module.exports = {
   cancelarProducto,
   registrarSalidaFranela,
   registrarSalidaProducto,
+  updateFranela,
+  updateProducto,
 };
