@@ -48,8 +48,4 @@ router.get(
 router.get("/facturar/cancelar", loginUser, asyncHandler(cancelarController));
 router.get("/facturar/pedido", loginUser, asyncHandler(pedidoController));
 
-router.get("/prueba", (req, res) => {
-  res.render('invoices/factura');
-})
-
 module.exports = router;

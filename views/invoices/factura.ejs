@@ -15,9 +15,9 @@
             <div class="col-xs-10 ">
                 <h1>Factura</h1>
                 <strong>Fecha</strong>
-                <br>2021-05-03<br>
+                <br><%= fecha %><br>
                 <strong>Factura No.</strong>
-                <br>1<br>
+                <br><%= order %><br>
             </div>
             <div class="col-xs-2">
                 <img class="img img-responsive" src="../../images/logo.png">
@@ -27,11 +27,13 @@
         <div class="row text-center" style="margin-bottom: 2rem;">
             <div class="col-xs-6">
                 <h1 class="h2">Cliente</h1>
-                <strong>Luis Cabrera Benito</strong>
+                <strong><%= nombre %></strong>
+                <br>
+                <strong>C.I: <%= cedula %></strong>
             </div>
             <div class="col-xs-6">
                 <h1 class="h2">Remitente</h1>
-                <strong>Luis Cabrera Benito</strong>
+                <strong><%= usuario %></strong>
             </div>
         </div>
         <div class="row">
@@ -45,11 +47,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                        </tr>
+                        <% for(let i=0; i < facturaFranela.length; i++) { %>
+                            <tr>
+                                <td><%= facturaFranela[i].franela %></td>
+                                <td><%= facturaFranela[i].cantidad %></td>
+                                <td><%= facturaFranela[i].total %></td>
+                            </tr>
+                        <% } %>
+                        <% for(let i=0; i < facturaProducto.length; i++) { %>
+                            <tr>
+                                <td><%= facturaProducto[i].producto %></td>
+                                <td><%= facturaProducto[i].cantidad %></td>
+                                <td><%= facturaProducto[i].total %></td>
+                            </tr>
+                        <% } %>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -57,7 +68,7 @@
                                 <h4>Total neto</h4>
                             </td>
                             <td>
-                                
+                                <%= total %>
                             </td>
                         </tr>
                     </tfoot>
