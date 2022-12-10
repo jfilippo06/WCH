@@ -22,6 +22,9 @@ const {
   updateProductoService,
   registrarOrderService,
 } = require("../services/venta");
+const ejs = require("ejs");
+const pdf = require("html-pdf");
+const path = require("path");
 
 const clienteRenderController = async (req, res) => {
   res.render("pages/venta/buscar-cliente");
@@ -214,17 +217,35 @@ const pedidoController = async (req, res) => {
     await updateProductoService(facturaProducto);
     await cancelarService(id, order);
     await registrarOrderService();
-    const fecha = new Date().toLocaleDateString()
-    res.render("invoices/factura", {
-      fecha,
-      order,
-      nombre,
-      cedula,
-      usuario,
-      facturaFranela,
-      facturaProducto,
-      total,
-    });
+    const fecha = new Date().toLocaleDateString();
+    ejs.renderFile(
+      path.join(__dirname, `../views/invoices/`, "factura.ejs"),
+      {
+        fecha,
+        order,
+        nombre,
+        cedula,
+        usuario,
+        facturaFranela,
+        facturaProducto,
+        total,
+      },
+      (err, data) => {
+        if (err) {
+          req.flash("alert", { msg: err.message });
+          res.redirect("/venta/facturar");
+        } else {
+          pdf.create(data).toFile(`factura n${order}.pdf`, (err, data) => {
+            if (err) {
+              req.flash("alert", { msg: err.message });
+              res.redirect("/venta/facturar");
+            } else {
+              res.redirect("/venta/facturar");
+            }
+          } )
+        }
+      }
+    );
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");
