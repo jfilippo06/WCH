@@ -134,20 +134,9 @@ const productoEditarGetController = async (req, res) => {
 
 const franelaEditarPostController = async (req, res) => {
   try {
-    const { tela, talla, color, cuello, manga, marca, stock, precio } =
-      req.body;
+    const { stock, precio } = req.body;
     const { id } = req.params;
-    await editFranela(
-      id,
-      tela,
-      talla,
-      color,
-      cuello,
-      manga,
-      marca,
-      stock,
-      precio
-    );
+    await editFranela(id, stock, precio);
     req.flash("success", { msg: "Registro actualizado" });
     res.redirect("/inventario/franela");
   } catch (error) {
@@ -159,9 +148,9 @@ const franelaEditarPostController = async (req, res) => {
 
 const productoEditarPostController = async (req, res) => {
   try {
-    const { producto, tipo, color, cantidad, precio } = req.body;
+    const { cantidad, precio } = req.body;
     const { id } = req.params;
-    await editProducto(id, producto, tipo, color, cantidad, precio);
+    await editProducto(id, cantidad, precio);
     req.flash("success", { msg: "Registro actualizado" });
     res.redirect("/inventario/producto");
   } catch (error) {

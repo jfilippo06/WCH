@@ -1,0 +1,22 @@
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Cliente</h5>
+
+            <%- include('../message/alert') %>
+            <%- include('../message/success') %>
+
+            <form class="row g-3" action="/venta/cliente" method="post">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <div class="col-md-9">
+                    <input type="number" class="form-control" id="cedula" name="cedula" placeholder="Ingrese la cedula" required>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

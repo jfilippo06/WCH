@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Documento.belongsTo(models.Cliente)
-      Documento.belongsTo(models.Factura)
+      Documento.belongsTo(models.Order)
     }
   }
   Documento.init({

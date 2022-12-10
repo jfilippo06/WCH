@@ -369,36 +369,9 @@ const getProducto = async (id) => {
   });
 };
 
-const editarFranela = async (
-  id,
-  tela,
-  talla,
-  color,
-  cuello,
-  manga,
-  marca,
-  stock,
-  precio
-) => {
-  const franela = await Franela.findOne({
-    where: {
-      tela: tela,
-      talla: talla,
-      color: color,
-      cuello: cuello,
-      manga: manga,
-      marca: marca,
-    },
-  });
-  if (franela) throw new AppError("Registro ya existe", 200);
+const editarFranela = async (id, stock, precio) => {
   await Franela.update(
     {
-      tela: tela,
-      talla: talla,
-      color: color,
-      cuello: cuello,
-      manga: manga,
-      marca: marca,
       stock: stock || 0,
       precio: precio || 0,
     },
@@ -410,15 +383,7 @@ const editarFranela = async (
   );
 };
 
-const editarProducto = async (id, producto, tipo, color, cantidad, precio) => {
-  const data = await Producto.findOne({
-    where: {
-      producto: producto,
-      tipo: tipo,
-      color: color,
-    },
-  });
-  if (data) throw new AppError("Registro ya existe", 200);
+const editarProducto = async (id, cantidad, precio) => {
   await Producto.update(
     {
       producto: producto,

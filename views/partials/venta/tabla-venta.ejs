@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Lista de venta</h5>
+
+       <div class="row g-3">
+          <div class="col-md-2">
+              <p>Total neto: <%= total %></p>
+          </div>
+          <div class="col-md-1">
+            <a href="/venta/facturar/pedido" class="btn btn-primary btn-sm ">Realizar venta</a>
+          </div>
+          <div class="col-md-1">
+            <a href="/venta/facturar/cancelar" class="btn btn-danger btn-sm ">Cancelar venta</a>
+          </div>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Total</th>
+            <th scope="col">Cancelar</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% for(let i=0; i < facturaFranela.length; i++) { %>
+                <tr>
+                    <td><%= facturaFranela[i].franela %></td>
+                    <td><%= facturaFranela[i].cantidad %></td>
+                    <td><%= facturaFranela[i].total %></td>
+                    <td>
+                        <a href="/venta/facturar/franela/delete/<%= facturaFranela[i].id %>" class="btn btn-danger btn-sm bi bi-x-lg"></a>
+                    </td>
+                </tr>
+            <% } %>
+            <% for(let i=0; i < facturaProducto.length; i++) { %>
+                <tr>
+                    <td><%= facturaProducto[i].producto %></td>
+                    <td><%= facturaProducto[i].cantidad %></td>
+                    <td><%= facturaProducto[i].total %></td>
+                    <td>
+                        <a href="/venta/facturar/producto/delete/<%= facturaProducto[i].id %>" class="btn btn-danger btn-sm bi bi-x-lg"></a>
+                    </td>
+                </tr>
+            <% } %>
+      </table>
+
+    </div>
+  </div>

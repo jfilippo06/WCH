@@ -1,0 +1,155 @@
+<div class="col-lg-12 ">
+    <div class="card">
+
+        <div class="card-body">
+            <h5 class="card-title">Inventario</h5>
+            <div class="row g-3">
+                <% if (totalItemsFranelas) { %>
+                <div class="col-md-2 mb-3">
+                    <p>Total Items: <%= totalItemsFranelas %></p>
+                </div>
+                <% } %>
+                <% if (totalItemsProductos) { %>
+                <div class="col-md-2 mb-3">
+                    <p>Total Items: <%= totalItemsProductos %></p>
+                </div>
+                <% } %>
+                <% if (franelaStock) { %>
+                <div class="col-md-2">
+                    <p>Total Stock: <%= franelaStock %></p>
+                </div>
+                <% } %>
+                <% if (productoStock) { %>
+                <div class="col-md-2">
+                    <p>Total Stock: <%= productoStock %></p>
+                </div>
+                <% } %>
+                <div class="col-md-2">
+                    <% if (prevFranelas) { %>
+                        <a class="btn btn-primary bi-arrow-left" href="<%= prevFranelas %>"></a>
+                    <% } %>
+                    <% if (nextFranelas) { %>
+                        <a class="btn btn-primary bi-arrow-right" href="<%= nextFranelas %>"></a>
+                    <% } %>
+                    <% if (prevProductos) { %>
+                        <a class="btn btn-primary bi-arrow-left" href="<%= prevProductos %>"></a>
+                    <% } %>
+                    <% if (nextProductos) { %>
+                        <a class="btn btn-primary bi-arrow-right" href="<%= nextProductos %>"></a>
+                    <% } %>
+                </div>
+            </div>
+            <form action="/venta/facturar" method="get" class="row g-3 mb-3">
+                <div class="col-md-1">
+                    <input type="text" class="form-control" placeholder="Tamaño" name="size">
+                </div>
+                <div class="col-md-1">
+                    <input type="text" class="form-control" placeholder="Pagina" name="page">
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" aria-label="Default select example" name="opcion">
+                      <option>Seleciona un campo</option>
+                      <option value="franelas">Franelas</option>
+                      <option value="productos">Productos</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" aria-label="Default select example" name="tipo">
+                      <option>Seleciona un campo</option>
+                      <option class="alert alert-success">FRANELAS:</option>
+                      <option value="tela">Tela</option>
+                      <option value="talla">Talla</option>
+                      <option value="color">Color</option>
+                      <option value="cuello">Cuello</option>
+                      <option value="manga">Manga</option>
+                      <option value="marca">Marca</option>
+                      <option value="stock">Stock</option>
+                      <option value="precio">Precio</option>
+                      <option class="alert alert-success">PRODUCTOS:</option>
+                      <option value="producto">Producto</option>
+                      <option value="tipo">Tipo</option>
+                      <option value="color">Color</option>
+                      <option value="cantidad">Cantidad</option>
+                      <option value="precio">Precio</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" placeholder="Dato" name="valor">
+                </div>
+                <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
+            </form>
+            
+            <%- include('../message/alert') %>
+            <%- include('../message/success') %>
+
+            <% if (franelas) { %>
+                <table class="table table-sm table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Tela</th>
+                            <th scope="col">Talla</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Cuello</th>
+                            <th scope="col">Manga</th>
+                            <th scope="col">Marca</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col"></th>
+                            <th scope="col">Añadir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0; i < franelas.length; i++) { %>
+                            <tr>
+                                <td><%= franelas[i].tela %></td>
+                                <td><%= franelas[i].talla %></td>
+                                <td><%= franelas[i].color %></td>
+                                <td><%= franelas[i].cuello %></td>
+                                <td><%= franelas[i].manga %></td>
+                                <td><%= franelas[i].marca %></td>
+                                <td><%= franelas[i].stock %></td>
+                                <td><%= franelas[i].precio %></td>
+                                <form action="/venta/facturar/franela/<%= franelas[i].id %>" method="post">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <td><input type="number" name="vendidos" required></td>
+                                    <td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>
+                                </form>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            <% } %>
+            <% if (productos) { %>
+                <table class="table table-sm table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Color</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col"></th>
+                            <th scope="col">Añadir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for(let i=0; i < productos.length; i++) { %>
+                            <tr>
+                                <td><%= productos[i].producto %></td>
+                                <td><%= productos[i].tipo %></td>
+                                <td><%= productos[i].color %></td>
+                                <td><%= productos[i].cantidad %></td>
+                                <td><%= productos[i].precio %></td>
+                                <form action="/venta/facturar/producto/<%= productos[i].id %>" method="post">
+                                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                    <td><input type="number" name="vendidos" required></td>
+                                    <td><input type="submit" value="Submit" class="btn btn-primary btn-sm"></td>
+                                </form>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            <% } %>
+        </div>
+    </div>
+</div>
