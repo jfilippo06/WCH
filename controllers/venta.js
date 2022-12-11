@@ -21,6 +21,7 @@ const {
   updateFranelaService,
   updateProductoService,
   registrarOrderService,
+  registrarDocumentoService,
 } = require("../services/venta");
 const ejs = require("ejs");
 const pdf = require("html-pdf");
@@ -235,14 +236,22 @@ const pedidoController = async (req, res) => {
           req.flash("alert", { msg: err.message });
           res.redirect("/venta/facturar");
         } else {
-          pdf.create(data).toFile(`factura n${order}.pdf`, (err, data) => {
-            if (err) {
-              req.flash("alert", { msg: err.message });
-              res.redirect("/venta/facturar");
-            } else {
-              res.redirect("/venta");
-            }
-          } )
+          pdf
+            .create(data)
+            .toFile(`./invoices/Factura Nº${order}.pdf`, async (err, data) => {
+              if (err) {
+                req.flash("alert", { msg: err.message });
+                res.redirect("/venta/facturar");
+              } else {
+                const link = path.join(
+                  __dirname,
+                  `../invoices/`,
+                  `Factura Nº${order}.pdf`
+                );
+                await registrarDocumentoService(id, order, link);
+                res.redirect("/venta");
+              }
+            });
         }
       }
     );

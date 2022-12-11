@@ -29,6 +29,7 @@ const {
   updateFranela,
   updateProducto,
   registrarOrder,
+  registrarDocumento,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
 
@@ -239,6 +240,10 @@ const registrarOrderService = async () => {
   await registrarOrder(numero);
 };
 
+const registrarDocumentoService = async (id, order, link) => {
+  await registrarDocumento(id, order, link);
+};
+
 module.exports = {
   buscarClienteService,
   buscarOrderService,
@@ -262,4 +267,5 @@ module.exports = {
   updateFranelaService,
   updateProductoService,
   registrarOrderService,
+  registrarDocumentoService,
 };

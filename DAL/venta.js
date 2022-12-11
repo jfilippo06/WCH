@@ -8,6 +8,7 @@ const {
   Factura_producto,
   Salida_franela,
   Salida_producto,
+  Documento,
 } = require("../models");
 const AppError = require("../errors/appErrors");
 const { QueryTypes } = require("sequelize");
@@ -636,6 +637,14 @@ const registrarOrder = async (numero) => {
   await Order.create({ numero: numero });
 };
 
+const registrarDocumento = async (id, order, link) => {
+  await Documento.create({
+    ClienteId: id,
+    OrderId: order,
+    link: link,
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -667,4 +676,5 @@ module.exports = {
   updateFranela,
   updateProducto,
   registrarOrder,
+  registrarDocumento,
 };
