@@ -219,6 +219,8 @@ const pedidoController = async (req, res) => {
     await cancelarService(id, order);
     await registrarOrderService();
     const fecha = new Date().toLocaleDateString();
+    const link = path.join(__dirname, `../invoices/`, `Factura Nº${order}.pdf`);
+    await registrarDocumentoService(id, order, link);
     ejs.renderFile(
       path.join(__dirname, `../views/invoices/`, "factura.ejs"),
       {
@@ -243,13 +245,7 @@ const pedidoController = async (req, res) => {
                 req.flash("alert", { msg: err.message });
                 res.redirect("/venta/facturar");
               } else {
-                const link = path.join(
-                  __dirname,
-                  `../invoices/`,
-                  `Factura Nº${order}.pdf`
-                );
-                await registrarDocumentoService(id, order, link);
-                res.redirect("/venta");
+                res.redirect("/venta/facturar/pdf");
               }
             });
         }
@@ -259,6 +255,10 @@ const pedidoController = async (req, res) => {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");
   }
+};
+
+const renderPdf = async (req, res) => {
+  res.render("pages/venta/mostrar-pdf");
 };
 
 module.exports = {
@@ -273,4 +273,5 @@ module.exports = {
   deleteProductoController,
   cancelarController,
   pedidoController,
+  renderPdf,
 };
