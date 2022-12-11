@@ -22,6 +22,7 @@ const {
   updateProductoService,
   registrarOrderService,
   registrarDocumentoService,
+  buscarDocumento,
 } = require("../services/venta");
 const ejs = require("ejs");
 const pdf = require("html-pdf");
@@ -219,7 +220,7 @@ const pedidoController = async (req, res) => {
     await cancelarService(id, order);
     await registrarOrderService();
     const fecha = new Date().toLocaleDateString();
-    const link = path.join(__dirname, `../invoices/`, `Factura Nº${order}.pdf`);
+    const link = `http://localhost:3000/invoices/Factura Nº${order}.pdf`;
     await registrarDocumentoService(id, order, link);
     ejs.renderFile(
       path.join(__dirname, `../views/invoices/`, "factura.ejs"),
@@ -240,7 +241,7 @@ const pedidoController = async (req, res) => {
         } else {
           pdf
             .create(data)
-            .toFile(`./invoices/Factura Nº${order}.pdf`, async (err, data) => {
+            .toFile(`./public/invoices/Factura Nº${order}.pdf`, async (err, data) => {
               if (err) {
                 req.flash("alert", { msg: err.message });
                 res.redirect("/venta/facturar");
@@ -258,7 +259,15 @@ const pedidoController = async (req, res) => {
 };
 
 const renderPdf = async (req, res) => {
-  res.render("pages/venta/mostrar-pdf");
+  try {
+    const { id } = req.session.data;
+    const order = req.session.order;
+    const data = await buscarDocumento(id, order);
+    res.render("pages/venta/mostrar-pdf",{data});
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/venta/facturar/pdf");
+  }
 };
 
 module.exports = {

@@ -645,6 +645,18 @@ const registrarDocumento = async (id, order, link) => {
   });
 };
 
+const findDocumento = async (id, order) => {
+  return await Documento.findOne({
+    attributes: {
+      exclude: ["id", "ClienteId", "OrderId", "createdAt", "updatedAt"],
+    },
+    where: {
+      ClienteId: id,
+      OrderId: order,
+    },
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -677,4 +689,5 @@ module.exports = {
   updateProducto,
   registrarOrder,
   registrarDocumento,
+  findDocumento,
 };
