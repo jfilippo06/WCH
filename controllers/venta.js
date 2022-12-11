@@ -240,7 +240,7 @@ const pedidoController = async (req, res) => {
               req.flash("alert", { msg: err.message });
               res.redirect("/venta/facturar");
             } else {
-              res.redirect("/venta/facturar");
+              res.redirect("/venta");
             }
           } )
         }
