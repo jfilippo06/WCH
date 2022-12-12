@@ -241,14 +241,17 @@ const pedidoController = async (req, res) => {
         } else {
           pdf
             .create(data)
-            .toFile(`./public/invoices/Factura Nº${order}.pdf`, async (err, data) => {
-              if (err) {
-                req.flash("alert", { msg: err.message });
-                res.redirect("/venta/facturar");
-              } else {
-                res.redirect("/venta/facturar/pdf");
+            .toFile(
+              `./public/invoices/Factura Nº${order}.pdf`,
+              async (err, data) => {
+                if (err) {
+                  req.flash("alert", { msg: err.message });
+                  res.redirect("/venta/facturar");
+                } else {
+                  res.redirect("/venta/facturar/pdf");
+                }
               }
-            });
+            );
         }
       }
     );
@@ -263,7 +266,7 @@ const renderPdf = async (req, res) => {
     const { id } = req.session.data;
     const order = req.session.order;
     const data = await buscarDocumento(id, order);
-    res.render("pages/venta/mostrar-pdf",{data});
+    res.render("pages/venta/mostrar-pdf", { data });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar/pdf");
