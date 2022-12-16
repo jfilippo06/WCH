@@ -7,11 +7,17 @@
           <tr>
             <th scope="col">Cliente</th>
             <th scope="col">Factura</th>
-            <th scope="col">...</th>
+            <th scope="col">Fecha</th>
           </tr>
         </thead>
         <tbody>
-
+          <% for(let i=0; i < factura.length; i++) { %>
+            <tr>
+                <td>Pr</td>
+                <td><a href="<%= factura[i].link %>">Factura Nº<%= factura[i].OrderId %></a></td>
+                <td><%= factura[i].createdAt %></td>
+            </tr>
+        <% } %>
         </tbody>
       </table>
 

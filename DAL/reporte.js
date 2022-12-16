@@ -1,4 +1,4 @@
-const { Cliente } = require("../models");
+const { Cliente, Documento } = require("../models");
 
 const findAllClient = async () => {
   return await Cliente.findAll({
@@ -8,6 +8,17 @@ const findAllClient = async () => {
   });
 };
 
+const findFactura = async (limit, offset, valor) => {
+  return await Documento.findAndCountAll({
+    attributes: {
+      exclude: ["updatedAt"],
+    },
+    limit: limit,
+    offset: offset,
+  });
+};
+
 module.exports = {
   findAllClient,
+  findFactura,
 };

@@ -11,10 +11,10 @@
                     <input type="text" class="form-control" placeholder="Pagina" name="page">
                 </div>
                 <div class="col-md-3">
-                    <select class="form-select" aria-label="Default select example" name="opcion">
+                    <select class="form-select" aria-label="Default select example" name="valor">
                         <option>Seleciona un cliente</option>
-                        <% for(let i=0; i < data.length; i++) { %>
-                            <option value="<%= data[i].id %>"><%= data[i].nombre %></option>
+                        <% for(let i=0; i < cliente.length; i++) { %>
+                            <option value="<%= cliente[i].id %>"><%= cliente[i].nombre %></option>
                         <% } %>
                     </select>
                 </div>
