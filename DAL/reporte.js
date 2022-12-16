@@ -9,13 +9,26 @@ const findAllClient = async () => {
 };
 
 const findFactura = async (limit, offset, valor) => {
-  return await Documento.findAndCountAll({
-    attributes: {
-      exclude: ["updatedAt"],
-    },
-    limit: limit,
-    offset: offset,
-  });
+  if (valor) {
+    return await Documento.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        ClienteId: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else {
+    return await Documento.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      limit: limit,
+      offset: offset,
+    });
+  }
 };
 
 module.exports = {

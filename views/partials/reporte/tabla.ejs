@@ -2,6 +2,15 @@
     <div class="card-body">
       <h5 class="card-title">Facturas</h5>
 
+        <div class="col-md-2">
+            <% if (prev) { %>
+                <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+            <% } %>
+            <% if (next) { %>
+                <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
+            <% } %>
+        </div>
+
       <table class="table table-striped">
         <thead>
           <tr>
