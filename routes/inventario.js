@@ -55,7 +55,12 @@ router.post(
   verifyAdmin,
   asyncHandler(productoEditarPostController)
 );
-router.get("/registro", loginUser, verifyAdmin, asyncHandler(registroController));
+router.get(
+  "/registro",
+  loginUser,
+  verifyAdmin,
+  asyncHandler(registroController)
+);
 router.post(
   "/registro/franela",
   loginUser,
