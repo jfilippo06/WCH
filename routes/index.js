@@ -8,7 +8,7 @@ const usuarioRouter = require("./usuario");
 const mantenimientoRouter = require("./mantenimiento");
 const registroRouter = require("./registro");
 const ventaRouter = require("./venta");
-const reporteRouter = require("./venta");
+const reporteRouter = require("./reporte");
 
 router.use("/", homeRouter);
 router.use("/auth", authRouter);
