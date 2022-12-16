@@ -221,7 +221,7 @@ const pedidoController = async (req, res) => {
     await registrarOrderService();
     const fecha = new Date().toLocaleDateString();
     const link = `http://localhost:3000/invoices/Factura Nº${order}.pdf`;
-    await registrarDocumentoService(id, order, link);
+    await registrarDocumentoService(id, nombre, order, link);
     ejs.renderFile(
       path.join(__dirname, `../views/invoices/`, "factura.ejs"),
       {

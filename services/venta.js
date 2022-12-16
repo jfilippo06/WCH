@@ -241,8 +241,8 @@ const registrarOrderService = async () => {
   await registrarOrder(numero);
 };
 
-const registrarDocumentoService = async (id, order, link) => {
-  await registrarDocumento(id, order, link);
+const registrarDocumentoService = async (id, nombre, order, link) => {
+  await registrarDocumento(id, nombre, order, link);
 };
 
 const buscarDocumento = async (id, order) => {

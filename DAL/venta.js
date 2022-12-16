@@ -637,9 +637,10 @@ const registrarOrder = async (numero) => {
   await Order.create({ numero: numero });
 };
 
-const registrarDocumento = async (id, order, link) => {
+const registrarDocumento = async (id, nombre, order, link) => {
   await Documento.create({
     ClienteId: id,
+    nombre: nombre,
     OrderId: order,
     link: link,
   });
