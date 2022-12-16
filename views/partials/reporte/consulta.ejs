@@ -3,7 +3,7 @@
 
         <div class="card-body">
             <h5 class="card-title">Facturas de clientes</h5>
-            <form action="#" method="get" class="row g-3 mb-3">
+            <form action="/reporte/factura" method="get" class="row g-3 mb-3">
                 <div class="col-md-1">
                     <input type="text" class="form-control" placeholder="Tamaño" name="size">
                 </div>
@@ -12,8 +12,10 @@
                 </div>
                 <div class="col-md-3">
                     <select class="form-select" aria-label="Default select example" name="opcion">
-                      <option>Seleciona un cliente</option>
-                      <option value=""></option>
+                        <option>Seleciona un cliente</option>
+                        <% for(let i=0; i < data.length; i++) { %>
+                            <option value="<%= data[i].id %>"><%= data[i].nombre %></option>
+                        <% } %>
                     </select>
                 </div>
                 <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
