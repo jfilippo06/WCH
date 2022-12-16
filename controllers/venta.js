@@ -241,17 +241,14 @@ const pedidoController = async (req, res) => {
         } else {
           pdf
             .create(data)
-            .toFile(
-              `./public/invoices/Factura Nº${order}.pdf`,
-              async (err, data) => {
-                if (err) {
-                  req.flash("alert", { msg: err.message });
-                  res.redirect("/venta/facturar");
-                } else {
-                  res.redirect("/venta/facturar/pdf");
-                }
+            .toFile(`./public/invoices/Factura Nº${order}.pdf`, (err, data) => {
+              if (err) {
+                req.flash("alert", { msg: err.message });
+                res.redirect("/venta/facturar");
+              } else {
+                res.redirect("/venta/facturar/pdf");
               }
-            );
+            });
         }
       }
     );
