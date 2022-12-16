@@ -16,6 +16,9 @@ module.exports = {
           key: 'id'
         },
       },
+      nombre: {
+        type: Sequelize.STRING
+      },
       OrderId: {
         type: Sequelize.INTEGER,
         references: {

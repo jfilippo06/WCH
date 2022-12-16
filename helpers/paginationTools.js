@@ -16,19 +16,31 @@ const nextPage = (location, currentPage, totalPages, size, opcion, valor) => {
   }
 };
 
-const prevPage_2 = (location,currentPage,totalPages, size) => {
-  if(currentPage > 0 && currentPage < totalPages){
-      return `${process.env.BASE_URL+location}?size=${size}&page=${currentPage-1}`
+const prevPage_2 = (location, currentPage, totalPages, size) => {
+  if (currentPage > 0 && currentPage < totalPages) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage - 1
+    }`;
   }
-}
+};
 
-const nextPage_2 = (location,currentPage,totalPages, size) => {
-  if(currentPage < (totalPages-1)){
-      return `${process.env.BASE_URL+location}?size=${size}&page=${currentPage+1}`
+const nextPage_2 = (location, currentPage, totalPages, size) => {
+  if (currentPage < totalPages - 1) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage + 1
+    }`;
   }
-}
+};
 
-const prevPage_3 = (location, currentPage, totalPages, size, opcion, tipo, valor) => {
+const prevPage_3 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  opcion,
+  tipo,
+  valor
+) => {
   if (currentPage > 0 && currentPage < totalPages) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage - 1
@@ -36,11 +48,35 @@ const prevPage_3 = (location, currentPage, totalPages, size, opcion, tipo, valor
   }
 };
 
-const nextPage_3 = (location, currentPage, totalPages, size, opcion, tipo, valor) => {
+const nextPage_3 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  opcion,
+  tipo,
+  valor
+) => {
   if (currentPage < totalPages - 1) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage + 1
     }&opcion=${opcion}&tipo=${tipo}&valor=${valor}`;
+  }
+};
+
+const prevPage_4 = (location, currentPage, totalPages, size, valor) => {
+  if (currentPage > 0 && currentPage < totalPages) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage - 1
+    }&valor=${valor}`;
+  }
+};
+
+const nextPage_4 = (location, currentPage, totalPages, size, valor) => {
+  if (currentPage < totalPages - 1) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage + 1
+    }&valor=${valor}`;
   }
 };
 
@@ -51,4 +87,6 @@ module.exports = {
   nextPage_2,
   prevPage_3,
   nextPage_3,
+  prevPage_4,
+  nextPage_4,
 };

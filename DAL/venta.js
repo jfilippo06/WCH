@@ -8,6 +8,7 @@ const {
   Factura_producto,
   Salida_franela,
   Salida_producto,
+  Documento,
 } = require("../models");
 const AppError = require("../errors/appErrors");
 const { QueryTypes } = require("sequelize");
@@ -636,6 +637,27 @@ const registrarOrder = async (numero) => {
   await Order.create({ numero: numero });
 };
 
+const registrarDocumento = async (id, nombre, order, link) => {
+  await Documento.create({
+    ClienteId: id,
+    nombre: nombre,
+    OrderId: order,
+    link: link,
+  });
+};
+
+const findDocumento = async (id, order) => {
+  return await Documento.findOne({
+    attributes: {
+      exclude: ["id", "ClienteId", "OrderId", "createdAt", "updatedAt"],
+    },
+    where: {
+      ClienteId: id,
+      OrderId: order,
+    },
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -667,4 +689,6 @@ module.exports = {
   updateFranela,
   updateProducto,
   registrarOrder,
+  registrarDocumento,
+  findDocumento,
 };

@@ -21,7 +21,12 @@ const {
   updateFranelaService,
   updateProductoService,
   registrarOrderService,
+  registrarDocumentoService,
+  buscarDocumento,
 } = require("../services/venta");
+const ejs = require("ejs");
+const pdf = require("html-pdf");
+const path = require("path");
 
 const clienteRenderController = async (req, res) => {
   res.render("pages/venta/buscar-cliente");
@@ -214,20 +219,54 @@ const pedidoController = async (req, res) => {
     await updateProductoService(facturaProducto);
     await cancelarService(id, order);
     await registrarOrderService();
-    const fecha = new Date().toLocaleDateString()
-    res.render("invoices/factura", {
-      fecha,
-      order,
-      nombre,
-      cedula,
-      usuario,
-      facturaFranela,
-      facturaProducto,
-      total,
-    });
+    const fecha = new Date().toLocaleDateString();
+    const link = `http://localhost:3000/invoices/Factura Nº${order}.pdf`;
+    await registrarDocumentoService(id, nombre, order, link);
+    ejs.renderFile(
+      path.join(__dirname, `../views/invoices/`, "factura.ejs"),
+      {
+        fecha,
+        order,
+        nombre,
+        cedula,
+        usuario,
+        facturaFranela,
+        facturaProducto,
+        total,
+      },
+      (err, data) => {
+        if (err) {
+          req.flash("alert", { msg: err.message });
+          res.redirect("/venta/facturar");
+        } else {
+          pdf
+            .create(data)
+            .toFile(`./public/invoices/Factura Nº${order}.pdf`, (err, data) => {
+              if (err) {
+                req.flash("alert", { msg: err.message });
+                res.redirect("/venta/facturar");
+              } else {
+                res.redirect("/venta/facturar/pdf");
+              }
+            });
+        }
+      }
+    );
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");
+  }
+};
+
+const renderPdf = async (req, res) => {
+  try {
+    const { id } = req.session.data;
+    const order = req.session.order;
+    const data = await buscarDocumento(id, order);
+    res.render("pages/venta/mostrar-pdf", { data });
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/venta/facturar/pdf");
   }
 };
 
@@ -243,4 +282,5 @@ module.exports = {
   deleteProductoController,
   cancelarController,
   pedidoController,
+  renderPdf,
 };

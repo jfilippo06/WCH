@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Documento.init({
+    nombre: DataTypes.STRING,
     link: DataTypes.STRING
   }, {
     sequelize,
