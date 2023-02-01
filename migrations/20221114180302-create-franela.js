@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      codigo: {
+        type: Sequelize.STRING,
+        unique: true,
+      },
       tela: {
         type: Sequelize.STRING
       },

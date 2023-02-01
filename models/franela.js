@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Franela.init({
+    codigo: DataTypes.STRING,
     tela: DataTypes.STRING,
     talla: DataTypes.STRING,
     color: DataTypes.STRING,

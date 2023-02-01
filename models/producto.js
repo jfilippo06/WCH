@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Producto.init({
+    codigo: DataTypes.STRING,
     producto: DataTypes.STRING,
     tipo: DataTypes.STRING,
     color: DataTypes.STRING,
