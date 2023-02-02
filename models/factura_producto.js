@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Factura_producto.init({
     producto: DataTypes.STRING,
     cantidad: DataTypes.INTEGER,
+    unidad: DataTypes.INTEGER,
     total: DataTypes.INTEGER,
   }, {
     sequelize,

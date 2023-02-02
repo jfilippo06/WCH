@@ -19,6 +19,7 @@ module.exports = (sequelize, DataTypes) => {
   Salida_franela.init({
     franela: DataTypes.STRING,
     cantidad: DataTypes.INTEGER,
+    unidad: DataTypes.INTEGER,
     total: DataTypes.INTEGER
   }, {
     sequelize,

@@ -29,6 +29,9 @@ module.exports = {
       cantidad: {
         type: Sequelize.INTEGER
       },
+      unidad: {
+        type: Sequelize.INTEGER
+      },
       total: {
         type: Sequelize.INTEGER
       },
