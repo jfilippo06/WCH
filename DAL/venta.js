@@ -48,7 +48,18 @@ const registrarCliente = async (nombre, cedula) => {
 };
 
 const findFranelas = async (limit, offset, opcion, tipo, valor) => {
-  if (opcion == "franelas" && tipo == "tela") {
+  if (opcion == "franelas" && tipo == "codigo") {
+    return await Franela.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        codigo: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "franelas" && tipo == "tela") {
     return await Franela.findAndCountAll({
       attributes: {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
@@ -150,7 +161,13 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
 };
 
 const stockFranelas = async (opcion, tipo, valor) => {
-  if (opcion == "franelas" && tipo == "tela") {
+  if (opcion == "franelas" && tipo == "codigo") {
+    return await Franela.sum("stock", {
+      where: {
+        codigo: valor,
+      },
+    });
+  } else if (opcion == "franelas" && tipo == "tela") {
     return await Franela.sum("stock", {
       where: {
         tela: valor,
@@ -206,7 +223,18 @@ const stockFranelas = async (opcion, tipo, valor) => {
 };
 
 const findProductos = async (limit, offset, opcion, tipo, valor) => {
-  if (opcion == "productos" && tipo == "producto") {
+  if (opcion == "productos" && tipo == "codigo") {
+    return await Producto.findAndCountAll({
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "deletedAt"],
+      },
+      where: {
+        codigo: valor,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (opcion == "productos" && tipo == "producto") {
     return await Producto.findAndCountAll({
       attributes: {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
@@ -275,13 +303,21 @@ const findProductos = async (limit, offset, opcion, tipo, valor) => {
 };
 
 const stockProductos = async (opcion, tipo, valor) => {
-  if (opcion == "productos" && tipo == "producto") {
+  if (opcion == "productos" && tipo == "codigo") {
+    return await Producto.sum("cantidad", {
+      where: {
+        codigo: valor,
+      },
+    });
+  } 
+  else if (opcion == "productos" && tipo == "producto") {
     return await Producto.sum("cantidad", {
       where: {
         producto: valor,
       },
     });
-  } else if (opcion == "productos" && tipo == "tipo") {
+  } 
+  else if (opcion == "productos" && tipo == "tipo") {
     return await Producto.sum("cantidad", {
       where: {
         tipo: valor,
