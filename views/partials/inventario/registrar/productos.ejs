@@ -9,6 +9,10 @@
             <form class="row g-3" action="/inventario/registro/producto" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="col-md-6">
+                    <label for="inputtext5" class="form-label">Codigo</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" minlength="6" maxlength="6" required>
+                </div>
+                <div class="col-md-6">
                     <label for="inputtext5" class="form-label">Producto</label>
                     <input type="text" class="form-control" id="producto" name="producto" required>
                 </div>

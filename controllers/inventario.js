@@ -78,9 +78,10 @@ const registroController = async (req, res) => {
 
 const registroFranelaController = async (req, res) => {
   try {
-    const { tela, talla, color, cuello, manga, marca, stock, precio } =
+    const { codigo, tela, talla, color, cuello, manga, marca, stock, precio } =
       req.body;
     await registrarFranelaService(
+      codigo,
       tela,
       talla,
       color,
@@ -100,8 +101,15 @@ const registroFranelaController = async (req, res) => {
 
 const registroProductoController = async (req, res) => {
   try {
-    const { producto, tipo, color, cantidad, precio } = req.body;
-    await registrarProductoService(producto, tipo, color, cantidad, precio);
+    const { codigo, producto, tipo, color, cantidad, precio } = req.body;
+    await registrarProductoService(
+      codigo,
+      producto,
+      tipo,
+      color,
+      cantidad,
+      precio
+    );
     req.flash("success-2", { msg: "Producto registrado" });
     res.redirect("/inventario/registro");
   } catch (error) {

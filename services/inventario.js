@@ -77,6 +77,7 @@ const deshabilitarProductoService = async (id) => {
 };
 
 const registrarFranelaService = async (
+  codigo,
   tela,
   talla,
   color,
@@ -86,17 +87,28 @@ const registrarFranelaService = async (
   stock,
   precio
 ) => {
-  await createFranela(tela, talla, color, cuello, manga, marca, stock, precio);
+  await createFranela(
+    codigo,
+    tela,
+    talla,
+    color,
+    cuello,
+    manga,
+    marca,
+    stock,
+    precio
+  );
 };
 
 const registrarProductoService = async (
+  codigo,
   producto,
   tipo,
   color,
   cantidad,
   precio
 ) => {
-  await createProducto(producto, tipo, color, cantidad, precio);
+  await createProducto(codigo, producto, tipo, color, cantidad, precio);
 };
 
 const idFranela = async (id) => {

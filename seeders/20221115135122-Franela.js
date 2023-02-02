@@ -1606,7 +1606,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          codigo: "000128",
+          codigo: "000124",
           tela: "ALGODON",
           talla: "12",
           color: "ROSADA TY",
@@ -1619,7 +1619,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          codigo: "000124",
+          codigo: "000125",
           tela: "ALGODON",
           talla: "4",
           color: "ROSA CLARA",

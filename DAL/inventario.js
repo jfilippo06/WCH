@@ -297,6 +297,7 @@ const destroyProducto = async (id) => {
 };
 
 const createFranela = async (
+  codigo,
   tela,
   talla,
   color,
@@ -306,6 +307,12 @@ const createFranela = async (
   stock,
   precio
 ) => {
+  const codigoData = await Franela.findOne({
+    where: {
+      codigo: codigo,
+    },
+  });
+  if (codigoData) throw new AppError("Codigo ya existe", 200);
   const franela = await Franela.findOne({
     where: {
       tela: tela,
@@ -318,6 +325,7 @@ const createFranela = async (
   });
   if (franela) throw new AppError("Registro ya existe", 200);
   await Franela.create({
+    codigo: codigo,
     tela: tela,
     talla: talla,
     color: color,
@@ -329,7 +337,20 @@ const createFranela = async (
   });
 };
 
-const createProducto = async (producto, tipo, color, cantidad, precio) => {
+const createProducto = async (
+  codigo,
+  producto,
+  tipo,
+  color,
+  cantidad,
+  precio
+) => {
+  const codigoData = await Producto.findOne({
+    where: {
+      codigo: codigo,
+    },
+  });
+  if (codigoData) throw new AppError("Codigo ya existe", 200);
   const data = await Producto.findOne({
     where: {
       producto: producto,
@@ -339,6 +360,7 @@ const createProducto = async (producto, tipo, color, cantidad, precio) => {
   });
   if (data) throw new AppError("Registro ya existe", 200);
   await Producto.create({
+    codigo: codigo,
     producto: producto,
     tipo: tipo,
     color: color,

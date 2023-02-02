@@ -9,6 +9,10 @@
             <form class="row g-3" action="/inventario/registro/franela" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="col-md-3">
+                    <label class="form-label">Codigo</label>
+                    <input type="text" class="form-control" id="codigo" name="codigo" minlength="6" maxlength="6" required>
+                </div>
+                <div class="col-md-3">
                     <label class="form-label">Tela</label>
                     <input type="text" class="form-control" id="tela" name="tela" required>
                 </div>
