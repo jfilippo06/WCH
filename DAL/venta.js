@@ -421,6 +421,7 @@ const registrarFacturaFranela = async (
   idFranela,
   franela,
   vendidos,
+  unidad,
   total,
   order
 ) => {
@@ -429,6 +430,7 @@ const registrarFacturaFranela = async (
     FranelaId: idFranela,
     franela: franela,
     cantidad: vendidos,
+    unidad: unidad,
     total: total,
     OrderId: order,
   });
@@ -508,6 +510,7 @@ const registrarFacturaProducto = async (
   idProducto,
   product,
   vendidos,
+  unidad,
   total,
   order
 ) => {
@@ -516,6 +519,7 @@ const registrarFacturaProducto = async (
     ProductoId: idProducto,
     producto: product,
     cantidad: vendidos,
+    unidad: unidad,
     total: total,
     OrderId: order,
   });
@@ -612,6 +616,7 @@ const registrarSalidaFranela = async (
   idFranela,
   franela,
   vendidos,
+  unidad,
   total,
   order
 ) => {
@@ -620,6 +625,7 @@ const registrarSalidaFranela = async (
     FranelaId: idFranela,
     franela: franela,
     cantidad: vendidos,
+    unidad: unidad,
     total: total,
     OrderId: order,
   });
@@ -630,6 +636,7 @@ const registrarSalidaProducto = async (
   idProducto,
   product,
   vendidos,
+  unidad,
   total,
   order
 ) => {
@@ -638,6 +645,7 @@ const registrarSalidaProducto = async (
     ProductoId: idProducto,
     producto: product,
     cantidad: vendidos,
+    unidad: unidad,
     total: total,
     OrderId: order,
   });

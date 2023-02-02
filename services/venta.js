@@ -132,7 +132,8 @@ const registrarFranelaService = async (id, idFranela, order, vendidos) => {
   const franela = `FRANELA ${tela} ${color} TALLA:${talla} ${marca} ${cuello} ${manga}`;
   const data2 = await obtenerTotal(idFranela);
   const total = (data2.precio * vendidos).toFixed(2);
-  await registrarFacturaFranela(id, idFranela, franela, vendidos, total, order);
+  const unidad = data2.precio
+  await registrarFacturaFranela(id, idFranela, franela, vendidos, unidad, total, order);
 };
 
 const buscarProductoService = async (id, idProducto, order) => {
@@ -150,11 +151,13 @@ const registrarProductoService = async (id, idProducto, order, vendidos) => {
   const product = `PRODUCTO ${producto} ${tipo} ${color}`;
   const data2 = await obtenerTotal2(idProducto);
   const total = (data2.precio * vendidos).toFixed(2);
+  const unidad = data2.precio
   await registrarFacturaProducto(
     id,
     idProducto,
     product,
     vendidos,
+    unidad,
     total,
     order
   );
@@ -198,6 +201,7 @@ const pedidoFranelaService = async (facturaFranela) => {
       facturaFranela[i].FranelaId,
       facturaFranela[i].franela,
       facturaFranela[i].cantidad,
+      facturaFranela[i].unidad,
       facturaFranela[i].total,
       facturaFranela[i].OrderId
     );
@@ -211,6 +215,7 @@ const pedidoProductoService = async (facturaProducto) => {
       facturaProducto[i].ProductoId,
       facturaProducto[i].producto,
       facturaProducto[i].cantidad,
+      facturaProducto[i].unidad,
       facturaProducto[i].total,
       facturaProducto[i].OrderId
     );
