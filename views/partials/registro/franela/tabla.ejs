@@ -33,6 +33,7 @@
             <table class="table table-sm table-bordered border-primary">
                 <thead>
                     <tr>
+                        <th scope="col">Codigo</th>
                         <th scope="col">Tela</th>
                         <th scope="col">Talla</th>
                         <th scope="col">Color</th>
@@ -47,6 +48,7 @@
                 <tbody>
                     <% for(let i=0; i < franelas.length; i++) { %>
                         <tr>
+                            <td><%= franelas[i].codigo %></td>
                             <td><%= franelas[i].tela %></td>
                             <td><%= franelas[i].talla %></td>
                             <td><%= franelas[i].color %></td>

@@ -7,6 +7,7 @@ module.exports = {
       "Productos",
       [
         {
+          codigo: "000001",
           producto: "TAZA",
           tipo: "VIDRIO NO SUBLIMABLE",
           color: "",
@@ -16,6 +17,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000002",
           producto: "TAZA",
           tipo: "TRADICIONAL",
           color: "BLANCA",
@@ -25,6 +27,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000003",
           producto: "TAZA",
           tipo: "FONDO ROJO",
           color: "BLANCA",
@@ -34,6 +37,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000004",
           producto: "TAZA",
           tipo: "SIMULACION DE PELTRE",
           color: "",
@@ -43,6 +47,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000005",
           producto: "TAZA",
           tipo: "PELTRE REAL",
           color: "",
@@ -52,6 +57,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000006",
           producto: "TAZA",
           tipo: "CUCHI 6OZ",
           color: "",
@@ -61,6 +67,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000007",
           producto: "TAZA",
           tipo: "METALIZADAS",
           color: "DORADA",
@@ -70,6 +77,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000008",
           producto: "TAZA",
           tipo: "METALIZADAS",
           color: "PLATEADAS",
@@ -79,6 +87,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000009",
           producto: "TAZA",
           tipo: "METALIZADAS",
           color: "AZUL",
@@ -88,6 +97,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000010",
           producto: "TAZA",
           tipo: "METALIZADAS",
           color: "ROSADA",
@@ -97,6 +107,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000011",
           producto: "TAZA",
           tipo: "METALIZADAS",
           color: "ROSE GOLD",
@@ -106,6 +117,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000012",
           producto: "TAZA",
           tipo: "METALIZADAS",
           color: "VERDE",
@@ -115,6 +127,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000013",
           producto: "TAZA",
           tipo: "METALIZADAS",
           color: "PLOMO",
@@ -124,6 +137,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000014",
           producto: "TAZA",
           tipo: "PERLADAS",
           color: "ROSADA",
@@ -133,6 +147,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000015",
           producto: "TAZA",
           tipo: "PERLADAS",
           color: "BLANCA",
@@ -142,6 +157,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000016",
           producto: "TAZA",
           tipo: "PERLADAS",
           color: "GRIS",
@@ -151,6 +167,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000017",
           producto: "TAZA",
           tipo: "PERLADAS",
           color: "FUCSIA",
@@ -160,6 +177,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000018",
           producto: "TAZA",
           tipo: "MÁGICA FONDO BLANCO",
           color: "MATTE",
@@ -169,6 +187,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000019",
           producto: "TAZA",
           tipo: "MÁGICA FONDO ROJO",
           color: "MATTE",
@@ -178,6 +197,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000020",
           producto: "TAZA",
           tipo: "MÁGICA FONDO AZUL",
           color: "MATTE",
@@ -187,6 +207,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000021",
           producto: "TAZA",
           tipo: "MÁGICA FONDO ROSA",
           color: "MATTE",
@@ -196,6 +217,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000022",
           producto: "TAZA",
           tipo: "MÁGICA FONDO BLANCO",
           color: "ESCARCHADA",
@@ -205,6 +227,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000023",
           producto: "TAZA",
           tipo: "NEÓN",
           color: "NARANJA",
@@ -214,6 +237,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000024",
           producto: "TAZA",
           tipo: "NEÓN",
           color: "VERDE",
@@ -223,6 +247,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000025",
           producto: "TAZA",
           tipo: "NEÓN",
           color: "FUCSIA",
@@ -232,6 +257,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000026",
           producto: "TAZA",
           tipo: "NEÓN",
           color: "AMARILLO",
@@ -241,6 +267,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000027",
           producto: "TAZA",
           tipo: "CÓNICA 12 OZ",
           color: "",
@@ -250,6 +277,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000028",
           producto: "TAZA",
           tipo: "CÓNICA 17 OZ",
           color: "",
@@ -259,6 +287,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000029",
           producto: "TAZA",
           tipo: "VASO CONICO CON TAPA SILICONE",
           color: "",
@@ -268,6 +297,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000030",
           producto: "JARRA",
           tipo: "CERVECERA TRANSPARENTE",
           color: "",
@@ -277,6 +307,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000031",
           producto: "JARRA",
           tipo: "CERVECERA FONDO ROJO",
           color: "",
@@ -286,6 +317,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000032",
           producto: "JARRA",
           tipo: "CERVECERA FONDO VERDE",
           color: "",
@@ -295,6 +327,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000033",
           producto: "TERMO",
           tipo: "VASO ALUMIONIO C/TAPA NO SUBLIMABLE",
           color: "",
@@ -304,6 +337,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000034",
           producto: "TERMO",
           tipo: "LECHERO",
           color: "PLATEADO",
@@ -313,6 +347,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000035",
           producto: "TERMO",
           tipo: "LECHERO",
           color: "BLANCO",
@@ -322,6 +357,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000036",
           producto: "TERMO",
           tipo: "LATA ALUMINIO TIPO REFRESCO",
           color: "",
@@ -331,6 +367,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000037",
           producto: "TERMO",
           tipo: "VASO VINERO SUBLIMABLE",
           color: "",
@@ -340,6 +377,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000038",
           producto: "TERMO",
           tipo: "MASON JAR CON TAPA Y PITILLO",
           color: "",
@@ -349,6 +387,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000039",
           producto: "TERMO",
           tipo: "BOTELLITA ALUMINIO",
           color: "",
@@ -358,6 +397,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000040",
           producto: "TERMO",
           tipo: "DEP. BLANCO C/PILLITO",
           color: "NEGRO",
@@ -367,6 +407,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000041",
           producto: "TERMO",
           tipo: "C/TAPA ROSCA",
           color: "NARANJA",
@@ -376,6 +417,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000042",
           producto: "TERMO",
           tipo: "C/TAPA ROSCA",
           color: "GRIS",
@@ -385,6 +427,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000043",
           producto: "TERMO",
           tipo: "DEP. ROSCA CON LAVERO",
           color: "VERDE",
@@ -394,6 +437,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000044",
           producto: "TERMO",
           tipo: "DEP. ROSCA CON LAVERO",
           color: "AZUL",
@@ -403,6 +447,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000045",
           producto: "TERMO",
           tipo: "ALUMINIO",
           color: "BLANCA",
@@ -412,6 +457,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000046",
           producto: "TERMO",
           tipo: "ALUMINIO SUBLIMABLE",
           color: "BLANCA",
@@ -421,6 +467,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000047",
           producto: "TAZA",
           tipo: "GLASEADA TRANSPARENTE",
           color: "",
@@ -430,6 +477,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000048",
           producto: "TAZA",
           tipo: "GLASEADA FONDO VERDE",
           color: "",
@@ -439,6 +487,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000049",
           producto: "TAZA",
           tipo: "GLASEADA FONDO ROJO",
           color: "",
@@ -448,6 +497,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000050",
           producto: "TAZA",
           tipo: "GLASEADA FONDO ROSADO",
           color: "",
@@ -457,6 +507,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000051",
           producto: "TAZA",
           tipo: "GLASEADA FONDO AZUL",
           color: "",
@@ -466,6 +517,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000052",
           producto: "TAZA",
           tipo: "GLASEADA PORTA VASOS SUBLIMABLE",
           color: "",
@@ -475,6 +527,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000053",
           producto: "LLAVERO",
           tipo: "RECTANGULAR",
           color: "PLATEADO",
@@ -484,6 +537,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000054",
           producto: "LLAVERO",
           tipo: "RECTANGULAR",
           color: "BLANCO",
@@ -493,6 +547,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000055",
           producto: "LLAVERO",
           tipo: "CUADRADO",
           color: "PLATEADO",
@@ -502,6 +557,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000056",
           producto: "LLAVERO",
           tipo: "REDONDO",
           color: "PLATEADO",
@@ -511,6 +567,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000057",
           producto: "LLAVERO",
           tipo: "CORAZON",
           color: "BLANCO",
@@ -520,6 +577,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000058",
           producto: "LLAVERO",
           tipo: "CORAZON",
           color: "PLATEADO",
@@ -529,6 +587,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000059",
           producto: "LLAVERO",
           tipo: "HUESO",
           color: "",
@@ -538,6 +597,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000060",
           producto: "LLAVERO",
           tipo: "TABLA SURF",
           color: "BLANCO",
@@ -547,6 +607,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000061",
           producto: "LLAVERO",
           tipo: "ARBOL NAVIDAD",
           color: "",
@@ -556,6 +617,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000062",
           producto: "DESTAPADOR",
           tipo: "BOTELLA",
           color: "PLATEADO",
@@ -565,6 +627,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000063",
           producto: "DESTAPADOR",
           tipo: "BOTELLA",
           color: "BLANCO",
@@ -574,6 +637,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000064",
           producto: "DESTAPADOR",
           tipo: "CERVEZA",
           color: "PLATEADO",
@@ -583,6 +647,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000065",
           producto: "DESTAPADOR",
           tipo: "CERVEZA",
           color: "BLANCO",
@@ -592,6 +657,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000066",
           producto: "LAPICERO",
           tipo: "REDONDO",
           color: "BLANCO",
@@ -601,6 +667,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000067",
           producto: "LAPICERO",
           tipo: "CUADRADO",
           color: "BLANCO",
@@ -610,6 +677,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000068",
           producto: "LAPICERO",
           tipo: "REDONDO",
           color: "PLATEADO",
@@ -619,6 +687,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000069",
           producto: "ROMPECABEZA",
           tipo: "RECTANGULAR",
           color: "",
@@ -628,6 +697,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000070",
           producto: "ROMPECABEZA",
           tipo: "CORAZON",
           color: "",
@@ -637,6 +707,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          codigo: "000071",
           producto: "RELOJ",
           tipo: "3 LADOS SUBLIMABLES",
           color: "",
