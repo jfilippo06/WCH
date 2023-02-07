@@ -2,22 +2,33 @@
     <div class="card-body">
       <h5 class="card-title">Franelas</h5>
 
+      <div class="col-md-2">
+        <% if (prevFranela) { %>
+            <a class="btn btn-primary bi-arrow-left" href="<%= prevFranela %>"></a>
+        <% } %>
+        <% if (nextFranela) { %>
+            <a class="btn btn-primary bi-arrow-right" href="<%= nextFranela %>"></a>
+        <% } %>
+      </div>
+
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">Descripcion</th>
+            <th scope="col">Descripción</th>
             <th scope="col">Cantidad</th>
             <th scope="col">N° Factura</th>
             <th scope="col">Fecha</th>
           </tr>
         </thead>
         <tbody>
+          <% for(let i=0; i < franela.length; i++) { %>
             <tr>
-               <th></th> 
-               <th></th> 
-               <th></th> 
-               <th></th> 
+                <td><%= franela[i].franela %></td>
+                <td><%= franela[i].cantidad %></td>
+                <td><%= franela[i].OrderId %></td>
+                <td><%= franela[i].createdAt %></td>
             </tr>
+          <% } %>
         </tbody>
       </table>
 

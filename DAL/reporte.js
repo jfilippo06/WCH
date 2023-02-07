@@ -1,4 +1,9 @@
-const { Cliente, Documento } = require("../models");
+const {
+  Cliente,
+  Documento,
+  Salida_franela,
+  Salida_producto,
+} = require("../models");
 
 const findAllClient = async () => {
   return await Cliente.findAll({
@@ -31,7 +36,55 @@ const findFactura = async (limit, offset, valor) => {
   }
 };
 
+const findFranelas = async (limit, offset, numero) => {
+  if (numero) {
+    return await Salida_franela.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        OrderId: numero,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else {
+    return await Salida_franela.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      limit: limit,
+      offset: offset,
+    });
+  }
+};
+
+const findProductos = async (limit, offset, numero) => {
+  if (numero) {
+    return await Salida_producto.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        OrderId: numero,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else {
+    return await Salida_producto.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      limit: limit,
+      offset: offset,
+    });
+  }
+};
+
 module.exports = {
   findAllClient,
   findFactura,
+  findFranelas,
+  findProductos,
 };
