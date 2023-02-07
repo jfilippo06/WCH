@@ -53,7 +53,6 @@ const deshabilitarFranelaController = async (req, res) => {
     await deshabilitarFranelaService(id);
     req.flash("success", { msg: "Franela deshabilitada" });
     res.redirect("/inventario/franela");
-    res.json(id);
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/inventario/franela");

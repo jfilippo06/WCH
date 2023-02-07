@@ -9,6 +9,7 @@ const {
   Salida_franela,
   Salida_producto,
   Documento,
+  Total,
 } = require("../models");
 const AppError = require("../errors/appErrors");
 const { QueryTypes } = require("sequelize");
@@ -309,15 +310,13 @@ const stockProductos = async (opcion, tipo, valor) => {
         codigo: valor,
       },
     });
-  } 
-  else if (opcion == "productos" && tipo == "producto") {
+  } else if (opcion == "productos" && tipo == "producto") {
     return await Producto.sum("cantidad", {
       where: {
         producto: valor,
       },
     });
-  } 
-  else if (opcion == "productos" && tipo == "tipo") {
+  } else if (opcion == "productos" && tipo == "tipo") {
     return await Producto.sum("cantidad", {
       where: {
         tipo: valor,
@@ -702,6 +701,17 @@ const findDocumento = async (id, order) => {
   });
 };
 
+const createTotals = async (id, order, total, valor, iva, sumaTotal) => {
+  await Total.create({
+    ClienteId: id,
+    OrderId: order,
+    neto: total,
+    iva_impuesto: valor,
+    iva_valor: iva,
+    total: sumaTotal,
+  });
+};
+
 module.exports = {
   cliente,
   obtenerOrder,
@@ -735,4 +745,5 @@ module.exports = {
   registrarOrder,
   registrarDocumento,
   findDocumento,
+  createTotals,
 };
