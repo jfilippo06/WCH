@@ -13,6 +13,11 @@ const renderFacturaController = async (req, res) => {
   }
 };
 
+const renderInventarioController = async (req, res) => {
+  res.render("pages/reporte/inventario")
+}
+
 module.exports = {
   renderFacturaController,
+  renderInventarioController,
 };
