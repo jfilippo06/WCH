@@ -23,10 +23,13 @@ const {
   registrarOrderService,
   registrarDocumentoService,
   buscarDocumento,
+  obtenerIva,
+  totalService,
 } = require("../services/venta");
 const ejs = require("ejs");
 const pdf = require("html-pdf");
 const path = require("path");
+const { gotIvaServive } = require("../services/impuesto");
 
 const clienteRenderController = async (req, res) => {
   res.render("pages/venta/buscar-cliente");
@@ -75,37 +78,27 @@ const facturarRenderController = async (req, res) => {
     const { page, size, opcion, tipo, valor } = req.query;
     const { id } = req.session.data;
     const order = req.session.order;
-    const dataFranela = await facturaFranelasService(
-      page,
-      size,
-      opcion,
-      tipo,
-      valor
-    );
-    const dataProducto = await facturaProductosService(
-      page,
-      size,
-      opcion,
-      tipo,
-      valor
-    );
-    const facturaFranela = await obtenerFacturaFranela(id, order);
-    const facturaProducto = await obtenerFacturaProducto(id, order);
-    const total = await obtenerTotalService(id, order);
     const {
       totalItemsFranelas,
       franelas,
       prevFranelas,
       nextFranelas,
       franelaStock,
-    } = dataFranela;
+    } = await facturaFranelasService(page, size, opcion, tipo, valor);
     const {
       totalItemsProductos,
       productos,
       prevProductos,
       nextProductos,
       productoStock,
-    } = dataProducto;
+    } = await facturaProductosService(page, size, opcion, tipo, valor);
+    const facturaFranela = await obtenerFacturaFranela(id, order);
+    const facturaProducto = await obtenerFacturaProducto(id, order);
+    const total = await obtenerTotalService(id, order);
+    const valorIva = await obtenerIva();
+    const iva = Math.floor(total * valorIva * 100) / 100;
+    const sumaTotal = Math.floor((total + iva) * 100) / 100;
+    const { nombre, estado } = await gotIvaServive();
     res.render("pages/venta/facturar", {
       totalItemsFranelas,
       franelas,
@@ -120,6 +113,11 @@ const facturarRenderController = async (req, res) => {
       facturaFranela,
       facturaProducto,
       total,
+      iva,
+      sumaTotal,
+      valor,
+      nombre,
+      estado,
     });
   } catch (error) {
     req.flash("alert", { msg: error.message });
@@ -222,36 +220,82 @@ const pedidoController = async (req, res) => {
     const fecha = new Date().toLocaleDateString();
     const link = `http://localhost:3000/invoices/Factura Nº${order}.pdf`;
     await registrarDocumentoService(id, nombre, order, link);
-    ejs.renderFile(
-      path.join(__dirname, `../views/invoices/`, "factura.ejs"),
-      {
-        fecha,
-        order,
-        nombre,
-        cedula,
-        usuario,
-        facturaFranela,
-        facturaProducto,
-        total,
-      },
-      (err, data) => {
-        if (err) {
-          req.flash("alert", { msg: err.message });
-          res.redirect("/venta/facturar");
-        } else {
-          pdf
-            .create(data)
-            .toFile(`./public/invoices/Factura Nº${order}.pdf`, (err, data) => {
-              if (err) {
-                req.flash("alert", { msg: err.message });
-                res.redirect("/venta/facturar");
-              } else {
-                res.redirect("/venta/facturar/pdf");
-              }
-            });
+    const { valor, estado } = await gotIvaServive();
+    if (estado) {
+      const iva = Math.floor(total * valor * 100) / 100;
+      const sumaTotal = Math.floor((total + iva) * 100) / 100;
+      await totalService(id, order, total, valor, iva, sumaTotal);
+      ejs.renderFile(
+        path.join(__dirname, `../views/invoices/`, "factura_iva.ejs"),
+        {
+          fecha,
+          order,
+          nombre,
+          cedula,
+          usuario,
+          facturaFranela,
+          facturaProducto,
+          total,
+          iva,
+          sumaTotal,
+        },
+        (err, data) => {
+          if (err) {
+            req.flash("alert", { msg: err.message });
+            res.redirect("/venta/facturar");
+          } else {
+            pdf
+              .create(data)
+              .toFile(
+                `./public/invoices/Factura Nº${order}.pdf`,
+                (err, data) => {
+                  if (err) {
+                    req.flash("alert", { msg: err.message });
+                    res.redirect("/venta/facturar");
+                  } else {
+                    res.redirect("/venta/facturar/pdf");
+                  }
+                }
+              );
+          }
         }
-      }
-    );
+      );
+    } else {
+      await totalService(id, order, total, 0, 0, total);
+      ejs.renderFile(
+        path.join(__dirname, `../views/invoices/`, "factura.ejs"),
+        {
+          fecha,
+          order,
+          nombre,
+          cedula,
+          usuario,
+          facturaFranela,
+          facturaProducto,
+          total,
+        },
+        (err, data) => {
+          if (err) {
+            req.flash("alert", { msg: err.message });
+            res.redirect("/venta/facturar");
+          } else {
+            pdf
+              .create(data)
+              .toFile(
+                `./public/invoices/Factura Nº${order}.pdf`,
+                (err, data) => {
+                  if (err) {
+                    req.flash("alert", { msg: err.message });
+                    res.redirect("/venta/facturar");
+                  } else {
+                    res.redirect("/venta/facturar/pdf");
+                  }
+                }
+              );
+          }
+        }
+      );
+    }
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/venta/facturar");

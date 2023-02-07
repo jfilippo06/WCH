@@ -31,8 +31,10 @@ const {
   registrarOrder,
   registrarDocumento,
   findDocumento,
+  createTotals,
 } = require("../DAL/venta");
 const { nextPage_3, prevPage_3 } = require("../helpers/paginationTools");
+const { gotIvaServive } = require("./impuesto");
 
 const buscarClienteService = async (cedula) => {
   return await cliente(cedula);
@@ -131,9 +133,17 @@ const registrarFranelaService = async (id, idFranela, order, vendidos) => {
   const { tela, talla, color, cuello, manga, marca } = data;
   const franela = `FRANELA ${tela} ${color} TALLA:${talla} ${marca} ${cuello} ${manga}`;
   const data2 = await obtenerTotal(idFranela);
-  const total = (data2.precio * vendidos).toFixed(2);
-  const unidad = data2.precio
-  await registrarFacturaFranela(id, idFranela, franela, vendidos, unidad, total, order);
+  const total = Math.floor(data2.precio * vendidos * 100) / 100;
+  const unidad = data2.precio;
+  await registrarFacturaFranela(
+    id,
+    idFranela,
+    franela,
+    vendidos,
+    unidad,
+    total,
+    order
+  );
 };
 
 const buscarProductoService = async (id, idProducto, order) => {
@@ -150,8 +160,8 @@ const registrarProductoService = async (id, idProducto, order, vendidos) => {
   const { producto, tipo, color } = data;
   const product = `PRODUCTO ${producto} ${tipo} ${color}`;
   const data2 = await obtenerTotal2(idProducto);
-  const total = (data2.precio * vendidos).toFixed(2);
-  const unidad = data2.precio
+  const total = Math.floor(data2.precio * vendidos * 100) / 100;
+  const unidad = data2.precio;
   await registrarFacturaProducto(
     id,
     idProducto,
@@ -178,7 +188,7 @@ const obtenerTotalService = async (id, order) => {
   const producto = JSON.stringify(data2[0]);
   const total1 = JSON.parse(franela.replace("sum(total)", "total"));
   const total2 = JSON.parse(producto.replace("sum(total)", "total"));
-  return (total1.total + total2.total).toFixed(2);
+  return Math.floor((total1.total + total2.total) * 100) / 100;
 };
 
 const deleteFranelaService = async (id) => {
@@ -255,6 +265,15 @@ const buscarDocumento = async (id, order) => {
   return data.link;
 };
 
+const obtenerIva = async () => {
+  const { valor } = await gotIvaServive();
+  return valor;
+};
+
+const totalService = async (id, order, total, valor, iva, sumaTotal) => {
+  await createTotals(id, order, total, valor, iva, sumaTotal);
+};
+
 module.exports = {
   buscarClienteService,
   buscarOrderService,
@@ -280,4 +299,6 @@ module.exports = {
   registrarOrderService,
   registrarDocumentoService,
   buscarDocumento,
+  obtenerIva,
+  totalService,
 };

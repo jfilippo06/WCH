@@ -3,15 +3,28 @@
       <h5 class="card-title">Lista de venta</h5>
 
        <div class="row g-3">
+         <div class="col-md-2">
+           <a href="/venta/facturar/pedido" class="btn btn-primary btn-sm ">Realizar venta</a>
+         </div>
+         <div class="col-md-2">
+           <a href="/venta/facturar/cancelar" class="btn btn-danger btn-sm ">Cancelar venta</a>
+         </div>
+         <% if (estado) { %>
           <div class="col-md-2">
-              <p>Total neto: <%= total %></p>
-          </div>
-          <div class="col-md-1">
-            <a href="/venta/facturar/pedido" class="btn btn-primary btn-sm ">Realizar venta</a>
-          </div>
-          <div class="col-md-1">
-            <a href="/venta/facturar/cancelar" class="btn btn-danger btn-sm ">Cancelar venta</a>
-          </div>
+            <p>Neto: <%= total %></p>
+         </div>
+         <div class="col-md-2">
+           <p><%= nombre %>: <%= iva %></p>
+         </div>
+         <div class="col-md-2">
+           <p>Total: <%= sumaTotal %></p>
+         </div>
+         <% } else { %>
+          <div class="col-md-2 ">
+            <p>Total: <%= total %></p>
+         </div>
+         <% } %>
+         
       </div>
 
       <table class="table table-striped">
