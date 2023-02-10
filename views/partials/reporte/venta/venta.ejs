@@ -2,7 +2,7 @@
     <div class="card-body">
       <h5 class="card-title">Ventas</h5>
 
-      <h5>Ventas del mes: <%= data.total %></h5>
+      <h5>Total de ventas: <%= data.total %></h5>
 
       <div class="col-md-2">
         <% if (prev) { %>
@@ -17,6 +17,7 @@
         <thead>
           <tr>
             <% if (estado) { %>
+              <th scope="col">Fecha</th>
               <th scope="col">N° Factura</th>
               <th scope="col">SubTotal</th>
               <th scope="col">Iva</th>
@@ -31,6 +32,7 @@
           <% if (estado) { %>
             <% for(let i=0; i < total.length; i++) { %>
               <tr>
+                  <td><%= total[i].createdAt %></td>
                   <td><%= total[i].OrderId %></td>
                   <td><%= total[i].neto %></td>
                   <td><%= total[i].iva_valor %></td>

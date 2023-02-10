@@ -48,7 +48,13 @@ const renderInventarioController = async (req, res) => {
 const renderVentaController = async (req, res) => {
   try {
     const { page, size, numero, inicio, final } = req.query;
-    const { total, next, prev } = await ventaService(page, size, numero);
+    const { total, next, prev } = await ventaService(
+      page,
+      size,
+      numero,
+      inicio,
+      final
+    );
     const { estado } = await gotIvaServive();
     const data = await obtenerTotalServirce(inicio, final);
     res.render("pages/reporte/venta", { total, next, prev, estado, data });

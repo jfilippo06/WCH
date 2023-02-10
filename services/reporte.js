@@ -11,6 +11,8 @@ const {
   prevPage_4,
   nextPage_5,
   prevPage_5,
+  nextPage_6,
+  prevPage_6,
 } = require("../helpers/paginationTools");
 
 const renderFacturaService = async () => {
@@ -95,29 +97,35 @@ const inventarioService = async (page, size, numero) => {
   };
 };
 
-const ventaService = async (page, size, numero) => {
+const ventaService = async (page, size, numero, inicio, final) => {
   const limit = size ? +size : 20;
   const offset = page ? page * limit : 0;
   const { count: totalItems, rows: total } = await findTotals(
     limit,
     offset,
-    numero
+    numero,
+    inicio,
+    final
   );
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / limit);
-  const next = nextPage_5(
+  const next = nextPage_6(
     "reporte/venta",
     currentPage,
     totalPages,
     limit,
-    numero
+    numero,
+    inicio,
+    final
   );
-  const prev = prevPage_5(
+  const prev = prevPage_6(
     "reporte/venta",
     currentPage,
     totalPages,
     limit,
-    numero
+    numero,
+    inicio,
+    final
   );
   return { total, next, prev };
 };

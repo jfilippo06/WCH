@@ -6,7 +6,7 @@ const {
   Total,
   sequelize,
 } = require("../models");
-const { QueryTypes } = require("sequelize");
+const { QueryTypes, Op } = require("sequelize");
 
 const findAllClient = async () => {
   return await Cliente.findAll({
@@ -91,7 +91,7 @@ const findProductos = async (limit, offset, numero) => {
   }
 };
 
-const findTotals = async (limit, offset, numero) => {
+const findTotals = async (limit, offset, numero, inicio, final) => {
   if (numero) {
     return await Total.findAndCountAll({
       attributes: {
@@ -100,6 +100,20 @@ const findTotals = async (limit, offset, numero) => {
       where: {
         OrderId: numero,
       },
+      limit: limit,
+      offset: offset,
+    });
+  } else if (inicio && final) {
+    return await Total.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        createdAt: {
+          [Op.between]: [`${inicio} 00:00:00`, `${final} 24:00:00`],
+        },
+      },
+      order: [["id", "DESC"]],
       limit: limit,
       offset: offset,
     });
@@ -121,7 +135,7 @@ const totals = async (inicio, final) => {
     {
       model: Total,
       replacements: {
-        inicio: `${inicio} 01:00:00`,
+        inicio: `${inicio} 00:00:00`,
         final: `${final} 24:00:00`,
       },
       type: QueryTypes.SELECT,
