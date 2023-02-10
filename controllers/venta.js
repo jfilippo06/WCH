@@ -25,6 +25,7 @@ const {
   buscarDocumento,
   obtenerIva,
   totalService,
+  obtenerNombre,
 } = require("../services/venta");
 const ejs = require("ejs");
 const pdf = require("html-pdf");
@@ -221,6 +222,7 @@ const pedidoController = async (req, res) => {
     const link = `http://localhost:3000/invoices/Factura Nº${order}.pdf`;
     await registrarDocumentoService(id, nombre, order, link);
     const { valor, estado } = await gotIvaServive();
+    const nombreIva = await obtenerNombre();
     if (estado) {
       const iva = Math.floor(total * valor * 100) / 100;
       const sumaTotal = Math.floor((total + iva) * 100) / 100;
@@ -236,6 +238,7 @@ const pedidoController = async (req, res) => {
           facturaFranela,
           facturaProducto,
           total,
+          nombreIva,
           iva,
           sumaTotal,
         },

@@ -3,6 +3,7 @@ const {
   findFactura,
   findFranelas,
   findProductos,
+  findTotals,
 } = require("../DAL/reporte");
 const {
   nextPage_4,
@@ -93,8 +94,36 @@ const inventarioService = async (page, size, numero) => {
   };
 };
 
+const ventaService = async (page, size, numero) => {
+  const limit = size ? +size : 20;
+  const offset = page ? page * limit : 0;
+  const { count: totalItems, rows: total } = await findTotals(
+    limit,
+    offset,
+    numero
+  );
+  const currentPage = page ? +page : 0;
+  const totalPages = Math.ceil(totalItems / limit);
+  const next = nextPage_5(
+    "reporte/venta",
+    currentPage,
+    totalPages,
+    limit,
+    numero
+  );
+  const prev = prevPage_5(
+    "reporte/venta",
+    currentPage,
+    totalPages,
+    limit,
+    numero
+  );
+  return { total, next, prev };
+};
+
 module.exports = {
   renderFacturaService,
   paginationFactura,
   inventarioService,
+  ventaService,
 };

@@ -13,10 +13,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-10 ">
-                <h1>Factura</h1>
+                <h1>Nota de entrega</h1>
                 <strong>Fecha</strong>
                 <br><%= fecha %><br>
-                <strong>Factura No.</strong>
+                <strong>Factura N°.</strong>
                 <br><%= order %><br>
             </div>
             <div class="col-xs-2">
@@ -67,14 +67,27 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="2" class="text-right">
-                                <h4>Neto: <%= total %></h4>
+                            <td colspan="3" class="text-right">
+                                <p>SubTotal:</p>
                             </td>
-                            <td colspan="1" class="text-right">
-                                <h4>Iva: <%= iva %></h4>
+                            <td>
+                                <p><%= total %></p>
+                            </td>                      
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-right">
+                                <p><%= nombreIva %>:</p>
                             </td>
-                            <td colspan="1" class="text-right">
-                                <h4>Total: <%= sumaTotal %> </h4>
+                            <td>
+                                <p><%= iva %></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-right">
+                                <p>Total:</p>
+                            </td>
+                            <td>
+                                <p><%= sumaTotal %></p>
                             </td>
                         </tr>
                     </tfoot>

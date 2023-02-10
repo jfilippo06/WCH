@@ -3,6 +3,7 @@ const {
   Documento,
   Salida_franela,
   Salida_producto,
+  Total,
 } = require("../models");
 
 const findAllClient = async () => {
@@ -22,6 +23,7 @@ const findFactura = async (limit, offset, valor) => {
       where: {
         ClienteId: valor,
       },
+      order: [["id", "DESC"]],
       limit: limit,
       offset: offset,
     });
@@ -30,6 +32,7 @@ const findFactura = async (limit, offset, valor) => {
       attributes: {
         exclude: ["updatedAt"],
       },
+      order: [["id", "DESC"]],
       limit: limit,
       offset: offset,
     });
@@ -45,6 +48,7 @@ const findFranelas = async (limit, offset, numero) => {
       where: {
         OrderId: numero,
       },
+      order: [["id", "DESC"]],
       limit: limit,
       offset: offset,
     });
@@ -53,6 +57,7 @@ const findFranelas = async (limit, offset, numero) => {
       attributes: {
         exclude: ["updatedAt"],
       },
+      order: [["id", "DESC"]],
       limit: limit,
       offset: offset,
     });
@@ -68,6 +73,7 @@ const findProductos = async (limit, offset, numero) => {
       where: {
         OrderId: numero,
       },
+      order: [["id", "DESC"]],
       limit: limit,
       offset: offset,
     });
@@ -76,6 +82,31 @@ const findProductos = async (limit, offset, numero) => {
       attributes: {
         exclude: ["updatedAt"],
       },
+      order: [["id", "DESC"]],
+      limit: limit,
+      offset: offset,
+    });
+  }
+};
+
+const findTotals = async (limit, offset, numero) => {
+  if (numero) {
+    return await Total.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        OrderId: numero,
+      },
+      limit: limit,
+      offset: offset,
+    });
+  } else {
+    return await Total.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      order: [["id", "DESC"]],
       limit: limit,
       offset: offset,
     });
@@ -87,4 +118,5 @@ module.exports = {
   findFactura,
   findFranelas,
   findProductos,
+  findTotals,
 };
