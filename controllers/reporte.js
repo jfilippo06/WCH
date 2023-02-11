@@ -4,6 +4,7 @@ const {
   paginationFactura,
   inventarioService,
   ventaService,
+  obtenerTotalServirce,
 } = require("../services/reporte");
 
 const renderFacturaController = async (req, res) => {
@@ -46,10 +47,11 @@ const renderInventarioController = async (req, res) => {
 
 const renderVentaController = async (req, res) => {
   try {
-    const { page, size, numero } = req.query;
+    const { page, size, numero, inicio, final } = req.query;
     const { total, next, prev } = await ventaService(page, size, numero);
     const { estado } = await gotIvaServive();
-    res.render("pages/reporte/venta", { total, next, prev, estado });
+    const data = await obtenerTotalServirce(inicio, final);
+    res.render("pages/reporte/venta", { total, next, prev, estado, data });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/reporte/venta");

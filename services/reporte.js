@@ -4,6 +4,7 @@ const {
   findFranelas,
   findProductos,
   findTotals,
+  totals,
 } = require("../DAL/reporte");
 const {
   nextPage_4,
@@ -121,9 +122,16 @@ const ventaService = async (page, size, numero) => {
   return { total, next, prev };
 };
 
+const obtenerTotalServirce = async (inicio, final) => {
+  const data = await totals(inicio, final);
+  const valor = JSON.stringify(data[0]);
+  return JSON.parse(valor.replace("sum(total)", "total"));
+};
+
 module.exports = {
   renderFacturaService,
   paginationFactura,
   inventarioService,
   ventaService,
+  obtenerTotalServirce,
 };

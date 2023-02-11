@@ -4,7 +4,9 @@ const {
   Salida_franela,
   Salida_producto,
   Total,
+  sequelize,
 } = require("../models");
+const { QueryTypes } = require("sequelize");
 
 const findAllClient = async () => {
   return await Cliente.findAll({
@@ -113,10 +115,25 @@ const findTotals = async (limit, offset, numero) => {
   }
 };
 
+const totals = async (inicio, final) => {
+  return ([results] = await sequelize.query(
+    "SELECT sum(total) FROM Totals WHERE Totals.createdAt BETWEEN :inicio AND :final",
+    {
+      model: Total,
+      replacements: {
+        inicio: `${inicio} 01:00:00`,
+        final: `${final} 24:00:00`,
+      },
+      type: QueryTypes.SELECT,
+    }
+  ));
+};
+
 module.exports = {
   findAllClient,
   findFactura,
   findFranelas,
   findProductos,
   findTotals,
+  totals,
 };
