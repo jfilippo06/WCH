@@ -133,7 +133,8 @@ const ventaService = async (page, size, numero, inicio, final) => {
 const obtenerTotalServirce = async (inicio, final) => {
   const data = await totals(inicio, final);
   const valor = JSON.stringify(data[0]);
-  return JSON.parse(valor.replace("sum(total)", "total"));
+  const total = JSON.parse(valor.replace("sum(total)", "total"));
+  return Math.floor(total.total * 100) / 100;
 };
 
 module.exports = {
