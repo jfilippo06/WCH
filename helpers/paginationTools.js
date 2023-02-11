@@ -80,6 +80,54 @@ const nextPage_4 = (location, currentPage, totalPages, size, valor) => {
   }
 };
 
+const prevPage_5 = (location, currentPage, totalPages, size, numero) => {
+  if (currentPage > 0 && currentPage < totalPages) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage - 1
+    }&numero=${numero}`;
+  }
+};
+
+const nextPage_5 = (location, currentPage, totalPages, size, numero) => {
+  if (currentPage < totalPages - 1) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage + 1
+    }&numero=${numero}`;
+  }
+};
+
+const prevPage_6 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  numero,
+  inicio,
+  final
+) => {
+  if (currentPage > 0 && currentPage < totalPages) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage - 1
+    }&numero=${numero}&inicio=${inicio}&final=${final}`;
+  }
+};
+
+const nextPage_6 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  numero,
+  inicio,
+  final
+) => {
+  if (currentPage < totalPages - 1) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage + 1
+    }&numero=${numero}&inicio=${inicio}&final=${final}`;
+  }
+};
+
 module.exports = {
   prevPage,
   nextPage,
@@ -89,4 +137,8 @@ module.exports = {
   nextPage_3,
   prevPage_4,
   nextPage_4,
+  prevPage_5,
+  nextPage_5,
+  prevPage_6,
+  nextPage_6,
 };

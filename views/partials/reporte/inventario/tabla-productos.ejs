@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Productos</h5>
+
+      <div class="col-md-2">
+        <% if (prevProducto) { %>
+            <a class="btn btn-primary bi-arrow-left" href="<%= prevProducto %>"></a>
+        <% } %>
+        <% if (nextProducto) { %>
+            <a class="btn btn-primary bi-arrow-right" href="<%= nextProducto %>"></a>
+        <% } %>
+      </div>
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">N° Factura</th>
+            <th scope="col">Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i=0; i < producto.length; i++) { %>
+            <tr>
+                <td><%= producto[i].producto %></td>
+                <td><%= producto[i].cantidad %></td>
+                <td><%= producto[i].OrderId %></td>
+                <td><%= producto[i].createdAt %></td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>

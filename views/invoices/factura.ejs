@@ -6,16 +6,17 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>WCH</title>
     <link href="http://localhost:3000/bootstrap/css/bootstrap.min-3.4.1.css" rel="stylesheet">
+    <link href="http://localhost:3000/css/marca.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-10 ">
-                <h1>Factura</h1>
+                <h1>Nota de entrega</h1>
                 <strong>Fecha</strong>
                 <br><%= fecha %><br>
-                <strong>Factura No.</strong>
+                <strong>Factura N°.</strong>
                 <br><%= order %><br>
             </div>
             <div class="col-xs-2">
@@ -67,10 +68,10 @@
                     <tfoot>
                         <tr>
                             <td colspan="3" class="text-right">
-                                <h4>Total</h4>
+                                <p>Total</p>
                             </td>
                             <td>
-                                <%= total %>
+                                <p><%= total %></p>
                             </td>
                         </tr>
                     </tfoot>

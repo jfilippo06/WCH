@@ -270,6 +270,11 @@ const obtenerIva = async () => {
   return valor;
 };
 
+const obtenerNombre = async () => {
+  const { nombre } = await gotIvaServive();
+  return nombre;
+};
+
 const totalService = async (id, order, total, valor, iva, sumaTotal) => {
   await createTotals(id, order, total, valor, iva, sumaTotal);
 };
@@ -300,5 +305,6 @@ module.exports = {
   registrarDocumentoService,
   buscarDocumento,
   obtenerIva,
+  obtenerNombre,
   totalService,
 };
