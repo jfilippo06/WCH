@@ -65,7 +65,12 @@ const renderVentaController = async (req, res) => {
 };
 
 const renderClienteController = async (req, res) => {
-  res.render("pages/reporte/cliente");
+  try {
+    res.render("pages/reporte/cliente");
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/reporte/cliente");
+  }
 };
 
 module.exports = {
