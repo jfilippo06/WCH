@@ -64,8 +64,13 @@ const renderVentaController = async (req, res) => {
   }
 };
 
+const renderClienteController = async (req, res) => {
+  res.render("pages/reporte/cliente");
+};
+
 module.exports = {
   renderFacturaController,
   renderInventarioController,
   renderVentaController,
+  renderClienteController,
 };
