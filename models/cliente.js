@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Cliente.init({
     nombre: DataTypes.STRING,
-    cedula: DataTypes.INTEGER
+    cedula: DataTypes.INTEGER,
+    telefono: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Cliente',

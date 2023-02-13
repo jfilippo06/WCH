@@ -9,6 +9,7 @@ module.exports = {
         {
           nombre: "John Doe",
           cedula: 1,
+          telefono: "04123475521",
           createdAt: new Date(),
           updatedAt: new Date(),
         },

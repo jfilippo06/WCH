@@ -61,8 +61,8 @@ const registrarRenderController = async (req, res) => {
 
 const registrarClienteController = async (req, res) => {
   try {
-    const { nombre, cedula } = req.body;
-    await registrarClienteService(nombre, cedula);
+    const { nombre, cedula, telefono } = req.body;
+    await registrarClienteService(nombre, cedula, telefono);
     const data = await buscarClienteService(cedula);
     const order = await buscarOrderService();
     req.session.data = data;

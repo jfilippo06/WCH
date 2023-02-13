@@ -15,6 +15,9 @@ module.exports = {
       cedula: {
         type: Sequelize.INTEGER
       },
+      telefono: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

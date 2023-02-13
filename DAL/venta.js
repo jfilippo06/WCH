@@ -35,7 +35,7 @@ const obtenerOrder = async () => {
   ));
 };
 
-const registrarCliente = async (nombre, cedula) => {
+const registrarCliente = async (nombre, cedula, telefono) => {
   const cliente = await Cliente.findOne({
     where: {
       cedula: cedula,
@@ -45,6 +45,7 @@ const registrarCliente = async (nombre, cedula) => {
   await Cliente.create({
     nombre: nombre,
     cedula: cedula,
+    telefono: telefono,
   });
 };
 

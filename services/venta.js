@@ -45,8 +45,8 @@ const buscarOrderService = async () => {
   return data[0].numero;
 };
 
-const registrarClienteService = async (nombre, cedula) => {
-  await registrarCliente(nombre, cedula);
+const registrarClienteService = async (nombre, cedula, telefono) => {
+  await registrarCliente(nombre, cedula, telefono);
 };
 
 const facturaFranelasService = async (page, size, opcion, tipo, valor) => {
