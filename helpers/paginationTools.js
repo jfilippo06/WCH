@@ -128,6 +128,22 @@ const nextPage_6 = (
   }
 };
 
+const prevPage_7 = (location, currentPage, totalPages, size, cedula) => {
+  if (currentPage > 0 && currentPage < totalPages) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage - 1
+    }&cedula=${cedula}`;
+  }
+};
+
+const nextPage_7 = (location, currentPage, totalPages, size, cedula) => {
+  if (currentPage < totalPages - 1) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage + 1
+    }&cedula=${cedula}`;
+  }
+};
+
 module.exports = {
   prevPage,
   nextPage,
@@ -141,4 +157,6 @@ module.exports = {
   nextPage_5,
   prevPage_6,
   nextPage_6,
+  prevPage_7,
+  nextPage_7,
 };

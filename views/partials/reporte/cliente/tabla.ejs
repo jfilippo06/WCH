@@ -2,6 +2,15 @@
     <div class="card-body">
       <h5 class="card-title">Clientes</h5>
 
+      <div class="col-md-2">
+        <% if (prev) { %>
+            <a class="btn btn-primary bi-arrow-left" href="<%= prev %>"></a>
+        <% } %>
+        <% if (next) { %>
+            <a class="btn btn-primary bi-arrow-right" href="<%= next %>"></a>
+        <% } %>
+      </div>
+
       <table class="table table-striped">
         <thead>
           <tr>
@@ -11,11 +20,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+          <% for(let i=0; i < cliente.length; i++) { %>
+            <tr>
+                <td><%= cliente[i].nombre %></td>
+                <td><%= cliente[i].cedula %></td>
+                <td><%= cliente[i].telefono %></td>
+            </tr>
+          <% } %>
         </tbody>
       </table>
 

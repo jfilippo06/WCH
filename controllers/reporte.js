@@ -5,6 +5,7 @@ const {
   inventarioService,
   ventaService,
   obtenerTotalServirce,
+  clienteService,
 } = require("../services/reporte");
 
 const renderFacturaController = async (req, res) => {
@@ -66,7 +67,9 @@ const renderVentaController = async (req, res) => {
 
 const renderClienteController = async (req, res) => {
   try {
-    res.render("pages/reporte/cliente");
+    const { page, size, cedula } = req.query;
+    const { cliente, prev, next } = await clienteService(page, size, cedula);
+    res.render("pages/reporte/cliente", { cliente, prev, next });
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/reporte/cliente");

@@ -143,6 +143,31 @@ const totals = async (inicio, final) => {
   ));
 };
 
+const findClientes = async (limit, offset, cedula) => {
+  if (cedula) {
+    return await Cliente.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        cedula: cedula,
+      },
+      order: [["id", "DESC"]],
+      limit: limit,
+      offset: offset,
+    });
+  } else {
+    return await Cliente.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      order: [["id", "DESC"]],
+      limit: limit,
+      offset: offset,
+    });
+  }
+};
+
 module.exports = {
   findAllClient,
   findFactura,
@@ -150,4 +175,5 @@ module.exports = {
   findProductos,
   findTotals,
   totals,
+  findClientes,
 };

@@ -5,6 +5,7 @@ const {
   findProductos,
   findTotals,
   totals,
+  findClientes,
 } = require("../DAL/reporte");
 const {
   nextPage_4,
@@ -13,6 +14,8 @@ const {
   prevPage_5,
   nextPage_6,
   prevPage_6,
+  nextPage_7,
+  prevPage_7,
 } = require("../helpers/paginationTools");
 
 const renderFacturaService = async () => {
@@ -137,10 +140,38 @@ const obtenerTotalServirce = async (inicio, final) => {
   return Math.floor(total.total * 100) / 100;
 };
 
+const clienteService = async (page, size, cedula) => {
+  const limit = size ? +size : 20;
+  const offset = page ? page * limit : 0;
+  const { count: totalItems, rows: cliente } = await findClientes(
+    limit,
+    offset,
+    cedula
+  );
+  const currentPage = page ? +page : 0;
+  const totalPages = Math.ceil(totalItems / limit);
+  const next = nextPage_7(
+    "reporte/cliente",
+    currentPage,
+    totalPages,
+    limit,
+    cedula
+  );
+  const prev = prevPage_7(
+    "reporte/cliente",
+    currentPage,
+    totalPages,
+    limit,
+    cedula
+  );
+  return { cliente, prev, next };
+};
+
 module.exports = {
   renderFacturaService,
   paginationFactura,
   inventarioService,
   ventaService,
   obtenerTotalServirce,
+  clienteService,
 };
