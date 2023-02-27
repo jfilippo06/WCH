@@ -2,7 +2,7 @@
     <div class="card">
 
         <div class="card-body">
-            <h5 class="card-title">N° Factura</h5>
+            <h5 class="card-title">N° Recibo</h5>
             <form action="/reporte/inventario" method="get" class="row g-3 mb-3">
                 <div class="col-md-1">
                     <input type="text" class="form-control" placeholder="Tamaño" name="size">
@@ -11,9 +11,14 @@
                     <input type="text" class="form-control" placeholder="Pagina" name="page">
                 </div>
                 <div class="col-md-2">
-                    <input type="text" class="form-control" placeholder="N° Factura" name="numero">
+                    <input type="text" class="form-control" placeholder="N° Recibo" name="numero">
                 </div>
-                <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">Consultar</button>
+                </div>
+                <div class="col-md-3">
+                    <a class="btn btn-primary" href="/reporte/inventario/reporte">Generar reporte</a>
+                </div>
             </form>
             
             <%- include('../../message/alert') %>

@@ -35,6 +35,8 @@ const renderInventarioController = async (req, res) => {
       prevProducto,
       nextProducto,
     } = await inventarioService(page, size, numero);
+    req.session.franela = franela;
+    req.session.producto = producto;
     res.render("pages/reporte/inventario", {
       franela,
       producto,
@@ -82,25 +84,23 @@ const renderClienteController = async (req, res) => {
 
 const clienteReporteController = async (req, res) => {
   try {
-    const cliente = req.session.cliente
+    const cliente = req.session.cliente;
     ejs.renderFile(
       path.join(__dirname, `../views/recibos/`, "cliente.ejs"),
-      {cliente},
+      { cliente },
       (err, data) => {
         if (err) {
           req.flash("alert", { msg: error.message });
           res.redirect("/reporte/cliente");
         } else {
-          pdf
-          .create(data)
-          .toStream((err, stream) => {
+          pdf.create(data).toStream((err, stream) => {
             if (err) {
               req.flash("alert", { msg: error.message });
               res.redirect("/reporte/cliente");
-              }
-            res.type("pdf")
-            stream.pipe(res)
-            })
+            }
+            res.type("pdf");
+            stream.pipe(res);
+          });
         }
       }
     );
@@ -110,10 +110,40 @@ const clienteReporteController = async (req, res) => {
   }
 };
 
+const inventarioReporteController = async (req, res) => {
+  try {
+    const franela = req.session.franela;
+    const producto = req.session.producto;
+    ejs.renderFile(
+      path.join(__dirname, `../views/recibos/`, "inventario.ejs"),
+      { franela, producto },
+      (err, data) => {
+        if (err) {
+          req.flash("alert", { msg: error.message });
+          res.redirect("/reporte/inventario");
+        } else {
+          pdf.create(data).toStream((err, stream) => {
+            if (err) {
+              req.flash("alert", { msg: error.message });
+              res.redirect("/reporte/inventario");
+            }
+            res.type("pdf");
+            stream.pipe(res);
+          });
+        }
+      }
+    );
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/reporte/inventario");
+  }
+};
+
 module.exports = {
   renderFacturaController,
   renderInventarioController,
   renderVentaController,
   renderClienteController,
   clienteReporteController,
+  inventarioReporteController,
 };

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>WCH</title>
+    <link href="http://localhost:3000/bootstrap/css/bootstrap.min-3.4.1.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 ">
+                <h1>Salida de inventario</h1>
+            </div>
+            <div class="col-xs-2">
+                <img class="img img-responsive" src="http://localhost:3000/images/logo.png">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+              <h3>Franelas</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">N° Recibo</th>
+                    <th scope="col">Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0; i < franela.length; i++) { %>
+                    <tr>
+                        <td><%= franela[i].franela %></td>
+                        <td><%= franela[i].cantidad %></td>
+                        <td><%= franela[i].OrderId %></td>
+                        <td><%= franela[i].createdAt %></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table> 
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+              <h3>Productos</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">N° Recibo</th>
+                    <th scope="col">Fecha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% for(let i=0; i < producto.length; i++) { %>
+                    <tr>
+                        <td><%= producto[i].producto %></td>
+                        <td><%= producto[i].cantidad %></td>
+                        <td><%= producto[i].OrderId %></td>
+                        <td><%= producto[i].createdAt %></td>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
