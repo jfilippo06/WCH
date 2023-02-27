@@ -4,6 +4,7 @@ const {
   renderInventarioController,
   renderVentaController,
   renderClienteController,
+  clienteReporteController,
 } = require("../controllers/reporte");
 const asyncHandler = require("../middlewares/async-handler");
 const loginUser = require("../middlewares/loginUser");
@@ -33,6 +34,12 @@ router.get(
   loginUser,
   verifyAdmin,
   asyncHandler(renderClienteController)
+);
+router.get(
+  "/cliente/reporte",
+  loginUser,
+  verifyAdmin,
+  asyncHandler(clienteReporteController)
 );
 
 module.exports = router;

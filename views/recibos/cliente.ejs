@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>WCH</title>
+    <link href="http://localhost:3000/bootstrap/css/bootstrap.min-3.4.1.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 ">
+                <h1>Clientes</h1>
+            </div>
+            <div class="col-xs-2">
+                <img class="img img-responsive" src="http://localhost:3000/images/logo.png">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Cedula</th>
+                        <th scope="col">telefono</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for(let i=0; i < cliente.length; i++) { %>
+                        <tr>
+                            <td><%= cliente[i].nombre %></td>
+                            <td><%= cliente[i].cedula %></td>
+                            <td><%= cliente[i].telefono %></td>
+                        </tr>
+                      <% } %>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

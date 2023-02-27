@@ -7,6 +7,9 @@ const {
   obtenerTotalServirce,
   clienteService,
 } = require("../services/reporte");
+const ejs = require("ejs");
+const pdf = require("html-pdf");
+const path = require("path");
 
 const renderFacturaController = async (req, res) => {
   try {
@@ -69,7 +72,38 @@ const renderClienteController = async (req, res) => {
   try {
     const { page, size, cedula } = req.query;
     const { cliente, prev, next } = await clienteService(page, size, cedula);
+    req.session.cliente = cliente;
     res.render("pages/reporte/cliente", { cliente, prev, next });
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/reporte/cliente");
+  }
+};
+
+const clienteReporteController = async (req, res) => {
+  try {
+    const cliente = req.session.cliente
+    ejs.renderFile(
+      path.join(__dirname, `../views/recibos/`, "cliente.ejs"),
+      {cliente},
+      (err, data) => {
+        if (err) {
+          req.flash("alert", { msg: error.message });
+          res.redirect("/reporte/cliente");
+        } else {
+          pdf
+          .create(data)
+          .toStream((err, stream) => {
+            if (err) {
+              req.flash("alert", { msg: error.message });
+              res.redirect("/reporte/cliente");
+              }
+            res.type("pdf")
+            stream.pipe(res)
+            })
+        }
+      }
+    );
   } catch (error) {
     req.flash("alert", { msg: error.message });
     res.redirect("/reporte/cliente");
@@ -81,4 +115,5 @@ module.exports = {
   renderInventarioController,
   renderVentaController,
   renderClienteController,
+  clienteReporteController,
 };
