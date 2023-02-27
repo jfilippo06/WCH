@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-      <h5 class="card-title">Facturas</h5>
+      <h5 class="card-title">Recibos</h5>
 
         <div class="col-md-2">
             <% if (prev) { %>
@@ -15,7 +15,7 @@
         <thead>
           <tr>
             <th scope="col">Cliente</th>
-            <th scope="col">Factura</th>
+            <th scope="col">Recibo</th>
             <th scope="col">Fecha</th>
           </tr>
         </thead>
@@ -23,7 +23,7 @@
           <% for(let i=0; i < factura.length; i++) { %>
             <tr>
                 <td><%= factura[i].nombre %></td>
-                <td><a href="<%= factura[i].link %>">Factura Nº<%= factura[i].OrderId %></a></td>
+                <td><a href="<%= factura[i].link %>">Recibo Nº<%= factura[i].OrderId %></a></td>
                 <td><%= factura[i].createdAt %></td>
             </tr>
           <% } %>

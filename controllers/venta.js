@@ -219,7 +219,7 @@ const pedidoController = async (req, res) => {
     await cancelarService(id, order);
     await registrarOrderService();
     const fecha = new Date().toLocaleDateString();
-    const link = `http://localhost:3000/invoices/Factura Nº${order}.pdf`;
+    const link = `http://localhost:3000/invoices/Recibo Nº${order}.pdf`;
     await registrarDocumentoService(id, nombre, order, link);
     const { valor, estado } = await gotIvaServive();
     const nombreIva = await obtenerNombre();
@@ -250,7 +250,7 @@ const pedidoController = async (req, res) => {
             pdf
               .create(data)
               .toFile(
-                `./public/invoices/Factura Nº${order}.pdf`,
+                `./public/invoices/Recibo Nº${order}.pdf`,
                 (err, data) => {
                   if (err) {
                     req.flash("alert", { msg: err.message });
@@ -285,7 +285,7 @@ const pedidoController = async (req, res) => {
             pdf
               .create(data)
               .toFile(
-                `./public/invoices/Factura Nº${order}.pdf`,
+                `./public/invoices/Recibo Nº${order}.pdf`,
                 (err, data) => {
                   if (err) {
                     req.flash("alert", { msg: err.message });
