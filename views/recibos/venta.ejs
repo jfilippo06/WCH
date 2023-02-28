@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>WCH</title>
+    <link href="http://localhost:3000/bootstrap/css/bootstrap.min-3.4.1.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-10 ">
+                <h1>Ventas</h1>
+                <p><%= inicio %></p>
+                <p><%= final %></p>
+                <p>Total de ventas: <%= data %></p>
+            </div>
+            <div class="col-xs-2">
+                <img class="img img-responsive" src="http://localhost:3000/images/logo.png">
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <% if (estado) { %>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">N° Recibo</th>
+                      <th scope="col">SubTotal</th>
+                      <th scope="col">Iva</th>
+                      <th scope="col">Total</th>
+                    <% } else { %>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">N° Recibo</th>
+                        <th scope="col">Total</th>
+                    <% } %>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (estado) { %>
+                    <% for(let i=0; i < total.length; i++) { %>
+                      <tr>
+                          <td><%= total[i].createdAt %></td>
+                          <td><%= total[i].OrderId %></td>
+                          <td><%= total[i].neto %></td>
+                          <td><%= total[i].iva_valor %></td>
+                          <td><%= total[i].total %></td>
+                      </tr>
+                    <% } %>
+                  <% } else { %>
+                    <% for(let i=0; i < total.length; i++) { %>
+                      <tr>
+                          <td><%= total[i].createdAt %></td>
+                          <td><%= total[i].OrderId %></td>
+                          <td><%= total[i].total %></td>
+                      </tr>
+                    <% } %>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

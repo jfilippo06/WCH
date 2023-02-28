@@ -63,6 +63,11 @@ const renderVentaController = async (req, res) => {
     );
     const { estado } = await gotIvaServive();
     const data = await obtenerTotalServirce(inicio, final);
+    req.session.total = total;
+    req.session.data = data;
+    req.session.inicio = inicio;
+    req.session.final = final;
+    req.session.estado = estado;
     res.render("pages/reporte/venta", { total, next, prev, estado, data });
   } catch (error) {
     req.flash("alert", { msg: error.message });
@@ -139,6 +144,38 @@ const inventarioReporteController = async (req, res) => {
   }
 };
 
+const ventaReporteController = async (req, res) => {
+  try {
+    const total = req.session.total;
+    const data = req.session.data;
+    const inicio = req.session.inicio;
+    const final = req.session.final;
+    const estado = req.session.estado;
+    ejs.renderFile(
+      path.join(__dirname, `../views/recibos/`, "venta.ejs"),
+      { total, data, inicio, final, estado },
+      (err, data) => {
+        if (err) {
+          req.flash("alert", { msg: error.message });
+          res.redirect("/reporte/venta");
+        } else {
+          pdf.create(data).toStream((err, stream) => {
+            if (err) {
+              req.flash("alert", { msg: error.message });
+              res.redirect("/reporte/venta");
+            }
+            res.type("pdf");
+            stream.pipe(res);
+          });
+        }
+      }
+    );
+  } catch (error) {
+    req.flash("alert", { msg: error.message });
+    res.redirect("/reporte/venta");
+  }
+};
+
 module.exports = {
   renderFacturaController,
   renderInventarioController,
@@ -146,4 +183,5 @@ module.exports = {
   renderClienteController,
   clienteReporteController,
   inventarioReporteController,
+  ventaReporteController,
 };
