@@ -119,8 +119,28 @@ const idProducto = async (id) => {
   return await getProducto(id);
 };
 
-const editFranela = async (id, stock, precio) => {
-  await editarFranela(id, stock, precio);
+const editFranela = async (
+  id,
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
+  await editarFranela(
+    id,
+    tela,
+    talla,
+    color,
+    cuello,
+    manga,
+    marca,
+    stock,
+    precio
+  );
 };
 
 const editProducto = async (id, cantidad, precio) => {

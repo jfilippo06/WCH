@@ -429,9 +429,25 @@ const getProducto = async (id) => {
   });
 };
 
-const editarFranela = async (id, stock, precio) => {
+const editarFranela = async (
+  id,
+  tela,
+  talla,
+  color,
+  cuello,
+  manga,
+  marca,
+  stock,
+  precio
+) => {
   await Franela.update(
     {
+      tela: tela,
+      talla: talla,
+      color: color,
+      cuello: cuello,
+      manga: manga,
+      marca: marca,
       stock: stock || 0,
       precio: precio || 0,
     },
