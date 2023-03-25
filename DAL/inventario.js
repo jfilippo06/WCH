@@ -8,7 +8,7 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        codigo: valor,
+        codigo: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -20,7 +20,7 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        tela: valor,
+        tela: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -32,7 +32,7 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        talla: valor,
+        talla: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -44,7 +44,7 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        color: valor,
+        color: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -56,7 +56,7 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        cuello: valor,
+        cuello: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -68,7 +68,7 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        manga: valor,
+        manga: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -80,7 +80,7 @@ const findAndCountAllfranelas = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        marca: valor,
+        marca: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -124,49 +124,49 @@ const sumStock = async (opcion, valor) => {
   if (opcion == "codigo") {
     return await Franela.sum("stock", {
       where: {
-        codigo: valor,
+        codigo: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "tela") {
     return await Franela.sum("stock", {
       where: {
-        tela: valor,
+        tela: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "talla") {
     return await Franela.sum("stock", {
       where: {
-        talla: valor,
+        talla: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "color") {
     return await Franela.sum("stock", {
       where: {
-        color: valor,
+        color: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "cuello") {
     return await Franela.sum("stock", {
       where: {
-        cuello: valor,
+        cuello: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "manga") {
     return await Franela.sum("stock", {
       where: {
-        manga: valor,
+        manga: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "marca") {
     return await Franela.sum("stock", {
       where: {
-        marca: valor,
+        marca: valor.toUpperCase(),
       },
     });
   }
@@ -195,7 +195,7 @@ const findAndCountAllProductos = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        codigo: valor,
+        codigo: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -207,7 +207,7 @@ const findAndCountAllProductos = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        producto: valor,
+        producto: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -219,7 +219,7 @@ const findAndCountAllProductos = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        tipo: valor,
+        tipo: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -231,7 +231,7 @@ const findAndCountAllProductos = async (limit, offset, opcion, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        color: valor,
+        color: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -275,28 +275,28 @@ const sumCantidad = async (opcion, valor) => {
   if (opcion == "codigo") {
     return await Producto.sum("cantidad", {
       where: {
-        codigo: valor,
+        codigo: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "producto") {
     return await Producto.sum("cantidad", {
       where: {
-        producto: valor,
+        producto: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "tipo") {
     return await Producto.sum("cantidad", {
       where: {
-        tipo: valor,
+        tipo: valor.toUpperCase(),
       },
     });
   }
   if (opcion == "color") {
     return await Producto.sum("cantidad", {
       where: {
-        color: valor,
+        color: valor.toUpperCase(),
       },
     });
   }
@@ -347,31 +347,31 @@ const createFranela = async (
 ) => {
   const codigoData = await Franela.findOne({
     where: {
-      codigo: codigo,
+      codigo: codigo.toUpperCase(),
     },
   });
   if (codigoData) throw new AppError("Codigo ya existe", 200);
   const franela = await Franela.findOne({
     where: {
-      tela: tela,
-      talla: talla,
-      color: color,
-      cuello: cuello,
-      manga: manga,
-      marca: marca,
+      tela: tela.toUpperCase(),
+      talla: talla.toUpperCase(),
+      color: color.toUpperCase(),
+      cuello: cuello.toUpperCase(),
+      manga: manga.toUpperCase(),
+      marca: marca.toUpperCase(),
     },
   });
   if (franela) throw new AppError("Registro ya existe", 200);
   await Franela.create({
-    codigo: codigo,
-    tela: tela,
-    talla: talla,
-    color: color,
-    cuello: cuello || "",
-    manga: manga || "",
-    marca: marca || "",
-    stock: stock || 0,
-    precio: precio || 0,
+    codigo: codigo.toUpperCase(),
+    tela: tela.toUpperCase(),
+    talla: talla.toUpperCase(),
+    color: color.toUpperCase(),
+    cuello: cuello.toUpperCase() || "",
+    manga: manga.toUpperCase() || "",
+    marca: marca.toUpperCase() || "",
+    stock: stock,
+    precio: precio,
   });
 };
 
@@ -385,23 +385,23 @@ const createProducto = async (
 ) => {
   const codigoData = await Producto.findOne({
     where: {
-      codigo: codigo,
+      codigo: codigo.toUpperCase(),
     },
   });
   if (codigoData) throw new AppError("Codigo ya existe", 200);
   const data = await Producto.findOne({
     where: {
-      producto: producto,
-      tipo: tipo,
-      color: color,
+      producto: producto.toUpperCase(),
+      tipo: tipo.toUpperCase(),
+      color: color.toUpperCase(),
     },
   });
   if (data) throw new AppError("Registro ya existe", 200);
   await Producto.create({
-    codigo: codigo,
-    producto: producto,
-    tipo: tipo,
-    color: color,
+    codigo: codigo.toUpperCase(),
+    producto: producto.toUpperCase(),
+    tipo: tipo.toUpperCase(),
+    color: color.toUpperCase(),
     cantidad: cantidad,
     precio: precio,
   });
@@ -442,14 +442,14 @@ const editarFranela = async (
 ) => {
   await Franela.update(
     {
-      tela: tela,
-      talla: talla,
-      color: color,
-      cuello: cuello,
-      manga: manga,
-      marca: marca,
-      stock: stock || 0,
-      precio: precio || 0,
+      tela: tela.toUpperCase(),
+      talla: talla.toUpperCase(),
+      color: color.toUpperCase(),
+      cuello: cuello.toUpperCase(),
+      manga: manga.toUpperCase(),
+      marca: marca.toUpperCase(),
+      stock: stock,
+      precio: precio,
     },
     {
       where: {
@@ -462,11 +462,11 @@ const editarFranela = async (
 const editarProducto = async (id, producto, tipo, color, cantidad, precio) => {
   await Producto.update(
     {
-      producto: producto,
-      tipo: tipo,
-      color: color,
-      cantidad: cantidad || 0,
-      precio: precio || 0,
+      producto: producto.toUpperCase(),
+      tipo: tipo.toUpperCase(),
+      color: color.toUpperCase(),
+      cantidad: cantidad,
+      precio: precio,
     },
     {
       where: {
