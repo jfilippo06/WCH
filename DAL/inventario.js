@@ -459,9 +459,12 @@ const editarFranela = async (
   );
 };
 
-const editarProducto = async (id, cantidad, precio) => {
+const editarProducto = async (id, producto, tipo, color, cantidad, precio) => {
   await Producto.update(
     {
+      producto: producto,
+      tipo: tipo,
+      color: color,
       cantidad: cantidad || 0,
       precio: precio || 0,
     },

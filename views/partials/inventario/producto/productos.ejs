@@ -9,15 +9,28 @@
             <form class="row g-3" action="/inventario/producto/edit/<%= data.id %>" method="post">
                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 <div class="col-md-6">
+                    <label for="inputtext5" class="form-label">Producto</label>
+                    <input type="text" class="form-control" id="producto" name="producto" value="<%= data.producto %>" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputtext5" class="form-label">Tipo</label>
+                    <input type="text" class="form-control" id="tipo" name="tipo" value="<%= data.tipo %>" >
+                </div>
+                <div class="col-md-6">
+                    <label for="inputtext5" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="color" name="color" value="<%= data.color %>">
+                </div>
+                <div class="col-md-6">
                     <label for="inputtext5" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="cantidad" name="cantidad"  value="<%= data.cantidad %>">
+                    <input type="number" class="form-control" id="cantidad" name="cantidad"  value="<%= data.cantidad %>" required>
                 </div>
                 <div class="col-md-6">
                     <label for="inputtext5" class="form-label">Precio</label>
-                    <input type="text" class="form-control" id="precio" name="precio" value="<%= data.precio %>">
+                    <input type="text" class="form-control" id="precio" name="precio" value="<%= data.precio %>" required>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Editar</button>
+                    <a class="btn btn-danger" href="/inventario/producto">Cancelar</a>
                 </div>
             </form>
 

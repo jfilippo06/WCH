@@ -166,9 +166,9 @@ const franelaEditarPostController = async (req, res) => {
 
 const productoEditarPostController = async (req, res) => {
   try {
-    const { cantidad, precio } = req.body;
+    const { producto, tipo, color, cantidad, precio } = req.body;
     const { id } = req.params;
-    await editProducto(id, cantidad, precio);
+    await editProducto(id, producto, tipo, color, cantidad, precio);
     req.flash("success", { msg: "Registro actualizado" });
     res.redirect("/inventario/producto");
   } catch (error) {

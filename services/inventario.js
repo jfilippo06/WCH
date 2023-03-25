@@ -143,8 +143,8 @@ const editFranela = async (
   );
 };
 
-const editProducto = async (id, cantidad, precio) => {
-  await editarProducto(id, cantidad, precio);
+const editProducto = async (id, producto, tipo, color, cantidad, precio) => {
+  await editarProducto(id, producto, tipo, color, cantidad, precio);
 };
 
 module.exports = {
