@@ -77,8 +77,14 @@ const renderVentaController = async (req, res) => {
 
 const renderClienteController = async (req, res) => {
   try {
-    const { page, size, cedula } = req.query;
-    const { cliente, prev, next } = await clienteService(page, size, cedula);
+    const { page, size, cedula, inicio, final } = req.query;
+    const { cliente, prev, next } = await clienteService(
+      page,
+      size,
+      cedula,
+      inicio,
+      final
+    );
     req.session.cliente = cliente;
     res.render("pages/reporte/cliente", { cliente, prev, next });
   } catch (error) {

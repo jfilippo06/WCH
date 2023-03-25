@@ -143,7 +143,7 @@ const totals = async (inicio, final) => {
   ));
 };
 
-const findClientes = async (limit, offset, cedula) => {
+const findClientes = async (limit, offset, cedula, inicio, final) => {
   if (cedula) {
     return await Cliente.findAndCountAll({
       attributes: {
@@ -151,6 +151,20 @@ const findClientes = async (limit, offset, cedula) => {
       },
       where: {
         cedula: cedula,
+      },
+      order: [["id", "DESC"]],
+      limit: limit,
+      offset: offset,
+    });
+  } else if (inicio && final) {
+    return await Cliente.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        createdAt: {
+          [Op.between]: [`${inicio} 00:00:00`, `${final} 24:00:00`],
+        },
       },
       order: [["id", "DESC"]],
       limit: limit,

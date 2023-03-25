@@ -140,13 +140,15 @@ const obtenerTotalServirce = async (inicio, final) => {
   return Math.floor(total.total * 100) / 100;
 };
 
-const clienteService = async (page, size, cedula) => {
+const clienteService = async (page, size, cedula, inicio, final) => {
   const limit = size ? +size : 20;
   const offset = page ? page * limit : 0;
   const { count: totalItems, rows: cliente } = await findClientes(
     limit,
     offset,
-    cedula
+    cedula,
+    inicio,
+    final
   );
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / limit);
@@ -155,14 +157,18 @@ const clienteService = async (page, size, cedula) => {
     currentPage,
     totalPages,
     limit,
-    cedula
+    cedula,
+    inicio,
+    final
   );
   const prev = prevPage_7(
     "reporte/cliente",
     currentPage,
     totalPages,
     limit,
-    cedula
+    cedula,
+    inicio,
+    final
   );
   return { cliente, prev, next };
 };

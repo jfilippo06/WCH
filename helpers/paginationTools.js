@@ -128,19 +128,39 @@ const nextPage_6 = (
   }
 };
 
-const prevPage_7 = (location, currentPage, totalPages, size, cedula) => {
+const prevPage_7 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  cedula,
+  inicio,
+  final
+) => {
   if (currentPage > 0 && currentPage < totalPages) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage - 1
-    }&cedula=${cedula}`;
+    }&cedula=${cedula}&inicio=${inicio}&final=${final}`;
   }
 };
 
-const nextPage_7 = (location, currentPage, totalPages, size, cedula) => {
-  if (currentPage < totalPages - 1) {
+const nextPage_7 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  cedula,
+  inicio,
+  final
+) => {
+  if (currentPage < totalPages - 1 && inicio === undefined) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage + 1
-    }&cedula=${cedula}`;
+    }&cedula=&inicio=&final=`;
+  } else if (currentPage < totalPages - 1) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage + 1
+    }&cedula=${cedula}&inicio=${inicio}&final=${final}`;
   }
 };
 
