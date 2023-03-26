@@ -56,7 +56,7 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        codigo: valor,
+        codigo: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -67,7 +67,7 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        tela: valor,
+        tela: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -78,7 +78,7 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        talla: valor,
+        talla: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -89,7 +89,7 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        color: valor,
+        color: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -100,7 +100,7 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        cuello: valor,
+        cuello: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -111,7 +111,7 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        manga: valor,
+        manga: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -122,7 +122,7 @@ const findFranelas = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        marca: valor,
+        marca: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -166,43 +166,43 @@ const stockFranelas = async (opcion, tipo, valor) => {
   if (opcion == "franelas" && tipo == "codigo") {
     return await Franela.sum("stock", {
       where: {
-        codigo: valor,
+        codigo: valor.toUpperCase(),
       },
     });
   } else if (opcion == "franelas" && tipo == "tela") {
     return await Franela.sum("stock", {
       where: {
-        tela: valor,
+        tela: valor.toUpperCase(),
       },
     });
   } else if (opcion == "franelas" && tipo == "talla") {
     return await Franela.sum("stock", {
       where: {
-        talla: valor,
+        talla: valor.toUpperCase(),
       },
     });
   } else if (opcion == "franelas" && tipo == "color") {
     return await Franela.sum("stock", {
       where: {
-        color: valor,
+        color: valor.toUpperCase(),
       },
     });
   } else if (opcion == "franelas" && tipo == "cuello") {
     return await Franela.sum("stock", {
       where: {
-        cuello: valor,
+        cuello: valor.toUpperCase(),
       },
     });
   } else if (opcion == "franelas" && tipo == "manga") {
     return await Franela.sum("stock", {
       where: {
-        manga: valor,
+        manga: valor.toUpperCase(),
       },
     });
   } else if (opcion == "franelas" && tipo == "marca") {
     return await Franela.sum("stock", {
       where: {
-        marca: valor,
+        marca: valor.toUpperCase(),
       },
     });
   } else if (opcion == "franelas" && tipo == "stock") {
@@ -231,7 +231,7 @@ const findProductos = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        codigo: valor,
+        codigo: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -242,7 +242,7 @@ const findProductos = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        producto: valor,
+        producto: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -253,7 +253,7 @@ const findProductos = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        tipo: valor,
+        tipo: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -264,7 +264,7 @@ const findProductos = async (limit, offset, opcion, tipo, valor) => {
         exclude: ["createdAt", "updatedAt", "deletedAt"],
       },
       where: {
-        color: valor,
+        color: valor.toUpperCase(),
       },
       limit: limit,
       offset: offset,
@@ -308,28 +308,28 @@ const stockProductos = async (opcion, tipo, valor) => {
   if (opcion == "productos" && tipo == "codigo") {
     return await Producto.sum("cantidad", {
       where: {
-        codigo: valor,
+        codigo: valor.toUpperCase(),
       },
     });
   } else if (opcion == "productos" && tipo == "producto") {
     return await Producto.sum("cantidad", {
       where: {
-        producto: valor,
+        producto: valor.toUpperCase(),
       },
     });
   } else if (opcion == "productos" && tipo == "tipo") {
     return await Producto.sum("cantidad", {
       where: {
-        tipo: valor,
+        tipo: valor.toUpperCase(),
       },
     });
   } else if (opcion == "productos" && tipo == "color") {
     return await Producto.sum("cantidad", {
       where: {
-        color: valor,
+        color: valor.toUpperCase(),
       },
     });
-  } else if (opcion == "cantidad") {
+  } else if (opcion == "productos" && tipo == "cantidad") {
     return await Producto.sum("cantidad", {
       where: {
         cantidad: valor,
