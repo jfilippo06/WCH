@@ -134,7 +134,7 @@ const facturaFranelaController = async (req, res) => {
     const order = req.session.order;
     await buscarFranelaService(id, idFranela, order);
     const stockFranela = await obtenerFranelaService(idFranela);
-    if (vendidos > stockFranela || vendidos == 0) {
+    if (vendidos > stockFranela || vendidos <= 0) {
       req.flash("alert", { msg: "No disponible en el stock" });
       res.redirect("/venta/facturar");
     } else {
@@ -156,7 +156,7 @@ const facturaProductoController = async (req, res) => {
     const order = req.session.order;
     await buscarProductoService(id, idProducto, order);
     const cantidadProducto = await obtenerProductoService(idProducto);
-    if (vendidos > cantidadProducto || vendidos == 0) {
+    if (vendidos > cantidadProducto || vendidos <= 0) {
       req.flash("alert", { msg: "No disponible en el stock" });
       res.redirect("/venta/facturar");
     } else {
