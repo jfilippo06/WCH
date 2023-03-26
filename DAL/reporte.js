@@ -41,7 +41,7 @@ const findFactura = async (limit, offset, valor) => {
   }
 };
 
-const findFranelas = async (limit, offset, numero) => {
+const findFranelas = async (limit, offset, numero, inicio, final) => {
   if (numero) {
     return await Salida_franela.findAndCountAll({
       attributes: {
@@ -49,6 +49,20 @@ const findFranelas = async (limit, offset, numero) => {
       },
       where: {
         OrderId: numero,
+      },
+      order: [["id", "DESC"]],
+      limit: limit,
+      offset: offset,
+    });
+  } else if (inicio && final) {
+    return await Salida_franela.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        createdAt: {
+          [Op.between]: [`${inicio} 00:00:00`, `${final} 24:00:00`],
+        },
       },
       order: [["id", "DESC"]],
       limit: limit,
@@ -66,7 +80,7 @@ const findFranelas = async (limit, offset, numero) => {
   }
 };
 
-const findProductos = async (limit, offset, numero) => {
+const findProductos = async (limit, offset, numero, inicio, final) => {
   if (numero) {
     return await Salida_producto.findAndCountAll({
       attributes: {
@@ -74,6 +88,20 @@ const findProductos = async (limit, offset, numero) => {
       },
       where: {
         OrderId: numero,
+      },
+      order: [["id", "DESC"]],
+      limit: limit,
+      offset: offset,
+    });
+  } else if (inicio && final) {
+    return await Salida_producto.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        createdAt: {
+          [Op.between]: [`${inicio} 00:00:00`, `${final} 24:00:00`],
+        },
       },
       order: [["id", "DESC"]],
       limit: limit,

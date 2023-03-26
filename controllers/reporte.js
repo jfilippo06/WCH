@@ -26,7 +26,7 @@ const renderFacturaController = async (req, res) => {
 
 const renderInventarioController = async (req, res) => {
   try {
-    const { page, size, numero } = req.query;
+    const { page, size, numero, inicio, final } = req.query;
     const {
       franela,
       producto,
@@ -34,9 +34,11 @@ const renderInventarioController = async (req, res) => {
       nextFranela,
       prevProducto,
       nextProducto,
-    } = await inventarioService(page, size, numero);
+    } = await inventarioService(page, size, numero, inicio, final);
     req.session.franela = franela;
     req.session.producto = producto;
+    req.session.inicio = inicio;
+    req.session.final = final;
     res.render("pages/reporte/inventario", {
       franela,
       producto,
@@ -86,6 +88,8 @@ const renderClienteController = async (req, res) => {
       final
     );
     req.session.cliente = cliente;
+    req.session.inicio = inicio;
+    req.session.final = final;
     res.render("pages/reporte/cliente", { cliente, prev, next });
   } catch (error) {
     req.flash("alert", { msg: error.message });
@@ -96,9 +100,11 @@ const renderClienteController = async (req, res) => {
 const clienteReporteController = async (req, res) => {
   try {
     const cliente = req.session.cliente;
+    const inicio = req.session.inicio;
+    const final = req.session.final;
     ejs.renderFile(
       path.join(__dirname, `../views/recibos/`, "cliente.ejs"),
-      { cliente },
+      { cliente, inicio, final },
       (err, data) => {
         if (err) {
           req.flash("alert", { msg: error.message });
@@ -125,9 +131,11 @@ const inventarioReporteController = async (req, res) => {
   try {
     const franela = req.session.franela;
     const producto = req.session.producto;
+    const inicio = req.session.inicio;
+    const final = req.session.final;
     ejs.renderFile(
       path.join(__dirname, `../views/recibos/`, "inventario.ejs"),
-      { franela, producto },
+      { franela, producto, inicio, final },
       (err, data) => {
         if (err) {
           req.flash("alert", { msg: error.message });

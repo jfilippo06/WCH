@@ -46,18 +46,22 @@ const paginationFactura = async (page, size, valor) => {
   return { factura, prev, next };
 };
 
-const inventarioService = async (page, size, numero) => {
+const inventarioService = async (page, size, numero, inicio, final) => {
   const limit = size ? +size : 10;
   const offset = page ? page * limit : 0;
   const { count: totalItemsFranela, rows: franela } = await findFranelas(
     limit,
     offset,
-    numero
+    numero,
+    inicio,
+    final
   );
   const { count: totalItemsProducto, rows: producto } = await findProductos(
     limit,
     offset,
-    numero
+    numero,
+    inicio,
+    final
   );
   const currentPage = page ? +page : 0;
   const totalPagesFranela = Math.ceil(totalItemsFranela / limit);
@@ -67,28 +71,36 @@ const inventarioService = async (page, size, numero) => {
     currentPage,
     totalPagesFranela,
     limit,
-    numero
+    numero,
+    inicio,
+    final
   );
   const prevFranela = prevPage_5(
     "reporte/inventario",
     currentPage,
     totalPagesFranela,
     limit,
-    numero
+    numero,
+    inicio,
+    final
   );
   const nextProducto = nextPage_5(
     "reporte/inventario",
     currentPage,
     totalPagesProducto,
     limit,
-    numero
+    numero,
+    inicio,
+    final
   );
   const prevProducto = prevPage_5(
     "reporte/inventario",
     currentPage,
     totalPagesProducto,
     limit,
-    numero
+    numero,
+    inicio,
+    final
   );
   return {
     franela,

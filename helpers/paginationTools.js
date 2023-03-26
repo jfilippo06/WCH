@@ -80,19 +80,43 @@ const nextPage_4 = (location, currentPage, totalPages, size, valor) => {
   }
 };
 
-const prevPage_5 = (location, currentPage, totalPages, size, numero) => {
-  if (currentPage > 0 && currentPage < totalPages) {
+const prevPage_5 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  numero,
+  inicio,
+  final
+) => {
+  if (currentPage > 0 && currentPage < totalPages && inicio === undefined) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage - 1
-    }&numero=${numero}`;
+    }&numero=&inicio=&final=`;
+  } else if (currentPage > 0 && currentPage < totalPages) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage - 1
+    }&numero=${numero}&inicio=${inicio}&final=${final}`;
   }
 };
 
-const nextPage_5 = (location, currentPage, totalPages, size, numero) => {
-  if (currentPage < totalPages - 1) {
+const nextPage_5 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  numero,
+  inicio,
+  final
+) => {
+  if (currentPage < totalPages - 1 && inicio === undefined) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage + 1
-    }&numero=${numero}`;
+    }&numero=&inicio=&final=`;
+  } else if (currentPage < totalPages - 1) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage + 1
+    }&numero=${numero}&inicio=${inicio}&final=${final}`;
   }
 };
 
@@ -137,7 +161,11 @@ const prevPage_7 = (
   inicio,
   final
 ) => {
-  if (currentPage > 0 && currentPage < totalPages) {
+  if (currentPage > 0 && currentPage < totalPages && inicio === undefined) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage - 1
+    }&cedula=&inicio=&final=`;
+  } else if (currentPage > 0 && currentPage < totalPages) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage - 1
     }&cedula=${cedula}&inicio=${inicio}&final=${final}`;
