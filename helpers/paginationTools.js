@@ -64,19 +64,43 @@ const nextPage_3 = (
   }
 };
 
-const prevPage_4 = (location, currentPage, totalPages, size, valor) => {
-  if (currentPage > 0 && currentPage < totalPages) {
+const prevPage_4 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  valor,
+  inicio,
+  final
+) => {
+  if (currentPage > 0 && currentPage < totalPages && inicio === undefined) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage - 1
-    }&valor=${valor}`;
+    }&valor=&inicio=&final=`;
+  } else if (currentPage > 0 && currentPage < totalPages) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage - 1
+    }&valor=${valor}&inicio=${inicio}&final=${final}`;
   }
 };
 
-const nextPage_4 = (location, currentPage, totalPages, size, valor) => {
-  if (currentPage < totalPages - 1) {
+const nextPage_4 = (
+  location,
+  currentPage,
+  totalPages,
+  size,
+  valor,
+  inicio,
+  final
+) => {
+  if (currentPage < totalPages - 1 && inicio === undefined) {
     return `${process.env.BASE_URL + location}?size=${size}&page=${
       currentPage + 1
-    }&valor=${valor}`;
+    }&valor=&inicio=&final=`;
+  } else if (currentPage < totalPages - 1) {
+    return `${process.env.BASE_URL + location}?size=${size}&page=${
+      currentPage + 1
+    }&valor=${valor}&inicio=${inicio}&final=${final}`;
   }
 };
 

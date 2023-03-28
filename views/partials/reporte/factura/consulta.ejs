@@ -12,11 +12,17 @@
                 </div>
                 <div class="col-md-3">
                     <select class="form-select" aria-label="Default select example" name="valor">
-                        <option>Seleciona un cliente</option>
+                        <option value="">Seleciona un cliente</option>
                         <% for(let i=0; i < cliente.length; i++) { %>
                             <option value="<%= cliente[i].id %>"><%= cliente[i].nombre %></option>
                         <% } %>
                     </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="date" class="form-control"  name="inicio">
+                </div>
+                <div class="col-md-2">
+                    <input type="date" class="form-control"  name="final">
                 </div>
                 <button type="submit" class="btn btn-primary col-md-2">Consultar</button>
             </form>

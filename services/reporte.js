@@ -22,10 +22,10 @@ const renderFacturaService = async () => {
   return await findAllClient();
 };
 
-const paginationFactura = async (page, size, valor) => {
+const paginationFactura = async (page, size, valor, inicio, final) => {
   const limit = size ? +size : 20;
   const offset = page ? page * limit : 0;
-  const data = await findFactura(limit, offset, valor);
+  const data = await findFactura(limit, offset, valor, inicio, final);
   const { count: totalItems, rows: factura } = data;
   const currentPage = page ? +page : 0;
   const totalPages = Math.ceil(totalItems / limit);
@@ -34,14 +34,18 @@ const paginationFactura = async (page, size, valor) => {
     currentPage,
     totalPages,
     limit,
-    valor
+    valor,
+    inicio,
+    final
   );
   const prev = prevPage_4(
     "reporte/factura",
     currentPage,
     totalPages,
     limit,
-    valor
+    valor,
+    inicio,
+    final
   );
   return { factura, prev, next };
 };

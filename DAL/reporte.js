@@ -16,7 +16,7 @@ const findAllClient = async () => {
   });
 };
 
-const findFactura = async (limit, offset, valor) => {
+const findFactura = async (limit, offset, valor, inicio, final) => {
   if (valor) {
     return await Documento.findAndCountAll({
       attributes: {
@@ -24,6 +24,20 @@ const findFactura = async (limit, offset, valor) => {
       },
       where: {
         ClienteId: valor,
+      },
+      order: [["id", "DESC"]],
+      limit: limit,
+      offset: offset,
+    });
+  } else if (inicio && final) {
+    return await Documento.findAndCountAll({
+      attributes: {
+        exclude: ["updatedAt"],
+      },
+      where: {
+        createdAt: {
+          [Op.between]: [`${inicio} 00:00:00`, `${final} 24:00:00`],
+        },
       },
       order: [["id", "DESC"]],
       limit: limit,

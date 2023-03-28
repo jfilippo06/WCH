@@ -13,9 +13,9 @@ const path = require("path");
 
 const renderFacturaController = async (req, res) => {
   try {
-    const { page, size, valor } = req.query;
+    const { page, size, valor, inicio, final } = req.query;
     const cliente = await renderFacturaService();
-    const data = await paginationFactura(page, size, valor);
+    const data = await paginationFactura(page, size, valor, inicio, final);
     const { factura, prev, next } = data;
     res.render("pages/reporte/factura", { cliente, factura, prev, next });
   } catch (error) {
